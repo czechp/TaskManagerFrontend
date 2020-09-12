@@ -1,9 +1,14 @@
 .dropdown-item{
+  background-color: transparent;
   text-align: center;
   min-width: 220px;
+  color: black;
+}
+
+.dropdown-item:hover {
+  background-color: black;
   color: white;
 }
 
-.dropdown-item:hover{
-  color: black;
-}
+
+

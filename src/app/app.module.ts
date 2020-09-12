@@ -8,13 +8,17 @@ import {LeftNavbarComponent} from './components/left-navbar/left-navbar.componen
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {TitleComponent} from './components/title/title.component';
+import {StatementComponent} from './components/statement/statement.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
     LeftNavbarComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    TitleComponent,
+    StatementComponent
   ],
   imports: [
     BrowserModule,
