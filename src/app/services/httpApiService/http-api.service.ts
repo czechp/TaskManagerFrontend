@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {url} from '../Url';
+import {URL} from '../URL';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class HttpApiService {
     for (const param of params) {
       httpParams = httpParams.append(param.name, param.parameter);
     }
-    return this.httpClient.post(url + endpoint, body, {params: httpParams});
+    return this.httpClient.post(URL + endpoint, body, {params: httpParams});
   }
 
 }
