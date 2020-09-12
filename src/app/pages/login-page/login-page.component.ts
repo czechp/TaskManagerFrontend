@@ -6,8 +6,10 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  public statement: string;
 
   constructor() {
+    this.statement = 'Błąd 123';
   }
 
   ngOnInit(): void {
