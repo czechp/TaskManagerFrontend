@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 
 
 const routes: Routes = [
+  {path: '/', redirectTo: '/login'},
   {path: '/login', component: LoginPageComponent}
 ];
 
@@ -11,4 +12,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
