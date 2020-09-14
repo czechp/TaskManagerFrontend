@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthorizationService} from '../../services/security/authorizationService/authorization.service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,12 +9,22 @@ import {Component, OnInit} from '@angular/core';
 export class LoginPageComponent implements OnInit {
   public statement: string;
 
-  constructor() {
-    this.statement = 'Błąd 123';
+  constructor(
+    private authorizationService: AuthorizationService
+  ) {
+    this.statement = '';
   }
 
   ngOnInit(): void {
 
   }
 
+  public login(username: string, password: string) {
+    this.clearStatement();
+    this.authorizationService.login(username, password);
+  }
+
+  private clearStatement() {
+    this.statement = '';
+  }
 }

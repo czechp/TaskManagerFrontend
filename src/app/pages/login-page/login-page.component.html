@@ -8,15 +8,17 @@
       <div class="input-group-prepend">
         <span class="input-group-text" id="input-group-text-custom">Login:</span>
       </div>
-      <input class="form-control" type="text">
+      <input #username class="form-control" type="text">
     </div>
     <!--Password-->
     <div class="input-group mb-3 w-75">
       <div class="input-group-prepend ">
         <span class="input-group-text" id="input-group-text-custom">Hasło:</span>
       </div>
-      <input class="form-control " type="password">
+      <input #password class="form-control " type="password">
     </div>
+
+    <button (click)="login(username.value, password.value)" class="btn btn-outline-success w-50">Zaloguj</button>
   </div>
 
 </div>

@@ -60,10 +60,23 @@
 
   </div>
   <div class="">
-    <button class="btn btn-outline-danger  w-100 border-light border-bottom-0 border-top-1 border-left-0 border-right-0"
+    <button (click)="logout()" *ngIf="isLogged"
+            class="btn btn-outline-danger  w-100 border-light border-bottom-0 border-top-1 border-left-0 border-right-0"
             type="button">
       Wyloguj
     </button>
 
+    <button *ngIf="!isLogged"
+            class="btn btn-outline-success  w-100 border-light border-bottom-0 border-top-1 border-left-0 border-right-0"
+            routerLink="/login" type="button">
+      Zaloguj
+    </button>
+
+    <button
+      class="btn btn-outline-primary  w-100 border-light border-bottom-0 border-top-1 border-left-0 border-right-0"
+      type="button">
+      Rejestracja
+    </button>
   </div>
+
 </div>
