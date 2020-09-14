@@ -1,0 +1,5 @@
+<div *ngIf="statement.length > 0" [ngClass]="{
+'bg-danger': statement[0] === 'B'
+}" class="d-flex justify-content-center bg-success w-75 m-auto p-3 border rounded ">
+  <h3 class="">{{statement}}</h3>
+</div>

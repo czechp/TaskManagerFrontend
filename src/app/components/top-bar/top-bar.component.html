@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark  sticky-top ">
+<nav class="navbar navbar-dark">
   <div class="navbar-brand">
     <img alt="" src="assets/img/bispol_logo.png" width="200px">
     <div class="ml-3"><b>Created by PCzech</b></div>
@@ -7,24 +7,29 @@
     <h1>Zadania - automatycy</h1>
   </div>
 
+
   <!--    Login form-->
-  <form class="form-inline my-2 my-lg-0">
-      <div class="input-group mr-2">
-        <div class="input-group-prepend ">
-          <span class="input-group-text bg-success">Login:</span>
-        </div>
-        <input type="text" class="form-control">
+  <form *ngIf="!isLogged" class="form-inline my-2 my-lg-0">
+    <div class="input-group mr-2">
+      <div class="input-group-prepend ">
+        <span class="input-group-text " id="input-group-text-custom">Login:</span>
       </div>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text bg-success">Hasło:</span>
-        </div>
-        <input type="password" class="form-control">
+      <input #username class="form-control" type="text">
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text " id="input-group-text-custom">Hasło:</span>
       </div>
-    <button class="btn btn-outline-success ml-2" style="width: 150px">Zaloguj</button>
+      <input #password class="form-control" type="password">
+    </div>
+    <button (click)="login(username.value, password.value)" class="btn btn-outline-success ml-2" style="width: 150px">
+      Zaloguj
+    </button>
   </form>
-<!--  Logout form -->
-  <form class="form-inline my-2 my-lg-0">
-    <button class="btn btn-outline-danger ml-2" style="width: 150px">Wyloguj</button>
+  <!--  Logout form -->
+  <form *ngIf="isLogged" class="form-inline my-2 my-lg-0">
+    <h4>Zalogowany jako: {{username}}</h4>
+    <button (click)="logout()" class="btn btn-outline-danger ml-4 " style="width: 150px">Wyloguj</button>
   </form>
+
 </nav>
