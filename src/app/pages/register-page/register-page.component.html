@@ -1,0 +1,39 @@
+<app-title [statement]="statement" [title]="'Rejestracja'"></app-title>
+
+<div class="d-flex justify-content-center">
+  <div class="card card-custom w-50" id="card-custom">
+    <h3 class="mb-3">Rejestracja</h3>
+
+    <!--Login-->
+    <div class="input-group mb-3 w-75">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="input-group-text-custom">Login:</span>
+      </div>
+      <input #username class="form-control" type="text">
+    </div>
+    <!--Password #1-->
+    <div class="input-group mb-3 w-75">
+      <div class="input-group-prepend ">
+        <span class="input-group-text" id="input-group-text-custom">Hasło:</span>
+      </div>
+      <input #password class="form-control " type="password">
+    </div>
+    <!--Password #2-->
+    <div class="input-group mb-3 w-75">
+      <div class="input-group-prepend ">
+        <span class="input-group-text" id="input-group-text-custom">Hasło conf.:</span>
+      </div>
+      <input #passwordConf class="form-control " type="password">
+    </div>
+    <!--Email -->
+    <div class="input-group mb-3 w-75">
+      <div class="input-group-prepend ">
+        <span class="input-group-text" id="input-group-text-custom">Email:</span>
+      </div>
+      <input #wemail class="form-control " type="email">
+    </div>
+
+    <button class="btn btn-outline-primary w-50">Rejestracja</button>
+  </div>
+
+</div>
