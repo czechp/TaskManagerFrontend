@@ -19,4 +19,12 @@ export class HttpApiService {
     return this.httpClient.post(URL + endpoint, body, {params: httpParams});
   }
 
+  public head(endpoint: string, params: any[]): Observable<any> {
+    let httpParams = new HttpParams();
+    for (const param of params) {
+      httpParams = httpParams.append(param.name, param.parameter);
+    }
+    return this.httpClient.head(URL + endpoint, {params: httpParams});
+  }
+
 }

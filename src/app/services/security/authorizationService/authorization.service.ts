@@ -3,6 +3,7 @@ import {HttpApiService} from '../../httpApiService/http-api.service';
 import {loginEndpoint} from '../../URL';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
+import {MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH} from '../../../consts/Constants';
 
 @Injectable({
   providedIn: 'root'
@@ -44,8 +45,7 @@ export class AuthorizationService {
   }
 
   public validateUsernameAndPassword(username: string, password: string): boolean {
-    // todo: change it after test
-    return username.length >= 4 && password.length >= 4;
+    return username.length >= MIN_USERNAME_LENGTH && password.length >= MIN_PASSWORD_LENGTH;
   }
 
   public getLoginSubscription() {
