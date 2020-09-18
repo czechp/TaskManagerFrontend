@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "TaskManager"
+    }
+  },
+  "defaultProject": "TaskManager",
+  "cli": {
+    "analytics": false
+  }
 }
