@@ -8,6 +8,7 @@ export class ViewCustomizerService {
   private readonly RED = 'red';
   private readonly YELLOW = 'yellow';
   private readonly BLACK = 'black';
+  private readonly WHITE = 'white';
 
 
   constructor(rendererFactory: RendererFactory2) {
@@ -22,7 +23,7 @@ export class ViewCustomizerService {
 
   public setDangerColors(element: ElementRef): void {
     this.renderer.setStyle(element.nativeElement, 'border-color', this.RED);
-    this.renderer.setStyle(element.nativeElement, 'background-color', this.YELLOW);
-    this.renderer.setStyle(element.nativeElement, 'color', this.BLACK);
+    this.renderer.setStyle(element.nativeElement, 'background-color', this.RED);
+    this.renderer.setStyle(element.nativeElement, 'color', this.WHITE);
   }
 }
