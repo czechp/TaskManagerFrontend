@@ -23,14 +23,14 @@
       <div class="input-group-prepend ">
         <span class="input-group-text" id="input-group-text-custom">Hasło conf.:</span>
       </div>
-      <input #passwordConf class="form-control " type="password">
+      <input #passwordConf (focusout)="validatePasswordEquals(password.value, passwordConf.value)" class="form-control " type="password">
     </div>
     <!--Email -->
     <div class="input-group mb-3 w-75">
       <div class="input-group-prepend ">
         <span class="input-group-text" id="input-group-text-custom">Email:</span>
       </div>
-      <input #email class="form-control " type="email">
+      <input #email (focusout)="validateEmail(email.value)" class="form-control " type="email">
     </div>
 
     <button class="btn btn-outline-primary w-50">Rejestracja</button>
