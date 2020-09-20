@@ -23,7 +23,8 @@
       <div class="input-group-prepend ">
         <span class="input-group-text" id="input-group-text-custom">Hasło conf.:</span>
       </div>
-      <input #passwordConf (focusout)="validatePasswordEquals(password.value, passwordConf.value)" class="form-control " type="password">
+      <input #passwordConf (focusout)="validatePasswordEquals(password.value, passwordConf.value)" class="form-control "
+        type="password">
     </div>
     <!--Email -->
     <div class="input-group mb-3 w-75">
@@ -33,7 +34,43 @@
       <input #email (focusout)="validateEmail(email.value)" class="form-control " type="email">
     </div>
 
-    <button class="btn btn-outline-primary w-50">Rejestracja</button>
+    <div class="card card-custom w-75" id="card-custom">
+      <div class="validation-element-view" [ngClass]="{
+        'text-danger': usernameValidated === false,
+        'text-success': usernameValidated === true
+      }
+      ">
+        Login poprawny
+        <i *ngIf="usernameValidated" class="far fa-check-circle fa-2x"></i>
+      </div>
+      <div class="validation-element-view" [ngClass]="{
+        'text-danger': passwordValidated === false,
+        'text-success': passwordValidated === true
+      }
+      ">
+        Hasło poprawne
+        <i *ngIf="passwordValidated" class="far fa-check-circle fa-2x"></i>
+      </div>
+      <div class="validation-element-view" [ngClass]="{
+        'text-danger': passowrdConfValidated === false,
+        'text-success': passowrdConfValidated === true
+      }
+      ">
+        Hasła identyczne
+        <i *ngIf="passowrdConfValidated" class="far fa-check-circle fa-2x"></i>
+      </div>
+      <div class="validation-element-view" [ngClass]="{
+        'text-danger': emailValidated === false,
+        'text-success': emailValidated === true
+      }
+      ">
+        Email poprawny
+        <i *ngIf="emailValidated" class="far fa-check-circle fa-2x"></i>
+
+      </div>
+
+    </div>
+    <button  *ngIf="checkValidation()"class="btn btn-outline-primary w-50 mt-4">Rejestracja</button>
   </div>
 
 </div>

@@ -10,10 +10,10 @@ import { emailExistenceEndpoint, usernameExistenceEndpoint, usersEndpoint } from
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
-  private usernameValidated = false;
-  private passwordValidated = false;
-  private passowrdConfValidated = false;
-  private emailValidated = false;
+  public usernameValidated = false;
+  public passwordValidated = false;
+  public passowrdConfValidated = false;
+  public emailValidated = false;
 
   public statement: string;
 
@@ -50,6 +50,7 @@ export class RegisterPageComponent implements OnInit {
           response => {
             this.statement = 'Błąd! Taka nazwa użytkownika już istnieje';
             this.viewCustomizerService.setDangerColors(this.loginInput);
+            this.usernameValidated = false;
           },
           error => {
             this.usernameValidated = true;
@@ -109,10 +110,15 @@ export class RegisterPageComponent implements OnInit {
   }
 
 
+public checkValidation(): boolean{
+  return this.usernameValidated 
+  && this.passwordValidated
+  && this.passowrdConfValidated
+  && this.emailValidated;
+}
 
   private clearStatement(): void {
     this.statement = '';
   }
-
 
 }
