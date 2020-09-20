@@ -16,7 +16,7 @@
       <div class="input-group-prepend ">
         <span class="input-group-text" id="input-group-text-custom">Hasło:</span>
       </div>
-      <input #password class="form-control " type="password">
+      <input #password (focusout)="validatePassowrd(password.value)" class="form-control " type="password">
     </div>
     <!--Password #2-->
     <div class="input-group mb-3 w-75">
