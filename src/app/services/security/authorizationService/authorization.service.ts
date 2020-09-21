@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpApiService} from '../../httpApiService/http-api.service';
-import {loginEndpoint} from '../../URL';
+import {loginEndpoint, usersEndpoint} from '../../URL';
 import {Subject} from 'rxjs';
 import {Router} from '@angular/router';
 import {MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH} from '../../../consts/Constants';
@@ -20,7 +20,7 @@ export class AuthorizationService {
 
   public login(username: string, password: string) {
     if (this.validateUsernameAndPassword(username, password)) {
-      this.httpApiService.post(loginEndpoint, {username, password}, [])
+      this.httpApiService.post(usersEndpoint + loginEndpoint, {username, password}, [])
         .subscribe(
           response => {
             sessionStorage.setItem('jwtToken', response.jwt);

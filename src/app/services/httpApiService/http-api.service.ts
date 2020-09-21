@@ -27,4 +27,14 @@ export class HttpApiService {
     return this.httpClient.head(URL + endpoint, {params: httpParams});
   }
 
+  errorStatementHandler(status: number) {
+    let result = 'Błąd! ';
+    switch (status) {
+      case 422: {
+        result += 'Nie poprawne dane';
+        break;
+      }
+    }
+    return result;
+  }
 }

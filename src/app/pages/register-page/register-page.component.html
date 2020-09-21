@@ -70,7 +70,9 @@
       </div>
 
     </div>
-    <button  *ngIf="checkValidation()"class="btn btn-outline-primary w-50 mt-4">Rejestracja</button>
+    <button (click)="register(username.value, password.value, email.value)" *ngIf="checkValidation()"
+            class="btn btn-outline-primary w-50 mt-4">Rejestracja
+    </button>
   </div>
 
 </div>
