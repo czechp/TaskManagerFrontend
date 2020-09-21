@@ -7,10 +7,12 @@ import {TopBarComponent} from './components/top-bar/top-bar.component';
 import {LeftNavbarComponent} from './components/left-navbar/left-navbar.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TitleComponent} from './components/title/title.component';
 import {StatementComponent} from './components/statement/statement.component';
 import {RegisterPageComponent} from './pages/register-page/register-page.component';
+import {HttpInterceptorService} from './services/security/httpInterceptor/http-interceptor.service';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {RegisterPageComponent} from './pages/register-page/register-page.compone
     LoginPageComponent,
     TitleComponent,
     StatementComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,11 @@ import {RegisterPageComponent} from './pages/register-page/register-page.compone
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

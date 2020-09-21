@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from '../../services/security/authorizationService/authorization.service';
+import {HttpApiService} from '../../services/httpApiService/http-api.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,13 +11,13 @@ export class LoginPageComponent implements OnInit {
   public statement: string;
 
   constructor(
-    private authorizationService: AuthorizationService
+    private authorizationService: AuthorizationService,
+    private httpApiService: HttpApiService
   ) {
     this.statement = '';
   }
 
   ngOnInit(): void {
-
   }
 
   public login(username: string, password: string) {

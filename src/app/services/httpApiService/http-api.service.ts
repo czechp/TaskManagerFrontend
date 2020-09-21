@@ -12,19 +12,23 @@ export class HttpApiService {
   }
 
   public post(endpoint: string, body: any, params: any[]): Observable<any> {
-    let httpParams = new HttpParams();
-    for (const param of params) {
-      httpParams = httpParams.append(param.name, param.parameter);
-    }
-    return this.httpClient.post(URL + endpoint, body, {params: httpParams});
+    return this.httpClient.post(URL + endpoint, body, {params: this.getParams(params)});
   }
 
   public head(endpoint: string, params: any[]): Observable<any> {
+    return this.httpClient.head(URL + endpoint, {params: this.getParams(params)});
+  }
+
+  public get(endpoint: string, params: any[]): Observable<any> {
+    return this.httpClient.get(URL + endpoint, {params: this.getParams(params)});
+  }
+
+  private getParams(params: any[]) {
     let httpParams = new HttpParams();
     for (const param of params) {
       httpParams = httpParams.append(param.name, param.parameter);
     }
-    return this.httpClient.head(URL + endpoint, {params: httpParams});
+    return httpParams;
   }
 
   errorStatementHandler(status: number) {

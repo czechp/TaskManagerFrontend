@@ -23,13 +23,17 @@ export class TopBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLogged = sessionStorage.getItem('username') !== null;
+    const sessionStorageUsername = sessionStorage.getItem('username');
+    this.isLogged = sessionStorageUsername !== null;
+    if (this.isLogged) {
+      this.username =  sessionStorageUsername;
+    }
     this.loginSubscription = this.authorizationService.getLoginSubscription()
       .subscribe(
         x => {
           if (x === 'succeed') {
             this.isLogged = true;
-            this.username = sessionStorage.getItem('username');
+            this.username = sessionStorageUsername;
           } else {
             this.isLogged = false;
           }
