@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {TitleComponent} from './components/title/title.component';
 import {StatementComponent} from './components/statement/statement.component';
+import {RegisterPageComponent} from './pages/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {StatementComponent} from './components/statement/statement.component';
     LeftNavbarComponent,
     LoginPageComponent,
     TitleComponent,
-    StatementComponent
+    StatementComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,
