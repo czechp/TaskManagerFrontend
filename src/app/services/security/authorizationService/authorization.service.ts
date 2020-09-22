@@ -52,4 +52,8 @@ export class AuthorizationService {
     return this.loginSubject;
   }
 
+  public isLogged(): boolean {
+    return sessionStorage.getItem('jwtToken') !== null;
+  }
+
 }
