@@ -38,6 +38,27 @@ export class HttpApiService {
         result += 'Nie poprawne dane';
         break;
       }
+      case 400: {
+        result += ' Nie poprawne zapytanie do serwera';
+        break;
+      }
+      case 401: {
+        result += ' Zaloguj się';
+        break;
+      }
+      case 403: {
+        result += ' Brak wystarczjących uprawnień';
+        break;
+      }
+      case 404: {
+        result += ' Element nie istnieje';
+        break;
+      }
+      case 409: {
+        result += ' Taki element już istnieje';
+        break;
+      }
+
     }
     return result;
   }

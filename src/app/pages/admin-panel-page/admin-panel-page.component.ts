@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {AppUser} from '../../models/AppUser';
+import {HttpApiService} from '../../services/httpApiService/http-api.service';
+import {usersEndpoint} from '../../services/URL';
 
 @Component({
   selector: 'app-admin-panel-page',
@@ -7,11 +10,26 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AdminPanelPageComponent implements OnInit {
   public statement = '';
+  public users: AppUser[] = [];
 
-  constructor() {
+  constructor(
+    private httpApiService: HttpApiService
+  ) {
   }
 
   ngOnInit(): void {
+    this.getUsers();
   }
 
+  private getUsers() {
+    this.httpApiService.get(usersEndpoint + '1', [])
+      .subscribe(
+        (next: any) => {
+          this.users = next.sort((user1, user2) => user1.username.localeCompare(user2.username));
+        },
+        (error: any) => {
+          this.statement = this.httpApiService.errorStatementHandler(error.status);
+        }
+      );
+  }
 }

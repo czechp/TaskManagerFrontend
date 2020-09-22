@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
@@ -18,19 +18,19 @@ export class HttpInterceptorService implements HttpInterceptor {
       next.handle(req.clone({
         setHeaders: {Authorization: 'Bearer ' + jwtToken}
       })).pipe(
-        catchError(err => this.handleError(err))
+        catchError(error => {
+          return this.handleError(error);
+        })
       )
       :
       next.handle(req);
   }
 
-  private handleError(error: any) {
-    console.log(error.status);
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 0) {
-        this.router.navigate(['/login']);
-      }
+  private handleError(response: any) {
+    if (!(response instanceof HttpResponse)) {
+        console.log('works');
     }
-    return throwError(error);
+    return throwError(response);
+
   }
 }
