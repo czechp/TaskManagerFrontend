@@ -22,7 +22,7 @@ export class AdminPanelPageComponent implements OnInit {
   }
 
   private getUsers() {
-    this.httpApiService.get(usersEndpoint + '1', [])
+    this.httpApiService.get(usersEndpoint, [])
       .subscribe(
         (next: any) => {
           this.users = next.sort((user1, user2) => user1.username.localeCompare(user2.username));
