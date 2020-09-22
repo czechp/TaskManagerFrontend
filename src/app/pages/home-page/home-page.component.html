@@ -1,1 +1,6 @@
-<p>home-page works!</p>
+<div class="d-flex justify-content-around">
+  <app-input-text-custom [(value)]="testValue" [length]="4" [title]="'Any text'" class="w-50"></app-input-text-custom>
+  {{testValue}}
+  <app-input-text-custom [title]="'Any text'"></app-input-text-custom>
+
+</div>

@@ -27,7 +27,7 @@ export class AuthorizationService {
             sessionStorage.setItem('role', response.role);
             sessionStorage.setItem('username', username);
             this.loginSubject.next('succeed');
-            // todo: Router to main page
+            this.router.navigate(['']);
           },
           error => {
             this.loginSubject.next('failed');

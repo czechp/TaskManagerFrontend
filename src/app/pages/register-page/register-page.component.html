@@ -52,12 +52,12 @@
         <i *ngIf="passwordValidated" class="far fa-check-circle fa-2x"></i>
       </div>
       <div class="validation-element-view" [ngClass]="{
-        'text-danger': passowrdConfValidated === false,
-        'text-success': passowrdConfValidated === true
+        'text-danger': passwordConfValidated === false,
+        'text-success': passwordConfValidated === true
       }
       ">
         Hasła identyczne
-        <i *ngIf="passowrdConfValidated" class="far fa-check-circle fa-2x"></i>
+        <i *ngIf="passwordConfValidated" class="far fa-check-circle fa-2x"></i>
       </div>
       <div class="validation-element-view" [ngClass]="{
         'text-danger': emailValidated === false,

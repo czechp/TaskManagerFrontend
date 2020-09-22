@@ -12,7 +12,9 @@ import {TitleComponent} from './components/title/title.component';
 import {StatementComponent} from './components/statement/statement.component';
 import {RegisterPageComponent} from './pages/register-page/register-page.component';
 import {HttpInterceptorService} from './services/security/httpInterceptor/http-interceptor.service';
-import { HomePageComponent } from './pages/home-page/home-page.component';
+import {HomePageComponent} from './pages/home-page/home-page.component';
+import {InputTextCustomComponent} from './components/input-text-custom/input-text-custom.component';
+import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     TitleComponent,
     StatementComponent,
     RegisterPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    InputTextCustomComponent,
+    AdminPanelPageComponent
   ],
   imports: [
     BrowserModule,

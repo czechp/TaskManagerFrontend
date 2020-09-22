@@ -6,6 +6,7 @@ import {ElementRef, Injectable, Renderer2, RendererFactory2} from '@angular/core
 export class ViewCustomizerService {
   private renderer: Renderer2;
   private readonly RED = 'red';
+  private readonly GREEN = 'green';
   private readonly YELLOW = 'yellow';
   private readonly BLACK = 'black';
   private readonly WHITE = 'white';
@@ -22,8 +23,14 @@ export class ViewCustomizerService {
   }
 
   public setDangerColors(element: ElementRef): void {
-    this.renderer.setStyle(element.nativeElement, 'border-color', this.RED);
+    this.renderer.setStyle(element.nativeElement, 'border-color', this.YELLOW);
     this.renderer.setStyle(element.nativeElement, 'background-color', this.RED);
+    this.renderer.setStyle(element.nativeElement, 'color', this.WHITE);
+  }
+
+  public setCorrectColors(element: ElementRef): void {
+    this.renderer.setStyle(element.nativeElement, 'border-color', this.YELLOW);
+    this.renderer.setStyle(element.nativeElement, 'background-color', this.GREEN);
     this.renderer.setStyle(element.nativeElement, 'color', this.WHITE);
   }
 }

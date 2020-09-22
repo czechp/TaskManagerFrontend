@@ -13,7 +13,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 export class RegisterPageComponent implements OnInit {
   public usernameValidated = false;
   public passwordValidated = false;
-  public passowrdConfValidated = false;
+  public passwordConfValidated = false;
   public emailValidated = false;
 
   public statement: string;
@@ -81,9 +81,9 @@ export class RegisterPageComponent implements OnInit {
     if (password !== passwordConf) {
       this.statement = 'Błąd! Hasła są różne';
       this.viewCustomizerService.setDangerColors(this.passwordConfInput);
-      this.passowrdConfValidated = false;
+      this.passwordConfValidated = false;
     } else {
-      this.passowrdConfValidated = true;
+      this.passwordConfValidated = true;
     }
   }
 
@@ -114,7 +114,7 @@ export class RegisterPageComponent implements OnInit {
   public checkValidation(): boolean {
     return this.usernameValidated
       && this.passwordValidated
-      && this.passowrdConfValidated
+      && this.passwordConfValidated
       && this.emailValidated;
   }
 
