@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./admin-panel-page.component.css']
 })
 export class AdminPanelPageComponent implements OnInit {
+  public statement = '';
 
   constructor() {
   }

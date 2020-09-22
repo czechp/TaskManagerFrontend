@@ -56,4 +56,8 @@ export class AuthorizationService {
     return sessionStorage.getItem('jwtToken') !== null;
   }
 
+  public getRole(): string {
+    return sessionStorage.getItem('role');
+  }
+
 }

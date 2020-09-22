@@ -15,6 +15,7 @@ import {HttpInterceptorService} from './services/security/httpInterceptor/http-i
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {InputTextCustomComponent} from './components/input-text-custom/input-text-custom.component';
 import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page.component';
+import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page
     RegisterPageComponent,
     HomePageComponent,
     InputTextCustomComponent,
-    AdminPanelPageComponent
+    AdminPanelPageComponent,
+    ForbiddenPageComponent
   ],
   imports: [
     BrowserModule,
