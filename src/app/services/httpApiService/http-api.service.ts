@@ -23,6 +23,10 @@ export class HttpApiService {
     return this.httpClient.get(URL + endpoint, {params: this.getParams(params)});
   }
 
+  public patch(endpoint: string, body: any, params: any[]): Observable<any> {
+    return this.httpClient.patch(URL + endpoint, {}, {params: this.getParams(params)});
+  }
+
   private getParams(params: any[]) {
     let httpParams = new HttpParams();
     for (const param of params) {
