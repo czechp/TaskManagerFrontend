@@ -12,8 +12,9 @@
     <div class="d-flex justify-content-around w-100 mt-3">
       <button class="btn btn-outline-primary" [attr.data-target]="'#activate-'+user.id" data-toggle="collapse">Aktywacja
       </button>
-      <button class="btn btn-outline-success" [attr.data-target]="'#role-'+user.id" data-toggle="collapse">Zmień role</button>
-      <button class="btn btn-outline-danger">Usuń</button>
+      <button class="btn btn-outline-success" [attr.data-target]="'#role-'+user.id" data-toggle="collapse">Zmień
+        role</button>
+      <button class="btn btn-outline-danger" [attr.data-target]="'#delete-'+user.id" data-toggle="collapse">Usuń</button>
     </div>
 
     <!-- User activate/deactivate -->
@@ -28,12 +29,18 @@
     <div class="collapse mt-3 w-100" [attr.id]="'role-'+user.id">
       <h5>Rola użytkownika:</h5>
       <div class="d-flex justify-content-between w-100">
-        <app-select-custom #role class="w-50"
-        [placeholder]="'Wybierz docelową role'"  
-        [title]="'Rola:'" 
-        [values]="roles"></app-select-custom>
-        
+        <app-select-custom #role class="w-50" [placeholder]="'Wybierz docelową role'" [title]="'Rola:'"
+          [values]="roles"></app-select-custom>
+
         <button class="btn btn-outline-success" (click)="changeUserRole(user.id, role.value)">Zmień role</button>
+      </div>
+    </div>
+
+    <!-- Delete user -->
+    <div class="collapse mt-3 w-100" [attr.id]="'delete-'+user.id">
+      <h5>Usuń użytkownika:</h5>
+      <div class="d-flex justify-content-center w-100">
+        <button class="btn btn-outline-danger " (click)="deleteUser(user.id)" >Usuń</button>
       </div>
     </div>
   </div>

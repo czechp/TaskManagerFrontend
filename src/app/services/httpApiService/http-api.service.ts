@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {URL} from '../URL';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { URL } from '../URL';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +12,23 @@ export class HttpApiService {
   }
 
   public post(endpoint: string, body: any, params: any[]): Observable<any> {
-    return this.httpClient.post(URL + endpoint, body, {params: this.getParams(params)});
+    return this.httpClient.post(URL + endpoint, body, { params: this.getParams(params) });
   }
 
   public head(endpoint: string, params: any[]): Observable<any> {
-    return this.httpClient.head(URL + endpoint, {params: this.getParams(params)});
+    return this.httpClient.head(URL + endpoint, { params: this.getParams(params) });
   }
 
   public get(endpoint: string, params: any[]): Observable<any> {
-    return this.httpClient.get(URL + endpoint, {params: this.getParams(params)});
+    return this.httpClient.get(URL + endpoint, { params: this.getParams(params) });
   }
 
   public patch(endpoint: string, body: any, params: any[]): Observable<any> {
-    return this.httpClient.patch(URL + endpoint, {}, {params: this.getParams(params)});
+    return this.httpClient.patch(URL + endpoint, {}, { params: this.getParams(params) });
+  }
+
+  public delete(endpoint: string, params: any[]): Observable<any> {
+    return this.httpClient.delete(URL + endpoint, {params: this.getParams(params)});
   }
 
   private getParams(params: any[]) {

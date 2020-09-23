@@ -82,6 +82,15 @@ export class AdminPanelPageComponent implements OnInit {
     }
   }
 
+  public deleteUser(id: number): void {
+    this.clearStatement();
+    this.httpApiService.delete(usersEndpoint + "/" + id, [])
+      .subscribe(
+        (next: any) => { this.getUsers() },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
+      );
+  }
+
   private clearStatement() {
     this.statement = '';
   }
