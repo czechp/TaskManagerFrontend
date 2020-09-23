@@ -7,7 +7,7 @@ import {HttpApiService} from '../../services/httpApiService/http-api.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  public testValue = 'Test';
+  public testValue;
 
   constructor(private httpApiService: HttpApiService) {
   }

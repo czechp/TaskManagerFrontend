@@ -16,6 +16,7 @@ import {HomePageComponent} from './pages/home-page/home-page.component';
 import {InputTextCustomComponent} from './components/input-text-custom/input-text-custom.component';
 import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page.component';
 import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-page.component';
+import { SelectCustomComponent } from './components/select-custom/select-custom.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-pag
     HomePageComponent,
     InputTextCustomComponent,
     AdminPanelPageComponent,
-    ForbiddenPageComponent
+    ForbiddenPageComponent,
+    SelectCustomComponent
   ],
   imports: [
     BrowserModule,
