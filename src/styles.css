@@ -5,7 +5,8 @@
   padding: 20px;
   display: flex;
   align-items: center;
-
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 #jumbotron-custom {
@@ -22,12 +23,12 @@
   color: white;
 }
 
-#input-group-text-custom:hover {
+#input-group-text-custom:hover, select:hover {
   background-color: white;
   color: black;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, select:focus {
   background-color: black;
   color: white;
 }
@@ -38,6 +39,10 @@ h1, h2, h3, h4, h5 {
 
 input {
   text-align: center;
+}
+
+.btn{
+  min-width: 170px;
 }
 
 
