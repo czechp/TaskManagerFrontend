@@ -8,15 +8,14 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 export class SelectCustomComponent implements OnInit {
 
   @Input()
-  public values: any[];
-  @Input()
-  public value: any;
+  public values: string[];
   @Input()
   public title: string;
   @Input()
   public placeholder: string;
-  @Output()
-  public valueChange = new EventEmitter();
+
+  public value: string;
+
 
   constructor() { }
 
@@ -24,7 +23,7 @@ export class SelectCustomComponent implements OnInit {
   }
 
   public changeValue(value): void {
-    this.valueChange.emit(value);
+    this.value = value;
   }
 
 

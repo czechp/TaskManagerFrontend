@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {AppUser} from '../../models/AppUser';
-import {HttpApiService} from '../../services/httpApiService/http-api.service';
-import {changeUserRoleEndpoint, usersEndpoint} from '../../services/URL';
+import { Component, OnInit } from '@angular/core';
+import { error } from 'protractor';
+import { Role } from 'src/app/models/Role';
+import { AppUser } from '../../models/AppUser';
+import { HttpApiService } from '../../services/httpApiService/http-api.service';
+import { changeUserRoleEndpoint, usersEndpoint, rolesEndpoint } from '../../services/URL';
 
 @Component({
   selector: 'app-admin-panel-page',
@@ -11,6 +13,7 @@ import {changeUserRoleEndpoint, usersEndpoint} from '../../services/URL';
 export class AdminPanelPageComponent implements OnInit {
   public statement = '';
   public users: AppUser[] = [];
+  public roles: string[] = [];
 
   constructor(
     private httpApiService: HttpApiService
@@ -19,6 +22,7 @@ export class AdminPanelPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
+    this.getRoles();
   }
 
   private getUsers() {
@@ -33,11 +37,11 @@ export class AdminPanelPageComponent implements OnInit {
       );
   }
 
-  activateUser(id: number, activate: boolean) {
+  public activateUser(id: number, activate: boolean) {
     const activateParameter = activate ? 'activate' : 'deactivate';
     this.httpApiService.patch(usersEndpoint + changeUserRoleEndpoint + '/' + id,
       {},
-      [{name: 'status', parameter: activateParameter}])
+      [{ name: 'status', parameter: activateParameter }])
       .subscribe(
         (next: any) => {
           this.getUsers();
@@ -46,5 +50,39 @@ export class AdminPanelPageComponent implements OnInit {
           this.statement = this.httpApiService.errorStatementHandler(error.status);
         }
       );
+  }
+
+  private getRoles() {
+    this.httpApiService.get(usersEndpoint + rolesEndpoint, [])
+      .subscribe(
+        (next: any) => {
+          this.roles = next.map(x => x.role);
+          this.roles = this.roles.sort((x1: string, x2: string) => x1.localeCompare(x2));
+        },
+        (error: any) => {
+          this.statement = this.httpApiService.errorStatementHandler(error.status);
+        }
+      );
+  }
+
+  public changeUserRole(id: number, role: string): void {
+    this.clearStatement();
+    if (role !== undefined) {
+      this.httpApiService.patch(
+        usersEndpoint + rolesEndpoint + '/' + id,
+        {},
+        [{ name: 'role', parameter: role }]
+      )
+        .subscribe(
+          (next: any) => { this.getUsers(); },
+          (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+        );
+    } else {
+      this.statement = 'Błąd! Wybierz poprawną role';
+    }
+  }
+
+  private clearStatement() {
+    this.statement = '';
   }
 }
