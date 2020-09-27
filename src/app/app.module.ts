@@ -17,6 +17,7 @@ import {InputTextCustomComponent} from './components/input-text-custom/input-tex
 import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page.component';
 import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-page.component';
 import { SelectCustomComponent } from './components/select-custom/select-custom.component';
+import { MessengerComponent } from './components/messenger/messenger.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SelectCustomComponent } from './components/select-custom/select-custom.
     InputTextCustomComponent,
     AdminPanelPageComponent,
     ForbiddenPageComponent,
-    SelectCustomComponent
+    SelectCustomComponent,
+    MessengerComponent,
   ],
   imports: [
     BrowserModule,

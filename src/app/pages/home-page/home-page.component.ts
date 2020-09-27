@@ -8,7 +8,7 @@ import {HttpApiService} from '../../services/httpApiService/http-api.service';
 })
 export class HomePageComponent implements OnInit {
   public testValue;
-
+  public statement = '';
   constructor(private httpApiService: HttpApiService) {
   }
 
