@@ -20,6 +20,7 @@ import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page
 import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-page.component';
 import { SelectCustomComponent } from './components/select-custom/select-custom.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
+import { MaintenanceWorkersComponent } from './pages/maintenance-workers/maintenance-workers.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MessengerComponent } from './components/messenger/messenger.component';
     ForbiddenPageComponent,
     SelectCustomComponent,
     MessengerComponent,
+    MaintenanceWorkersComponent,
   ],
   imports: [
     BrowserModule,
