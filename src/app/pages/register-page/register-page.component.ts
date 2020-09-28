@@ -4,11 +4,13 @@ import {MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH} from '../../consts/Constants';
 import {ViewCustomizerService} from '../../services/viewCustomizer/view-customizer.service';
 import {emailExistenceEndpoint, registerEndpoint, usernameExistenceEndpoint, usersEndpoint} from '../../services/URL';
 import {HttpErrorResponse} from '@angular/common/http';
+import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
+  animations:[fade]
 })
 export class RegisterPageComponent implements OnInit {
   public usernameValidated = false;

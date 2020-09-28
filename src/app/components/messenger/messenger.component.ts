@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from 'src/app/models/Message';
 import { WebSocketMessangerService } from 'src/app/services/messangers/web-socket-messanger.service';
-import { fade } from 'src/app/services/animations/animations';
+import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-messenger',
