@@ -1,11 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {AuthorizationService} from '../../services/security/authorizationService/authorization.service';
+import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-statement',
   templateUrl: './statement.component.html',
-  styleUrls: ['./statement.component.css']
+  styleUrls: ['./statement.component.css'],
+  animations:[fade]
 })
 export class StatementComponent implements OnInit {
   @Input()
