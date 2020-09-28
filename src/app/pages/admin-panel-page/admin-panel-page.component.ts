@@ -4,14 +4,15 @@ import { Role } from 'src/app/models/Role';
 import { AppUser } from '../../models/AppUser';
 import { HttpApiService } from '../../services/httpApiService/http-api.service';
 import { changeUserRoleEndpoint, usersEndpoint, rolesEndpoint } from '../../services/URL';
-import { fade } from 'src/app/utilities/animations/animations';
+import { fade, slideOut } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-admin-panel-page',
   templateUrl: './admin-panel-page.component.html',
   styleUrls: ['./admin-panel-page.component.css'],
   animations: [
-    fade
+    fade,
+    slideOut
   ]
 })
 export class AdminPanelPageComponent implements OnInit {
