@@ -1,15 +1,13 @@
 <div class="my-2 ">
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">{{title}}</span>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span style="min-width: 100px;" class="input-group-text">{{title}}</span>
+        </div>
+        <input #inputText (focusout)="focusOutEvent()" (keyup)="onKeyUpEvent()" [(ngModel)]="value" class="form-control" type="text">
+        <div class="input-group-append">
+            <span *ngIf="successIconView===true" class="input-group-text bg-success"><i class="far fa-check-circle fa-1x"></i></span>
+        </div>
     </div>
-    <input #inputText (focusout)="focusOutEvent()" (keyup)="onKeyUpEvent()" [(ngModel)]="value" class="form-control"
-           type="text">
-    <div class="input-group-append">
-      <span *ngIf="successIconView===true" class="input-group-text bg-success"><i class="far fa-check-circle fa-1x"></i></span>
+    <div *ngIf="validationInfoVisibility === true" class="text-center text-danger"> Minimalna długość to: {{length}} znaków.
     </div>
-  </div>
-  <div *ngIf="validationInfoVisibility === true" class="text-center text-danger"> Minimalna długość to: {{length}}
-    znaków.
-  </div>
 </div>

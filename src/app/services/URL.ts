@@ -6,6 +6,6 @@ export const emailExistenceEndpoint = '/email';
 export const registerEndpoint = '/register';
 export const changeUserRoleEndpoint = '/admin/activate';
 export const rolesEndpoint = '/roles';
-
+export const maintenanceWorkersEndpoint = '/maintenance-workers'
 
 

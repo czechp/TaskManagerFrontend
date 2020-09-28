@@ -1,1 +1,39 @@
-<p>maintenance-workers works!</p>
+<div @fade class="">
+    <app-title [title]="'Pracownicy utrzymania ruchu'" [statement]="statement"></app-title>
+    <div class="d-flex justify-content-center">
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Id:</th>
+                    <th scope="col">Imie:</th>
+                    <th scope="col">Nazwisko:</th>
+                    <th scope="col">Zgłoszonych awarii:</th>
+                    <th scope="col">Modyfikuj:</th>
+                    <th scope="col">Usuń:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let worker of maintenanceWorkers">
+                    <td>{{worker.id}}</td>
+                    <td>{{worker.firstName}}</td>
+                    <td>{{worker.secondName}}</td>
+                    <td>0</td>
+                    <td><button type="button" class="btn btn-outline-warning" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Modyfikuj</button>
+                        <div class="collapse" [attr.id]="'modify-'+worker.id">
+                            <app-input-text-custom [(value)]="worker.firstName" [title]="'Imie:'"></app-input-text-custom>
+                            <app-input-text-custom [(value)]="worker.secondName " [title]=" 'Nazwisko:' "></app-input-text-custom>
+                            <div class="d-flex justify-content-around mt-3">
+                                <button type="button" class="btn btn-outline-success" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Akceptuj</button>
+                                <button type="button" class="btn btn-outline-danger" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Anuluj</button>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td><button type="button " class="btn btn-outline-danger ">Usuń</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
