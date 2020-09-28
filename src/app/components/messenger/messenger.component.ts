@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from 'src/app/models/Message';
 import { WebSocketMessangerService } from 'src/app/services/messangers/web-socket-messanger.service';
+import { fade } from 'src/app/services/animations/animations';
 
 @Component({
   selector: 'app-messenger',
   templateUrl: './messenger.component.html',
-  styleUrls: ['./messenger.component.css']
+  styleUrls: ['./messenger.component.css'],
+  animations: [
+   fade
+  ]
 })
 export class MessengerComponent implements OnInit {
   public message: Message = { content: '', author: '' };
@@ -24,7 +28,7 @@ export class MessengerComponent implements OnInit {
           this.message = next;
           this.visibility = true;
           setTimeout(() => {
-              this.visibility = false;
+            this.visibility = false;
           }, 5000);
         }
       );
