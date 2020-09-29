@@ -21,6 +21,7 @@ import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-pag
 import { SelectCustomComponent } from './components/select-custom/select-custom.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
 import { MaintenanceWorkersComponent } from './pages/maintenance-workers/maintenance-workers.component';
+import { ReportBreakdownComponent } from './pages/report-breakdown/report-breakdown.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MaintenanceWorkersComponent } from './pages/maintenance-workers/mainten
     SelectCustomComponent,
     MessengerComponent,
     MaintenanceWorkersComponent,
+    ReportBreakdownComponent,
   ],
   imports: [
     BrowserModule,
