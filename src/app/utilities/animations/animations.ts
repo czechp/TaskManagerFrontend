@@ -12,6 +12,6 @@ export let fade = trigger('fade', [
 export let slideOut = trigger('slideOut', [
     state('void', style({transform: 'translateX(100%)'})),
     transition("*=>void", [
-        animate(500)
+        animate(1000)
     ])
 ])

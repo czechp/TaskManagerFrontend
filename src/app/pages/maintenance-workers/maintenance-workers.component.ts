@@ -18,7 +18,7 @@ export class MaintenanceWorkersComponent implements OnInit {
   public maintenanceWorkers: MaintenanceWorker[] = [];
   public readonly FIRST_NAME_MIN_LENGTH = 3;
   public readonly SECOND_NAME_MIN_LENGTH = 3;
-  public isUser=true;
+  public isUser = true;
 
 
 
@@ -46,28 +46,28 @@ export class MaintenanceWorkersComponent implements OnInit {
       )
   }
 
-  public modifyMaintenanceWorker(id: number, validated:boolean) {
+  public modifyMaintenanceWorker(id: number, validated: boolean) {
     let maintenanceWorker = getElementById(this.maintenanceWorkers, id);
     if (maintenanceWorker !== null && validated) {
       this.httpApiService.put(maintenanceWorkersEndpoint + '/' + id, maintenanceWorker, [])
         .subscribe(
-          (next: any) => {},
+          (next: any) => { },
           (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
         );
-    }else{
+    } else {
       this.statement = validationStatementHandler(maintenanceWorker, validated);
     }
   }
 
-  public delete(id: number){
-    if(existsById(this.maintenanceWorkers, id)){
+  public delete(id: number) {
+    if (existsById(this.maintenanceWorkers, id)) {
       this.httpApiService.delete(maintenanceWorkersEndpoint + '/' + id, [])
-      .subscribe(
-        (next: any)=>{this.maintenanceWorkers = this.maintenanceWorkers.filter(x=>x.id !== id)},
-        (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status)}
-      );
+        .subscribe(
+          (next: any) => { this.maintenanceWorkers = this.maintenanceWorkers.filter(x => x.id !== id) },
+          (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
+        );
 
-    }else{
+    } else {
       this.statement = validationStatementHandler(null, true);
     }
   }
@@ -75,5 +75,16 @@ export class MaintenanceWorkersComponent implements OnInit {
   public sortByFirstName() {
     this.maintenanceWorkers = this.maintenanceWorkers.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) => x1.firstName.localeCompare(x2.firstName));
   }
+
+  public sortBySecondName() {
+    this.maintenanceWorkers = this.maintenanceWorkers.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) => x1.secondName.localeCompare(x2.secondName));
+  }
+
+  public sortById() {
+    this.maintenanceWorkers = this.maintenanceWorkers.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) => x1.id - x2.id);
+  }
+
+  // todo: Implement it
+  public sortByBreakdownsNumber() { }
 
 }
