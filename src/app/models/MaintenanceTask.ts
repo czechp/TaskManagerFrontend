@@ -6,5 +6,5 @@ export interface MaintenanceTask extends Task {
     maintenanceWorker?: MaintenanceWorker;
     repairMan?: AppUser;
     breakdownPlace?: string;
-    repairConclusion: string;
+    repairConclusion?: string;
 } 

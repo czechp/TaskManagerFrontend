@@ -9,11 +9,11 @@ import { AuthorizationService } from 'src/app/services/security/authorizationSer
 
 @Component({
   selector: 'app-maintenance-workers',
-  templateUrl: './maintenance-workers.component.html',
-  styleUrls: ['./maintenance-workers.component.css'],
+  templateUrl: './maintenance-workers-page.component.html',
+  styleUrls: ['./maintenance-workers-page.component.css'],
   animations: [fade, slideOut]
 })
-export class MaintenanceWorkersComponent implements OnInit {
+export class MaintenanceWorkersPageComponent implements OnInit {
   public statement = '';
   public maintenanceWorkers: MaintenanceWorker[] = [];
   public readonly FIRST_NAME_MIN_LENGTH = 3;

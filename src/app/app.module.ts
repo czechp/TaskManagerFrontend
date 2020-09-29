@@ -20,8 +20,8 @@ import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page
 import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-page.component';
 import { SelectCustomComponent } from './components/select-custom/select-custom.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
-import { MaintenanceWorkersComponent } from './pages/maintenance-workers/maintenance-workers.component';
-import { ReportBreakdownComponent } from './pages/report-breakdown/report-breakdown.component';
+import { MaintenanceWorkersPageComponent } from './pages/maintenance-workers-page/maintenance-workers-page.component';
+import { ReportBreakdownPageComponent } from './pages/report-breakdown-page/report-breakdown-page.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,8 @@ import { ReportBreakdownComponent } from './pages/report-breakdown/report-breakd
     ForbiddenPageComponent,
     SelectCustomComponent,
     MessengerComponent,
-    MaintenanceWorkersComponent,
-    ReportBreakdownComponent,
+    MaintenanceWorkersPageComponent,
+    ReportBreakdownPageComponent,
   ],
   imports: [
     BrowserModule,
