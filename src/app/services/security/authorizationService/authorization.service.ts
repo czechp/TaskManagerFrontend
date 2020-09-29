@@ -64,4 +64,8 @@ export class AuthorizationService {
     return sessionStorage.getItem('jwtToken');
   }
 
+  public isUser():boolean{
+    return this.getRole() === 'USER';
+  }
+
 }

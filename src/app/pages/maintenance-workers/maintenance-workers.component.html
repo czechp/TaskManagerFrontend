@@ -9,28 +9,35 @@
                     <th scope="col">Imie:</th>
                     <th scope="col">Nazwisko:</th>
                     <th scope="col">Zgłoszonych awarii:</th>
-                    <th scope="col">Modyfikuj:</th>
-                    <th scope="col">Usuń:</th>
+                    <th *ngIf="!isUser" scope="col">Modyfikuj:</th>
+                    <th *ngIf="!isUser" scope="col">Usuń:</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let worker of maintenanceWorkers">
+                <tr @slideOut *ngFor="let worker of maintenanceWorkers">
                     <td>{{worker.id}}</td>
                     <td>{{worker.firstName}}</td>
                     <td>{{worker.secondName}}</td>
                     <td>0</td>
-                    <td><button type="button" class="btn btn-outline-warning" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Modyfikuj</button>
+                    <td *ngIf="!isUser"><button type="button" class="btn btn-outline-warning" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Modyfikuj</button>
                         <div class="collapse" [attr.id]="'modify-'+worker.id">
-                            <app-input-text-custom [(value)]="worker.firstName" [title]="'Imie:'"></app-input-text-custom>
-                            <app-input-text-custom [(value)]="worker.secondName " [title]=" 'Nazwisko:' "></app-input-text-custom>
+                            <app-input-text-custom #firstName [(value)]="worker.firstName" [title]="'Imie:'" [length]="FIRST_NAME_MIN_LENGTH"></app-input-text-custom>
+                            <app-input-text-custom #secondName [(value)]="worker.secondName " [title]=" 'Nazwisko:' " [length]="SECOND_NAME_MIN_LENGTH"></app-input-text-custom>
                             <div class="d-flex justify-content-around mt-3">
-                                <button type="button" class="btn btn-outline-success" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Akceptuj</button>
+                                <button type="button" class="btn btn-outline-success" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id" (click)="modifyMaintenanceWorker(worker.id, firstName.isValidated() && secondName.isValidated())">Akceptuj</button>
                                 <button type="button" class="btn btn-outline-danger" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Anuluj</button>
-
                             </div>
                         </div>
                     </td>
-                    <td><button type="button " class="btn btn-outline-danger ">Usuń</button></td>
+                    <td *ngIf="!isUser"><button type="button " class="btn btn-outline-danger " data-toggle="collapse" [attr.data-target]="'#delete-'+worker.id">Usuń</button>
+                        <div class="collapse" [attr.id]="'delete-'+worker.id">
+                            <h4 class="mt-3">Czy napewno chcesz usunąć ?</h4>
+                            <div class="d-flex justify-content-around">
+                                <button type="button" class="btn btn-outline-danger" data-toggle="collapse" [attr.data-target]="'#delete-'+worker.id" (click)="delete(worker.id)">Usuń</button>
+                                <button type="button" class="btn btn-outline-warning" data-toggle="collapse" [attr.data-target]="'#delete-'+worker.id">Anuluj</button>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -28,7 +28,11 @@ export class HttpApiService {
   }
 
   public delete(endpoint: string, params: any[]): Observable<any> {
-    return this.httpClient.delete(URL + endpoint, {params: this.getParams(params)});
+    return this.httpClient.delete(URL + endpoint, { params: this.getParams(params) });
+  }
+
+  public put(endpoint: string, body: any, params: any[]): Observable<any> {
+    return this.httpClient.put(URL + endpoint, body, { params: this.getParams(params) });
   }
 
   private getParams(params: any[]) {
