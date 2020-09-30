@@ -64,8 +64,7 @@ export class InputTextCustomComponent implements OnInit {
       } else {
         return true;
       }
-    }
-    else {
+    } else {
       return false;
     }
   }

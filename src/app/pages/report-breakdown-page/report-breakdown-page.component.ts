@@ -28,45 +28,45 @@ export class ReportBreakdownPageComponent implements OnInit {
     this.getMaintenanceWorkers();
   }
 
-  public getMaintenanceWorkerFromSelect(result: string){
-    let names = result.split(" ");
-    for(let worker of this.maintenanceWorkers){
-      if(worker.firstName === names[0] && worker.secondName===names[1]){
+  public getMaintenanceWorkerFromSelect(result: string) {
+    const names = result.split(' ');
+    for (let worker of this.maintenanceWorkers) {
+      if (worker.firstName === names[0] && worker.secondName === names[1]) {
         this.maintenaceTask.maintenanceWorker = worker;
       }
     }
-    
-    if(this.maintenaceTask.maintenanceWorker === undefined){this.statement = "Błąd! Taki pracownik UR nie istnieje"}
+
+    if (this.maintenaceTask.maintenanceWorker === undefined) { this.statement = 'Błąd! Taki pracownik UR nie istnieje' }
   }
 
-  public saveMaintenanceTask(){
+  public saveMaintenanceTask() {
     this.httpApiService.post(maintenanceTasksEndpoint, this.maintenaceTask, [])
-    .subscribe(
-      (next:any)=>{},
-      (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status)}
-    );
+      .subscribe(
+        (next: any) => { },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
   }
 
 
 
 
-  private getMaintenanceWorkers(){
+  private getMaintenanceWorkers() {
     this.httpApiService.get(maintenanceWorkersEndpoint, [])
-    .subscribe(
-      (next: any)=>{
-        this.maintenanceWorkers = next.sort((x1:MaintenanceWorker, x2:MaintenanceWorker)=>x1.firstName.localeCompare(x2.firstName));
-        this.setMaintenanceWorkersName();
-      },
-      (error: any)=>{
-        this.statement = this.httpApiService.errorStatementHandler(error.status);
-      }
-    );
+      .subscribe(
+        (next: any) => {
+          this.maintenanceWorkers = next.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) => x1.firstName.localeCompare(x2.firstName));
+          this.setMaintenanceWorkersName();
+        },
+        (error: any) => {
+          this.statement = this.httpApiService.errorStatementHandler(error.status);
+        }
+      );
   }
 
-  private setMaintenanceWorkersName(){
+  private setMaintenanceWorkersName() {
     this.maintenanceWorkersName = this.maintenanceWorkers
-    .map(
-      (x: MaintenanceWorker) =>{return x.firstName + ' ' +x.secondName}
-    )
+      .map(
+        (x: MaintenanceWorker) => x.firstName + ' ' + x.secondName
+      )
   }
 }
