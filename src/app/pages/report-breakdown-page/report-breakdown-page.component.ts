@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaintenanceTask } from 'src/app/models/MaintenanceTask';
 import { MaintenanceWorker } from 'src/app/models/MaintenanceWorker';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
-import { maintenanceWorkersEndpoint, usersEndpoint } from 'src/app/services/URL';
+import { maintenanceTasksEndpoint, maintenanceWorkersEndpoint, usersEndpoint } from 'src/app/services/URL';
 import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
@@ -25,17 +25,32 @@ export class ReportBreakdownPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getMaintenanceWorker();
+    this.getMaintenanceWorkers();
   }
 
   public getMaintenanceWorkerFromSelect(result: string){
-    console.log(result);
+    let names = result.split(" ");
+    for(let worker of this.maintenanceWorkers){
+      if(worker.firstName === names[0] && worker.secondName===names[1]){
+        this.maintenaceTask.maintenanceWorker = worker;
+      }
+    }
+    
+    if(this.maintenaceTask.maintenanceWorker === undefined){this.statement = "Błąd! Taki pracownik UR nie istnieje"}
+  }
+
+  public saveMaintenanceTask(){
+    this.httpApiService.post(maintenanceTasksEndpoint, this.maintenaceTask, [])
+    .subscribe(
+      (next:any)=>{},
+      (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status)}
+    );
   }
 
 
 
 
-  private getMaintenanceWorker(){
+  private getMaintenanceWorkers(){
     this.httpApiService.get(maintenanceWorkersEndpoint, [])
     .subscribe(
       (next: any)=>{
