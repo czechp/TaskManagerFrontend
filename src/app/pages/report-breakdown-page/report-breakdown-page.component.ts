@@ -32,6 +32,9 @@ export class ReportBreakdownPageComponent implements OnInit {
     console.log(result);
   }
 
+
+
+
   private getMaintenanceWorker(){
     this.httpApiService.get(maintenanceWorkersEndpoint, [])
     .subscribe(

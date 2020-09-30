@@ -59,10 +59,15 @@ export class InputTextAreaCustomComponent implements OnInit {
   }
 
   public isValidated(): boolean {
-    if (this.length !== undefined) {
-      return this.value.length >= this.length;
-    } else {
-      return true;
+    if (this.value !== undefined) {
+      if (this.length !== undefined) {
+        return this.value.length >= this.length;
+      } else {
+        return true;
+      }
+    }
+    else {
+      return false;
     }
   }
 }

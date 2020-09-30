@@ -1,5 +1,5 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ViewCustomizerService} from '../../services/viewCustomizer/view-customizer.service';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ViewCustomizerService } from '../../services/viewCustomizer/view-customizer.service';
 
 @Component({
   selector: 'app-input-text-custom',
@@ -38,30 +38,35 @@ export class InputTextCustomComponent implements OnInit {
   }
 
   public focusOutEvent() {
-    if(this.value !== undefined){
-    if (this.length !== undefined) {
-      this.validationInfoVisibility = this.value.length < this.length;
-      this.successIconView = !this.validationInfoVisibility;
-      if (this.validationInfoVisibility) {
-        this.viewCustomizerService.setDangerColors(this.inputText);
+    if (this.value !== undefined) {
+      if (this.length !== undefined) {
+        this.validationInfoVisibility = this.value.length < this.length;
+        this.successIconView = !this.validationInfoVisibility;
+        if (this.validationInfoVisibility) {
+          this.viewCustomizerService.setDangerColors(this.inputText);
+        } else {
+          this.viewCustomizerService.setCorrectColors(this.inputText);
+        }
       } else {
+        this.successIconView = true;
         this.viewCustomizerService.setCorrectColors(this.inputText);
       }
     } else {
-      this.successIconView = true;
-      this.viewCustomizerService.setCorrectColors(this.inputText);
+      this.viewCustomizerService.setDangerColors(this.inputText);
+      this.validationInfoVisibility = true;
     }
-  }else{
-    this.viewCustomizerService.setDangerColors(this.inputText);
-    this.validationInfoVisibility = true;
   }
-}
 
   public isValidated(): boolean {
-    if (this.length !== undefined) {
-      return this.value.length >= this.length;
-    } else {
-      return true;
+    if (this.value !== undefined) {
+      if (this.length !== undefined) {
+        return this.value.length >= this.length;
+      } else {
+        return true;
+      }
+    }
+    else {
+      return false;
     }
   }
 
