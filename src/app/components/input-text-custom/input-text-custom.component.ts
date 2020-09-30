@@ -38,6 +38,7 @@ export class InputTextCustomComponent implements OnInit {
   }
 
   public focusOutEvent() {
+    if(this.value !== undefined){
     if (this.length !== undefined) {
       this.validationInfoVisibility = this.value.length < this.length;
       this.successIconView = !this.validationInfoVisibility;
@@ -50,7 +51,11 @@ export class InputTextCustomComponent implements OnInit {
       this.successIconView = true;
       this.viewCustomizerService.setCorrectColors(this.inputText);
     }
+  }else{
+    this.viewCustomizerService.setDangerColors(this.inputText);
+    this.validationInfoVisibility = true;
   }
+}
 
   public isValidated(): boolean {
     if (this.length !== undefined) {

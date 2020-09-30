@@ -1,7 +1,7 @@
 <div class="my-2 ">
     <div class="input-group">
         <div class="input-group-prepend">
-            <span style="min-width: 100px;" class="input-group-text">{{title}}</span>
+            <span class="input-group-text" style="width: 150px;">{{title}}</span>
         </div>
         <input #inputText (focusout)="focusOutEvent()" (keyup)="onKeyUpEvent()" [(ngModel)]="value" class="form-control" type="text">
         <div class="input-group-append">

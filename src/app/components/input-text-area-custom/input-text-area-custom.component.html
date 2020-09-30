@@ -1,9 +1,9 @@
 <div class="my-2 ">
     <div class="input-group">
         <div class="input-group-prepend">
-            <span style="min-width: 100px;" class="input-group-text">{{title}}</span>
+            <span class="input-group-text" style="width: 150px;">{{title}}</span>
         </div>
-        <textarea cols="50" rows="4" #inputTextArea (focusout)="focusOutEvent()" (keyup)="onKeyUpEvent()" [(ngModel)]="value" class="form-control"></textarea>
+        <textarea cols="50" rows="4" #inputTextArea (focusout)="focusOutEvent()" (keyup)="onKeyUpEvent()" [(ngModel)]="value" class="form-control text-center"></textarea>
         <div class="input-group-append">
             <span *ngIf="successIconView===true" class="input-group-text bg-success"><i class="far fa-check-circle fa-1x"></i></span>
         </div>

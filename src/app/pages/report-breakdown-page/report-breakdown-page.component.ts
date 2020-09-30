@@ -18,24 +18,37 @@ export class ReportBreakdownPageComponent implements OnInit {
   public statement = '';
   public maintenaceTask: MaintenanceTask = {};
   public maintenanceWorkers: MaintenanceWorker[] = [];
+  public maintenanceWorkersName: string[];
 
   constructor(
     private httpApiService: HttpApiService
   ) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getMaintenanceWorker();
   }
 
-  private getUsers(){
+  public getMaintenanceWorkerFromSelect(result: string){
+    console.log(result);
+  }
+
+  private getMaintenanceWorker(){
     this.httpApiService.get(maintenanceWorkersEndpoint, [])
     .subscribe(
-      (next: any)=>{this.maintenanceWorkers = next.sort((x1:MaintenanceWorker, x2:MaintenanceWorker)=>x1.firstName.localeCompare(x2.firstName))},
+      (next: any)=>{
+        this.maintenanceWorkers = next.sort((x1:MaintenanceWorker, x2:MaintenanceWorker)=>x1.firstName.localeCompare(x2.firstName));
+        this.setMaintenanceWorkersName();
+      },
       (error: any)=>{
         this.statement = this.httpApiService.errorStatementHandler(error.status);
       }
     );
-    
   }
 
+  private setMaintenanceWorkersName(){
+    this.maintenanceWorkersName = this.maintenanceWorkers
+    .map(
+      (x: MaintenanceWorker) =>{return x.firstName + ' ' +x.secondName}
+    )
+  }
 }

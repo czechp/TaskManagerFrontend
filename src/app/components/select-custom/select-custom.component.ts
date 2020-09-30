@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { ViewCustomizerService } from 'src/app/services/viewCustomizer/view-customizer.service';
 
 @Component({
   selector: 'app-select-custom',
@@ -13,19 +14,29 @@ export class SelectCustomComponent implements OnInit {
   public title: string;
   @Input()
   public placeholder: string;
-
+  @ViewChild('select')
+  private selectRef: ElementRef;
+  @Output()
+  public valueEmit = new EventEmitter();
   public value: string;
 
 
-  constructor() { }
+  constructor(
+    private viewCustomizerService: ViewCustomizerService
+  ) { }
 
   ngOnInit(): void {
   }
 
   public changeValue(value): void {
     this.value = value;
+    this.viewCustomizerService.setCorrectColors(this.selectRef);
+    this.valueEmit.emit(this.value);
   }
 
+  public isValidated(){
+    return this.value !== undefined;
+  }
 
 
 
