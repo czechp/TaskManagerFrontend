@@ -23,7 +23,7 @@ export class TopBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const sessionStorageUsername = sessionStorage.getItem('username');
+    const sessionStorageUsername = this.authorizationService.getUsername();
     this.isLogged = sessionStorageUsername !== null;
     if (this.isLogged) {
       this.username =  sessionStorageUsername;
@@ -33,7 +33,7 @@ export class TopBarComponent implements OnInit {
         x => {
           if (x === 'succeed') {
             this.isLogged = true;
-            this.username = sessionStorageUsername;
+            this.username = this.authorizationService.getUsername();
           } else {
             this.isLogged = false;
           }

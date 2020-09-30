@@ -68,4 +68,8 @@ export class AuthorizationService {
     return this.getRole() === 'USER';
   }
 
+  public getUsername():string{
+    return sessionStorage.getItem('username');
+  }
+
 }
