@@ -18,7 +18,7 @@
                     <td>{{worker.id}}</td>
                     <td>{{worker.firstName}}</td>
                     <td>{{worker.secondName}}</td>
-                    <td>0</td>
+                    <td>{{worker.breakdownsAmount}}</td>
                     <td *ngIf="!isUser"><button type="button" class="btn btn-outline-warning" data-toggle="collapse" [attr.data-target]="'#modify-'+worker.id">Modyfikuj</button>
                         <div class="collapse" [attr.id]="'modify-'+worker.id">
                             <app-input-text-custom #firstName [(value)]="worker.firstName" [title]="'Imie:'" [length]="FIRST_NAME_MIN_LENGTH"></app-input-text-custom>
