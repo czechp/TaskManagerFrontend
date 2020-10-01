@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { title } from 'process';
 import { MaintenanceTask } from 'src/app/models/MaintenanceTask';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
+import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
 import { maintenanceTasksEndpoint } from 'src/app/services/URL';
 import { fade } from 'src/app/utilities/animations/animations';
+import { existsById } from 'src/app/utilities/arrayOperation';
 
 @Component({
   selector: 'app-breakdowns-page',
@@ -17,12 +19,15 @@ export class BreakdownsPageComponent implements OnInit {
   public allMaintenaceTasks: MaintenanceTask[] = [];
   public currentMaintenanceTasks: MaintenanceTask[] = [];
   public subTitle = '';
+  public isUser = true;
 
   constructor(
-    private httpApiService: HttpApiService
+    private httpApiService: HttpApiService,
+    private authorizationService: AuthorizationService
   ) { }
 
   ngOnInit(): void {
+    this.isUser = this.authorizationService.isUser();
     this.getMaintenancetasks();
   }
 
@@ -33,9 +38,21 @@ export class BreakdownsPageComponent implements OnInit {
           this.allMaintenaceTasks = next;
           this.setCurrentMaintenacetasksByMode();
           this.sortByStatus();
-          this.mode = Mode.ALL;
         }
       );
+  }
+
+  deleteMaintenanceTask(id: number) {
+    if (existsById(this.allMaintenaceTasks, id)) {
+      this.httpApiService.delete(maintenanceTasksEndpoint + '/' + id, [])
+        .subscribe(
+          (next: any) => {
+            this.allMaintenaceTasks = this.allMaintenaceTasks.filter((x: MaintenanceTask) => x.id != id);
+            this.setCurrentMaintenacetasksByMode();
+          },
+          (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
+        );
+    } else { this.statement = "Błąd! Taka awaria nie istnieje" }
   }
 
   public sortByStatus() {
@@ -60,7 +77,7 @@ export class BreakdownsPageComponent implements OnInit {
         this.setDoneMode;
         break;
       }
-      default:{
+      default: {
         this.currentMaintenanceTasks = this.allMaintenaceTasks;
       }
     }

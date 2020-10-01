@@ -1,5 +1,6 @@
 export interface Task{
     id?:number;
+    title?: string;
     creationDate?:Date;
     finishDate?:Date;
     description?:string;

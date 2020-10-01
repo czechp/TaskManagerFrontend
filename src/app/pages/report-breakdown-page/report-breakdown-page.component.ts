@@ -12,8 +12,10 @@ import { fade } from 'src/app/utilities/animations/animations';
   animations: [fade]
 })
 export class ReportBreakdownPageComponent implements OnInit {
-  public readonly REPAIR_PLACE_MIN_LENGTH = 3;
+  public readonly BREAKDONW_PLACE_MIN_LENGTH = 3;
   public readonly DESCRIPTION_MIN_LENGTH = 3;
+  public readonly TITLE_MIN_LENGTH = 3;
+  public readonly BREAKDOWN_MACHINE_MIN_LENGTH = 3;
 
   public statement = '';
   public maintenaceTask: MaintenanceTask = {};
