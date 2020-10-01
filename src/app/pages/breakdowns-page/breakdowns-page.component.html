@@ -17,9 +17,9 @@
     <table class="table text-white">
         <thead>
             <tr>
-                <th scope="col">Id:</th>
-                <th scope="col">Nazwa:</th>
-                <th scope="col">Data zgłoszenia:</th>
+                <th scope="col" (click)="sortById()">Id:</th>
+                <th scope="col" (click)="sortByTitle()">Nazwa:</th>
+                <th scope="col" (click)="sortByCreationDate()">Data zgłoszenia:</th>
                 <th scope="col">Data zakończenia:</th>
                 <th scope="col">Zgłaszający</th>
                 <th scope="col">Hala: </th>

@@ -59,6 +59,21 @@ export class BreakdownsPageComponent implements OnInit {
     this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort((x1: MaintenanceTask, x2: MaintenanceTask) => x1.taskStatus.localeCompare(x2.taskStatus));
   }
 
+  public sortById() {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort((x1: MaintenanceTask, x2: MaintenanceTask) => x1.id - x2.id);
+  }
+
+  public sortByTitle() {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort((x1: MaintenanceTask, x2: MaintenanceTask) => x1.title.localeCompare(x2.title));
+  }
+
+
+  //return this
+  sortByCreationDate() {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort();
+  }
+
+
   public setCurrentMaintenacetasksByMode() {
     switch (this.mode) {
       case Mode.ALL: {

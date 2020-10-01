@@ -24,6 +24,7 @@ import { MaintenanceWorkersPageComponent } from './pages/maintenance-workers-pag
 import { ReportBreakdownPageComponent } from './pages/report-breakdown-page/report-breakdown-page.component';
 import { InputTextAreaCustomComponent } from './components/input-text-area-custom/input-text-area-custom.component';
 import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page.component';
+import { BreakdownDetailPageComponent } from './pages/breakdown-detail-page/breakdown-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page
     ReportBreakdownPageComponent,
     InputTextAreaCustomComponent,
     BreakdownsPageComponent,
+    BreakdownDetailPageComponent,
   ],
   imports: [
     BrowserModule,

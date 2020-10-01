@@ -10,6 +10,7 @@ import { AdminGuardService } from './services/security/guards/admin-guard.servic
 import { MaintenanceWorkersPageComponent } from './pages/maintenance-workers-page/maintenance-workers-page.component';
 import { ReportBreakdownPageComponent } from './pages/report-breakdown-page/report-breakdown-page.component';
 import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page.component';
+import { BreakdownDetailPageComponent } from './pages/breakdown-detail-page/breakdown-detail-page.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'maintenance-wrokers', component: MaintenanceWorkersPageComponent, canActivate: [LoggedGuardService] },
   {path: 'report-breakdown', component: ReportBreakdownPageComponent, canActivate: [LoggedGuardService]},
   {path: 'breakdowns', component: BreakdownsPageComponent, canActivate: [LoggedGuardService]},
+  {path: 'breakdown-detail/:id', component: BreakdownDetailPageComponent, canActivate:[LoggedGuardService]}
 ];
 
 @NgModule({
