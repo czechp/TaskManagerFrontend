@@ -6,6 +6,7 @@ import { AuthorizationService } from 'src/app/services/security/authorizationSer
 import { maintenanceTasksEndpoint } from 'src/app/services/URL';
 import { fade } from 'src/app/utilities/animations/animations';
 import { existsById } from 'src/app/utilities/arrayOperation';
+import { timeSortResult } from 'src/app/utilities/timeOperations';
 
 @Component({
   selector: 'app-breakdowns-page',
@@ -20,6 +21,7 @@ export class BreakdownsPageComponent implements OnInit {
   public currentMaintenanceTasks: MaintenanceTask[] = [];
   public subTitle = '';
   public isUser = true;
+  private sortMultiplier = 1;
 
   constructor(
     private httpApiService: HttpApiService,
@@ -52,25 +54,74 @@ export class BreakdownsPageComponent implements OnInit {
           },
           (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
         );
-    } else { this.statement = "Błąd! Taka awaria nie istnieje" }
+    } else { this.statement = 'Błąd! Taka awaria nie istnieje' }
   }
 
   public sortByStatus() {
-    this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort((x1: MaintenanceTask, x2: MaintenanceTask) => x1.taskStatus.localeCompare(x2.taskStatus));
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) => this.sortMultiplier * x1.taskStatus.localeCompare(x2.taskStatus));
+    this.toggleSortMultiplier();
   }
 
-  public sortById() {
-    this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort((x1: MaintenanceTask, x2: MaintenanceTask) => x1.id - x2.id);
+  public sortById(): void {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) => this.sortMultiplier * (x1.id - x2.id));
+    this.toggleSortMultiplier();
+
   }
 
-  public sortByTitle() {
-    this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort((x1: MaintenanceTask, x2: MaintenanceTask) => x1.title.localeCompare(x2.title));
+  public sortByTitle(): void {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) => this.sortMultiplier * x1.title.localeCompare(x2.title));
+    this.toggleSortMultiplier();
+  }
+
+  public sortBySecondName(): void {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) =>
+        this.sortMultiplier * x1.maintenanceWorker.secondName.localeCompare(x2.maintenanceWorker.secondName));
+    this.toggleSortMultiplier();
   }
 
 
-  //return this
-  sortByCreationDate() {
-    this.currentMaintenanceTasks = this.currentMaintenanceTasks.sort();
+  public sortByBreakdownPlace(): void {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) =>
+        this.sortMultiplier * x1.breakdownPlace.localeCompare(x2.breakdownPlace));
+    this.toggleSortMultiplier();
+  }
+
+
+  public sortByBreakdownMachine(): void {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) =>
+        this.sortMultiplier * x1.breakdownMachine.localeCompare(x2.breakdownMachine));
+    this.toggleSortMultiplier();
+  }
+
+
+  public sortByRepairMan(): void {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) => {
+        if ((x1.repairMan !== null || x1.repairMan !== undefined)
+          || (x2.repairMan !== null || x2.repairMan !== undefined)) { return this.sortMultiplier;}
+
+        return this.sortMultiplier * x1.repairMan.username.localeCompare(x2.repairMan.username);
+      });
+    this.toggleSortMultiplier();
+  }
+
+  public sortByCreationDate() {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) => this.sortMultiplier * timeSortResult(x1.creationDate, x2.creationDate));
+    this.toggleSortMultiplier();
+  }
+
+  public sortByFinishDate(): void {
+    this.currentMaintenanceTasks = this.currentMaintenanceTasks
+      .sort((x1: MaintenanceTask, x2: MaintenanceTask) => this.sortMultiplier * timeSortResult(x1.finishDate, x2.finishDate));
+    this.toggleSortMultiplier();
+
   }
 
 
@@ -85,11 +136,11 @@ export class BreakdownsPageComponent implements OnInit {
         break;
       }
       case Mode.IN_PROGRESS: {
-        this.setInProgressMode()
+        this.setInProgressMode();
         break;
       }
       case Mode.DONE: {
-        this.setDoneMode;
+        this.setDoneMode();
         break;
       }
       default: {
@@ -122,7 +173,12 @@ export class BreakdownsPageComponent implements OnInit {
     this.mode = Mode.DONE;
     this.subTitle = this.mode;
   }
+
+  private toggleSortMultiplier() {
+    this.sortMultiplier *= -1;
+  }
 }
+
 
 enum Mode {
   ALL = 'Wszystkie',

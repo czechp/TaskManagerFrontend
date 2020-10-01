@@ -20,11 +20,11 @@
                 <th scope="col" (click)="sortById()">Id:</th>
                 <th scope="col" (click)="sortByTitle()">Nazwa:</th>
                 <th scope="col" (click)="sortByCreationDate()">Data zgłoszenia:</th>
-                <th scope="col">Data zakończenia:</th>
-                <th scope="col">Zgłaszający</th>
-                <th scope="col">Hala: </th>
-                <th scope="col">Maszyna: </th>
-                <th scope="col">Automatyk: </th>
+                <th scope="col" (click)="sortByFinishDate()">Data zakończenia:</th>
+                <th scope="col" (click)="sortBySecondName()">Zgłaszający</th>
+                <th scope="col" (click)="sortByBreakdownPlace()">Hala: </th>
+                <th scope="col" (click)="sortByBreakdownMachine()">Maszyna: </th>
+                <th scope="col" (click)="sortByRepairMan()">Automatyk: </th>
                 <th *ngIf="!isUser" scope="col">Usuń: </th>
 
 
@@ -41,7 +41,7 @@
                 <td>{{maintenanceTask.title}}</td>
                 <td>{{maintenanceTask.creationDate | date: 'H:m:s dd.MM.yyyy'}}</td>
                 <td>{{maintenanceTask.finishDate | date: 'H:m:s dd.MM.yyyy'}}</td>
-                <td>{{maintenanceTask.maintenanceWorker.firstName}} {{maintenanceTask.maintenanceWorker.secondName}}</td>
+                <td>{{maintenanceTask.maintenanceWorker.secondName}} {{maintenanceTask.maintenanceWorker.firstName}}</td>
                 <td>{{maintenanceTask.breakdownPlace}}</td>
                 <td>{{maintenanceTask.breakdownMachine}}</td>
                 <td>
