@@ -23,6 +23,7 @@ import { MessengerComponent } from './components/messenger/messenger.component';
 import { MaintenanceWorkersPageComponent } from './pages/maintenance-workers-page/maintenance-workers-page.component';
 import { ReportBreakdownPageComponent } from './pages/report-breakdown-page/report-breakdown-page.component';
 import { InputTextAreaCustomComponent } from './components/input-text-area-custom/input-text-area-custom.component';
+import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { InputTextAreaCustomComponent } from './components/input-text-area-custo
     MaintenanceWorkersPageComponent,
     ReportBreakdownPageComponent,
     InputTextAreaCustomComponent,
+    BreakdownsPageComponent,
   ],
   imports: [
     BrowserModule,

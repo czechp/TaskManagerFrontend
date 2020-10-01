@@ -1,0 +1,16 @@
+<div @fade class="">
+    <app-title [title]="'Awarie'" [statement]="statement"></app-title>
+    <div class=" mt-5 border rounded p-3">
+        <h3 class="tex-center">Wybierz tryb filtrowania</h3>
+        <h5 class="tex-center">Aktualnie wybrany - {{mode}}</h5>
+
+        <div class="d-flex justify-content-around mt-5">
+            <button class="btn btn-outline-light" (click)="setAllMode()">Wszystkie</button>
+            <button class="btn btn-outline-danger" (click)="setTodoMode()">Do wykonania</button>
+            <button class="btn btn-outline-primary" (click)="setInProgressMode()">Aktualne</button>
+            <button class="btn btn-outline-success" (click)="setDoneMode()">Zakończone</button>
+        </div>
+    </div>
+    <h3 class="my-4">{{mode}}</h3>
+
+</div>
