@@ -32,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr @fade id="tr-hover-custom" *ngFor="let maintenanceTask of currentMaintenanceTasks" [ngClass]="{
+            <tr @fade (click)="navigateToDetails(maintenanceTask.id)" id="tr-hover-custom" *ngFor="let maintenanceTask of currentMaintenanceTasks" [ngClass]="{
                 'bg-danger': maintenanceTask.taskStatus === 'TODO',
                 'bg-primary': maintenanceTask.taskStatus === 'IN_PROGRESS',
                 'bg-success': maintenanceTask.taskStatus === 'DONE'

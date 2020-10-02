@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { title } from 'process';
 import { MaintenanceTask } from 'src/app/models/MaintenanceTask';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
@@ -25,7 +26,8 @@ export class BreakdownsPageComponent implements OnInit {
 
   constructor(
     private httpApiService: HttpApiService,
-    private authorizationService: AuthorizationService
+    private authorizationService: AuthorizationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +57,10 @@ export class BreakdownsPageComponent implements OnInit {
           (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
         );
     } else { this.statement = 'Błąd! Taka awaria nie istnieje' }
+  }
+
+  public navigateToDetails(id: number):void{
+    this.router.navigate(['/breakdown-detail', id]);
   }
 
   public sortByStatus() {
