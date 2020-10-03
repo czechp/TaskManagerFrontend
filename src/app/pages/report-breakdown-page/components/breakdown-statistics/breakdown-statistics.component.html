@@ -1,0 +1,29 @@
+<div class="w-100 mt-3 border rounded">
+    <h2 class="mb-3 p-4">Statystyka</h2>
+    <table class="table text-white">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col " class="bg-danger">Zgłoszone</th>
+                <th scope="col" class="bg-success">Usunięte</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Ten tydzień:</th>
+                <td>Mark</td>
+                <td>Otto</td>
+            </tr>
+            <tr>
+                <th scope="row">Ten miesiąc:</th>
+                <td>Mark</td>
+                <td>Otto</td>
+            </tr>
+            <tr>
+                <th scope="row">Wszystkie:</th>
+                <td>{{allTaskNumber()}}</td>
+                <td>{{(allTaskDoneNumber())}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

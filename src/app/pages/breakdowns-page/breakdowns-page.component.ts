@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { title } from 'process';
 import { MaintenanceTask } from 'src/app/models/MaintenanceTask';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
@@ -59,7 +58,7 @@ export class BreakdownsPageComponent implements OnInit {
     } else { this.statement = 'Błąd! Taka awaria nie istnieje' }
   }
 
-  public navigateToDetails(id: number):void{
+  public navigateToDetails(id: number): void {
     this.router.navigate(['/breakdown-detail', id]);
   }
 
@@ -110,7 +109,7 @@ export class BreakdownsPageComponent implements OnInit {
     this.currentMaintenanceTasks = this.currentMaintenanceTasks
       .sort((x1: MaintenanceTask, x2: MaintenanceTask) => {
         if ((x1.repairMan !== null || x1.repairMan !== undefined)
-          || (x2.repairMan !== null || x2.repairMan !== undefined)) { return this.sortMultiplier;}
+          || (x2.repairMan !== null || x2.repairMan !== undefined)) { return this.sortMultiplier; }
 
         return this.sortMultiplier * x1.repairMan.username.localeCompare(x2.repairMan.username);
       });
