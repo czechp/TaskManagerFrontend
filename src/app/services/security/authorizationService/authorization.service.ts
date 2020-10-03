@@ -11,6 +11,7 @@ import { MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH } from '../../../consts/Consta
 export class AuthorizationService {
   public loginSubject: Subject<any>;
 
+
   constructor(
     private httpApiService: HttpApiService,
     private router: Router
@@ -64,12 +65,14 @@ export class AuthorizationService {
     return sessionStorage.getItem('jwtToken');
   }
 
-  public isUser():boolean{
+  public isUser(): boolean {
     return this.getRole() === 'USER';
   }
 
-  public getUsername():string{
+  public getUsername(): string {
     return sessionStorage.getItem('username');
   }
+
+
 
 }

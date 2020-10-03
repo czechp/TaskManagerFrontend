@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ViewCustomizerService } from 'src/app/services/viewCustomizer/view-customizer.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ViewCustomizerService } from 'src/app/services/viewCustomizer/view-cust
   templateUrl: './input-text-area-custom.component.html',
   styleUrls: ['./input-text-area-custom.component.css']
 })
-export class InputTextAreaCustomComponent implements OnInit {
+export class InputTextAreaCustomComponent implements OnInit, OnChanges {
 
 
   @ViewChild('inputTextArea')
@@ -30,6 +30,11 @@ export class InputTextAreaCustomComponent implements OnInit {
     private viewCustomizerService: ViewCustomizerService
   ) {
   }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.value===null || this.value === undefined){this.valueChange.emit('');  this.value=''}
+  }
+
 
   ngOnInit(): void {
   }
