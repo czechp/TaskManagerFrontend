@@ -25,7 +25,7 @@ import { ReportBreakdownPageComponent } from './pages/report-breakdown-page/repo
 import { InputTextAreaCustomComponent } from './components/input-text-area-custom/input-text-area-custom.component';
 import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page.component';
 import { BreakdownDetailPageComponent } from './pages/breakdown-detail-page/breakdown-detail-page.component';
-import { BreakdownStatisticsComponent } from './pages/report-breakdown-page/components/breakdown-statistics/breakdown-statistics.component';
+import { BreakdownStatisticsComponent } from './pages/breakdowns-page/breakdown-statistics/breakdown-statistics.component';
 
 @NgModule({
   declarations: [

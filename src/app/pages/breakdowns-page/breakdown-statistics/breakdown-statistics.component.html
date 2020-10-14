@@ -10,18 +10,13 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">Ten tydzień:</th>
-                <td>Mark</td>
-                <td>Otto</td>
-            </tr>
-            <tr>
                 <th scope="row">Ten miesiąc:</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <td>{{allReportedTaskInThisMonthNumber()}}</td>
+                <td>{{allTaskDoneInThisMonthNumber()}}</td>
             </tr>
             <tr>
                 <th scope="row">Wszystkie:</th>
-                <td>{{allTaskNumber()}}</td>
+                <td>{{allReportedTaksNumber()}}</td>
                 <td>{{(allTaskDoneNumber())}}</td>
             </tr>
         </tbody>
