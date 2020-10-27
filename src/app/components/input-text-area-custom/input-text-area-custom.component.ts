@@ -1,15 +1,16 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ViewCustomizerService } from '../../services/viewCustomizer/view-customizer.service';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { ViewCustomizerService } from 'src/app/services/viewCustomizer/view-customizer.service';
 
 @Component({
-  selector: 'app-input-text-custom',
-  templateUrl: './input-text-custom.component.html',
-  styleUrls: ['./input-text-custom.component.css']
+  selector: 'app-input-text-area-custom',
+  templateUrl: './input-text-area-custom.component.html',
+  styleUrls: ['./input-text-area-custom.component.css']
 })
-export class InputTextCustomComponent implements OnInit {
+export class InputTextAreaCustomComponent implements OnInit, OnChanges {
 
-  @ViewChild('inputText')
-  public inputText: ElementRef;
+
+  @ViewChild('inputTextArea')
+  public inputTextArea: ElementRef;
   @Input()
   public title: string;
 
@@ -29,6 +30,11 @@ export class InputTextCustomComponent implements OnInit {
     private viewCustomizerService: ViewCustomizerService
   ) {
   }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.value===null || this.value === undefined){this.valueChange.emit('');  this.value=''}
+  }
+
 
   ngOnInit(): void {
   }
@@ -43,16 +49,16 @@ export class InputTextCustomComponent implements OnInit {
         this.validationInfoVisibility = this.value.length < this.length;
         this.successIconView = !this.validationInfoVisibility;
         if (this.validationInfoVisibility) {
-          this.viewCustomizerService.setDangerColors(this.inputText);
+          this.viewCustomizerService.setDangerColors(this.inputTextArea);
         } else {
-          this.viewCustomizerService.setCorrectColors(this.inputText);
+          this.viewCustomizerService.setCorrectColors(this.inputTextArea);
         }
       } else {
         this.successIconView = true;
-        this.viewCustomizerService.setCorrectColors(this.inputText);
+        this.viewCustomizerService.setCorrectColors(this.inputTextArea);
       }
     } else {
-      this.viewCustomizerService.setDangerColors(this.inputText);
+      this.viewCustomizerService.setDangerColors(this.inputTextArea);
       this.validationInfoVisibility = true;
     }
   }
@@ -64,12 +70,9 @@ export class InputTextCustomComponent implements OnInit {
       } else {
         return true;
       }
-    } else {
+    }
+    else {
       return false;
     }
   }
-
-
 }
-
-

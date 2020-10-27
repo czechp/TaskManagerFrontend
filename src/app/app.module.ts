@@ -20,7 +20,15 @@ import {AdminPanelPageComponent} from './pages/admin-panel-page/admin-panel-page
 import {ForbiddenPageComponent} from './pages/errors/forbiden-page/forbidden-page.component';
 import { SelectCustomComponent } from './components/select-custom/select-custom.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
-import { MaintenanceWorkersComponent } from './pages/maintenance-workers/maintenance-workers.component';
+import { MaintenanceWorkersPageComponent } from './pages/maintenance-workers-page/maintenance-workers-page.component';
+import { ReportBreakdownPageComponent } from './pages/report-breakdown-page/report-breakdown-page.component';
+import { InputTextAreaCustomComponent } from './components/input-text-area-custom/input-text-area-custom.component';
+import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page.component';
+import { BreakdownDetailPageComponent } from './pages/breakdown-detail-page/breakdown-detail-page.component';
+import { BreakdownStatisticsComponent } from './pages/breakdowns-page/breakdown-statistics/breakdown-statistics.component';
+
+
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -37,14 +45,20 @@ import { MaintenanceWorkersComponent } from './pages/maintenance-workers/mainten
     ForbiddenPageComponent,
     SelectCustomComponent,
     MessengerComponent,
-    MaintenanceWorkersComponent,
+    MaintenanceWorkersPageComponent,
+    ReportBreakdownPageComponent,
+    InputTextAreaCustomComponent,
+    BreakdownsPageComponent,
+    BreakdownDetailPageComponent,
+    BreakdownStatisticsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

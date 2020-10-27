@@ -9,13 +9,14 @@ import { AuthorizationService } from 'src/app/services/security/authorizationSer
 
 @Component({
   selector: 'app-maintenance-workers',
-  templateUrl: './maintenance-workers.component.html',
-  styleUrls: ['./maintenance-workers.component.css'],
+  templateUrl: './maintenance-workers-page.component.html',
+  styleUrls: ['./maintenance-workers-page.component.css'],
   animations: [fade, slideOut]
 })
-export class MaintenanceWorkersComponent implements OnInit {
+export class MaintenanceWorkersPageComponent implements OnInit {
   public statement = '';
   public maintenanceWorkers: MaintenanceWorker[] = [];
+  public newMaintenanceWorker: MaintenanceWorker = {};
   public readonly FIRST_NAME_MIN_LENGTH = 3;
   public readonly SECOND_NAME_MIN_LENGTH = 3;
   public isUser = true;
@@ -47,7 +48,7 @@ export class MaintenanceWorkersComponent implements OnInit {
   }
 
   public modifyMaintenanceWorker(id: number, validated: boolean) {
-    let maintenanceWorker = getElementById(this.maintenanceWorkers, id);
+    const maintenanceWorker = getElementById(this.maintenanceWorkers, id);
     if (maintenanceWorker !== null && validated) {
       this.httpApiService.put(maintenanceWorkersEndpoint + '/' + id, maintenanceWorker, [])
         .subscribe(
@@ -72,12 +73,22 @@ export class MaintenanceWorkersComponent implements OnInit {
     }
   }
 
+  public createNewMaintenanceWorker() {
+    this.httpApiService.post(maintenanceWorkersEndpoint, this.newMaintenanceWorker, [])
+      .subscribe(
+        (next: any) => { this.getMaintenanceWorkers(); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
+
   public sortByFirstName() {
-    this.maintenanceWorkers = this.maintenanceWorkers.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) => x1.firstName.localeCompare(x2.firstName));
+    this.maintenanceWorkers = this.maintenanceWorkers.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) =>
+      x1.firstName.localeCompare(x2.firstName));
   }
 
   public sortBySecondName() {
-    this.maintenanceWorkers = this.maintenanceWorkers.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) => x1.secondName.localeCompare(x2.secondName));
+    this.maintenanceWorkers = this.maintenanceWorkers.sort((x1: MaintenanceWorker, x2: MaintenanceWorker) =>
+      x1.secondName.localeCompare(x2.secondName));
   }
 
   public sortById() {

@@ -3,7 +3,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text" style="width: 150px;">{{title}}</span>
         </div>
-        <input #inputText (focusout)="focusOutEvent()" (keyup)="onKeyUpEvent()" [(ngModel)]="value" class="form-control" type="text">
+        <textarea cols="50" rows="4" #inputTextArea (focusout)="focusOutEvent()" (keyup)="onKeyUpEvent()" [(ngModel)]="value" class="form-control text-center"></textarea>
         <div class="input-group-append">
             <span *ngIf="successIconView===true" class="input-group-text bg-success"><i class="far fa-check-circle fa-1x"></i></span>
         </div>

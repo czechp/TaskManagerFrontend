@@ -1,0 +1,66 @@
+<div @fade class="">
+    <app-title [title]="'Awarie'" [statement]="statement"></app-title>
+    <app-breakdown-statistics [maintenanceTasks]="allMaintenaceTasks"></app-breakdown-statistics>
+
+    <!-- Navigate -->
+    <div class=" mt-5 border rounded p-3">
+        <h3 class="tex-center">Wybierz tryb filtrowania</h3>
+        <h5 class="tex-center">Aktualnie wybrany - {{mode}}</h5>
+
+        <div class="d-flex justify-content-around mt-5">
+            <button class="btn btn-outline-light" (click)="setAllMode()">Wszystkie</button>
+            <button class="btn btn-outline-danger" (click)="setTodoMode()">Do wykonania</button>
+            <button class="btn btn-outline-primary" (click)="setInProgressMode()">Aktualne</button>
+            <button class="btn btn-outline-success" (click)="setDoneMode()">Zakończone</button>
+        </div>
+    </div>
+    <!-- Table -->
+    <h3 class="my-4">{{mode}}</h3>
+    <table class="table text-white">
+        <thead>
+            <tr>
+                <th scope="col" (click)="sortById()">Id:</th>
+                <th scope="col" (click)="sortByTitle()">Nazwa:</th>
+                <th scope="col" (click)="sortByCreationDate()">Data zgłoszenia:</th>
+                <th scope="col" (click)="sortByFinishDate()">Data zakończenia:</th>
+                <th scope="col" (click)="sortBySecondName()">Zgłaszający</th>
+                <th scope="col" (click)="sortByBreakdownPlace()">Hala: </th>
+                <th scope="col" (click)="sortByBreakdownMachine()">Maszyna: </th>
+                <th scope="col" (click)="sortByRepairMan()">Automatyk: </th>
+                <th *ngIf="!isUser" scope="col">Usuń: </th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr @fade (click)="navigateToDetails(maintenanceTask.id)" id="tr-hover-custom" *ngFor="let maintenanceTask of currentMaintenanceTasks" [ngClass]="{
+                'bg-danger': maintenanceTask.taskStatus === 'TODO',
+                'bg-primary': maintenanceTask.taskStatus === 'IN_PROGRESS',
+                'bg-success': maintenanceTask.taskStatus === 'DONE'
+            }">
+                <td>{{maintenanceTask.id}}</td>
+                <td>{{maintenanceTask.title}}</td>
+                <td>{{maintenanceTask.creationDate | date: 'H:m:s dd.MM.yyyy'}}</td>
+                <td>{{maintenanceTask.finishDate | date: 'H:m:s dd.MM.yyyy'}}</td>
+                <td>{{maintenanceTask.maintenanceWorker.secondName}} {{maintenanceTask.maintenanceWorker.firstName}}</td>
+                <td>{{maintenanceTask.breakdownPlace}}</td>
+                <td>{{maintenanceTask.breakdownMachine}}</td>
+                <td>
+                    <span *ngIf="maintenanceTask.repairMan !== null">{{maintenanceTask.repairMan.username}}</span>
+                </td>
+                <td *ngIf="!isUser"><button class="btn btn-outline-dark" [attr.data-target]="'#delete-'+maintenanceTask.id" data-toggle="collapse">Usuń</button>
+                    <div class="collapse" [attr.id]="'delete-'+maintenanceTask.id">
+                        <h5 class="mt-3">Czy napewno chcesz usunąć awarie ?</h5>
+                        <div class="d-flex justify-content-around">
+                            <button class="btn btn-outline-dark" [attr.data-target]="'#delete-'+maintenanceTask.id" data-toggle="collapse" (click)="deleteMaintenanceTask(maintenanceTask.id)">Usuń</button>
+                            <button class="btn btn-outline-light" [attr.data-target]="'#delete-'+maintenanceTask.id" data-toggle="collapse">Anuluj</button>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
