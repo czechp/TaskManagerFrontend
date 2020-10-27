@@ -27,6 +27,9 @@ import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page
 import { BreakdownDetailPageComponent } from './pages/breakdown-detail-page/breakdown-detail-page.component';
 import { BreakdownStatisticsComponent } from './pages/breakdowns-page/breakdown-statistics/breakdown-statistics.component';
 
+
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,8 @@ import { BreakdownStatisticsComponent } from './pages/breakdowns-page/breakdown-
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
