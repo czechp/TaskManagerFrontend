@@ -1,0 +1,10 @@
+<div class="d-flex flex-column align-items-center">
+    <h2>Informacje ogólne</h2>
+    <mat-form-field class="w-50">
+        <mat-label>Nazwa:</mat-label>
+        <mat-hint align="end">Minimum 5 znaków</mat-hint>
+        <input #taskNameInput matInput [formControl]="taskNameFormControl" [errorStateMatcher]="taskNameInputValidator">
+        <mat-error *ngIf="taskNameFormControl.hasError('minLength')">Nazwa za krótka</mat-error>
+
+    </mat-form-field>
+</div>

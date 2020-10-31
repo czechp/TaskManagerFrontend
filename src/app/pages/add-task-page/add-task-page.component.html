@@ -1,8 +1,11 @@
-<mat-form-field>
-    <mat-label>Jakis tekst</mat-label>
-    <input matInput #anyText [formControl]="email">
-    <mat-hint align="end">
-        {{anyText.value.length}}
-    </mat-hint>
-    <mat-error *ngIf="anyText.value.length < 10">Any error</mat-error>
-</mat-form-field>
+<app-title [title]="'Dodaj nową pracę'" [statement]="statement"></app-title>
+
+<mat-horizontal-stepper linear #stepper [selectedIndex]="currentStep">
+    <mat-step label="Stwórz zadanie" [editable]="false" [completed]="stepperSteps[0].completed">
+        <app-add-task-general>
+        </app-add-task-general>
+    </mat-step>
+    <mat-step label="Dodaj pracowników" [editable]="false" [completed]="stepperSteps[1].completed">Dodaj pracowników</mat-step>
+    <mat-step label="Dodaj założenia projektowe" [editable]="false" [completed]="stepperSteps[2].completed">Założenia projektowe</mat-step>
+    <mat-step label="Dodaj zadania" [editable]="false" [completed]="stepperSteps[3].completed">Dodaj zadanie</mat-step>
+</mat-horizontal-stepper>

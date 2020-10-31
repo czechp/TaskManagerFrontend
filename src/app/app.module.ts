@@ -36,6 +36,7 @@ import {MatInputModule} from '@angular/material/input';
 
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
+import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.compon
     BreakdownDetailPageComponent,
     BreakdownStatisticsComponent,
     AddTaskPageComponent,
+    AddTaskGeneralComponent,
   ],
   imports: [
     BrowserModule,

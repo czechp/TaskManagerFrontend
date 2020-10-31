@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -10,19 +10,34 @@ export class AddTaskPageComponent implements OnInit {
   public statement = '';
   constructor() { }
 
-  email = new FormControl('', [Validators.required, Validators.maxLength(10)]);
+  public stepperSteps: StepperSteps[] = [
+    { stepNumber: 0, completed: false },
+    { stepNumber: 1, completed: false },
+    { stepNumber: 2, completed: false },
+    { stepNumber: 3, completed: false }
+  ];
+
+  public currentStep: number;
+
+  public stepperCurrentIndex: number;
+
+
+
 
   ngOnInit(): void {
+
   }
 
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
 
 
+
+
+
+
+}
+
+interface StepperSteps {
+  stepNumber: number;
+  completed: boolean;
 }
