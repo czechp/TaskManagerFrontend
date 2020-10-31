@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 import {TopBarComponent} from './components/top-bar/top-bar.component';
 import {LeftNavbarComponent} from './components/left-navbar/left-navbar.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TitleComponent} from './components/title/title.component';
 import {StatementComponent} from './components/statement/statement.component';
@@ -28,7 +28,14 @@ import { BreakdownDetailPageComponent } from './pages/breakdown-detail-page/brea
 import { BreakdownStatisticsComponent } from './pages/breakdowns-page/breakdown-statistics/breakdown-statistics.component';
 
 
+import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+
+
+import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +58,7 @@ import {MatButtonModule} from '@angular/material/button';
     BreakdownsPageComponent,
     BreakdownDetailPageComponent,
     BreakdownStatisticsComponent,
+    AddTaskPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +66,11 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatStepperModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,77 +1,119 @@
-/* You can add global styles to this file, and also import other style files */
-
-#card-custom {
-    background-color: transparent;
-    border-color: white;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-#jumbotron-custom {
-    background-color: transparent;
-    border-style: solid;
-    border-color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px
-}
-
-#input-group-text-custom {
-    background-color: transparent;
-    color: white;
-}
-
-#input-group-text-custom:hover,
-select:hover,
-tr:hover {
-    background-color: darkgray;
-    color: white;
-}
-
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=email]:focus,
-select:focus {
-    background-color: black;
-    color: white;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-    text-align: center;
-}
-
-input {
-    text-align: center;
-}
-
-.btn {
-    min-width: 170px;
-}
-
-body {
-    min-height: 2000px;
-}
-
-td,
-tr,
-th {
-    text-align: center;
-}
-
-
-/* sorting */
-
-th:hover {
-    color: yellow;
-    background-color: black;
-    cursor: pointer;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+    /* You can add global styles to this file, and also import other style files */
+    
+    #card-custom {
+        background-color: transparent;
+        border-color: white;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    #jumbotron-custom {
+        background-color: transparent;
+        border-style: solid;
+        border-color: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px
+    }
+    
+    #input-group-text-custom {
+        background-color: transparent;
+        color: white;
+    }
+    
+    #input-group-text-custom:hover,
+    select:hover,
+    tr:hover {
+        background-color: darkgray;
+        color: white;
+    }
+    
+    input[type=text]:focus,
+    input[type=password]:focus,
+    input[type=email]:focus,
+    select:focus {
+        background-color: black;
+        color: white;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        text-align: center;
+    }
+    
+    input {
+        text-align: center;
+    }
+    
+    .btn {
+        min-width: 170px;
+    }
+    
+    body {
+        min-height: 2000px;
+    }
+    
+    td,
+    tr,
+    th {
+        text-align: center;
+    }
+    /* sorting */
+    
+    th:hover {
+        color: yellow;
+        background-color: black;
+        cursor: pointer;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    body {
+        margin: 0;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+    /* Stepper styling */
+    
+    .mat-stepper-vertical,
+    .mat-stepper-horizontal {
+        background-color: transparent;
+    }
+    
+    .mat-step-text-label {
+        color: white;
+    }
+    
+    .mat-stepper-horizontal-line {
+        background-color: white;
+    }
+    /* Input styling  */
+    
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        background-color: white;
+    }
+    
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+        color: white;
+    }
+    
+    .mat-form-field.mat-focused .mat-form-field-label {
+        color: white;
+    }
+    
+    .mat-form-field-appearance-legacy .mat-hint {
+        color: white;
+    }
+    
+    .mat-input-placeholder {
+        color: #fff;
+        font-size: 2em;
+    }

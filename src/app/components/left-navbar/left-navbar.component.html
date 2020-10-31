@@ -1,5 +1,15 @@
 <div class="d-flex flex-column justify-content-between border rounded" style="min-height: 800px">
     <div class="">
+
+        <div class="btn-group dropright w-100 ">
+            <button class="btn btn-outline-light dropdown-toggle border-bottom-1 border-top-0 border-left-0 border-right-0" data-toggle="dropdown" type="button">
+        Prace do wykonania
+      </button>
+            <div class="dropdown-menu bg-light border-primary">
+                <a class="dropdown-item" routerLink="/add-task">Dodaj nową pracę</a>
+            </div>
+        </div>
+
         <div class="btn-group dropright w-100 ">
             <button class="btn btn-outline-light dropdown-toggle border-bottom-1 border-top-0 border-left-0 border-right-0" data-toggle="dropdown" type="button">
         Utrzymanie ruchu
@@ -7,7 +17,6 @@
             <div class="dropdown-menu bg-light border-primary">
                 <a routerLink="/report-breakdown" class="dropdown-item " href="#">Zgłoś awarie</a>
                 <a routerLink="/breakdowns" class="dropdown-item" href="#">Awarie</a>
-                <a class="dropdown-item" href="#">Awarie zakończone</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" routerLink='/maintenance-wrokers'>Pracownicy UR</a>
             </div>
@@ -18,15 +27,9 @@
         Ustawienia
       </button>
             <div class="dropdown-menu bg-light border-primary">
-                <a class="dropdown-item " href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" routerLink="/admin-panel">Panel admina</a>
             </div>
         </div>
-
-
     </div>
     <div class="">
         <button (click)="logout()" *ngIf="isLogged" class="btn btn-outline-danger  w-100 border-light border-bottom-0 border-top-1 border-left-0 border-right-0" type="button">
