@@ -117,3 +117,7 @@
         color: #fff;
         font-size: 2em;
     }
+    
+    .mat-select-value-text {
+        color: white;
+    }

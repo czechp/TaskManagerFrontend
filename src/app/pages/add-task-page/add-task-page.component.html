@@ -1,8 +1,8 @@
 <app-title [title]="'Dodaj nową pracę'" [statement]="statement"></app-title>
 
-<mat-horizontal-stepper linear #stepper [selectedIndex]="currentStep">
+<mat-horizontal-stepper linear #stepper>
     <mat-step label="Stwórz zadanie" [editable]="false" [completed]="stepperSteps[0].completed">
-        <app-add-task-general>
+        <app-add-task-general (createTaskEmitter)="createTask($event)">
         </app-add-task-general>
     </mat-step>
     <mat-step label="Dodaj pracowników" [editable]="false" [completed]="stepperSteps[1].completed">Dodaj pracowników</mat-step>

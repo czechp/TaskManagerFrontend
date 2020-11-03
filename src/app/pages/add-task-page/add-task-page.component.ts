@@ -1,5 +1,9 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatStep, MatStepper } from '@angular/material/stepper';
+import { Task } from 'src/app/models/Task';
+import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
+import { taskEndpoint } from 'src/app/services/URL';
 
 @Component({
   selector: 'app-add-task-page',
@@ -8,8 +12,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class AddTaskPageComponent implements OnInit {
   public statement = '';
-  constructor() { }
-
+  public currentIndex = 0;
+  public currentTask: Task;
   public stepperSteps: StepperSteps[] = [
     { stepNumber: 0, completed: false },
     { stepNumber: 1, completed: false },
@@ -17,23 +21,38 @@ export class AddTaskPageComponent implements OnInit {
     { stepNumber: 3, completed: false }
   ];
 
-  public currentStep: number;
+  @ViewChild('stepper')
+  public stepperRef: MatStepper;
 
-  public stepperCurrentIndex: number;
-
-
-
+  constructor(
+    private httpApiSerivce: HttpApiService
+  ) { }
 
   ngOnInit(): void {
 
   }
 
 
+  public createTask(task: Task) {
+    this.httpApiSerivce.post(taskEndpoint, task, [])
+      .subscribe(
+        (next: any) => {
+          this.currentTask = next;
+          this.changeStep(1);
+        },
+        (error: any) => {
+          this.statement = 'Błąd podczas tworzenia pracy';
+        },
+        () => {
+        }
+      );
+  }
 
+  private changeStep(step: number) {
+    this.stepperSteps[step-1].completed = true;
+    setTimeout(() => this.stepperRef.selectedIndex = step, 100)
 
-
-
-
+  }
 
 }
 
