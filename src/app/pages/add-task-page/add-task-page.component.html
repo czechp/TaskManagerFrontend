@@ -1,11 +1,21 @@
 <app-title [title]="'Dodaj nową pracę'" [statement]="statement"></app-title>
+<div class="d-flex flex-column my-3">
+    <h2 *ngIf="currentTask.title !== undefined">Tytuł: <i>{{currentTask.title}}</i></h2>
+    <h2 *ngIf="currentTask.description !== undefined">Opis: <i>{{currentTask.description}}</i></h2>
+    <h2 *ngIf="currentTask.taskPriority !== undefined">Priorytet: <i>{{getPriority()}}</i></h2>
 
+
+</div>
 <mat-horizontal-stepper linear #stepper>
     <mat-step label="Stwórz zadanie" [editable]="false" [completed]="stepperSteps[0].completed">
         <app-add-task-general (createTaskEmitter)="createTask($event)">
         </app-add-task-general>
     </mat-step>
-    <mat-step label="Dodaj pracowników" [editable]="false" [completed]="stepperSteps[1].completed">Dodaj pracowników</mat-step>
+    <mat-step label="Dodaj pracowników" [editable]="false" [completed]="stepperSteps[1].completed">
+        <app-add-task-users>
+
+        </app-add-task-users>
+    </mat-step>
     <mat-step label="Dodaj założenia projektowe" [editable]="false" [completed]="stepperSteps[2].completed">Założenia projektowe</mat-step>
     <mat-step label="Dodaj zadania" [editable]="false" [completed]="stepperSteps[3].completed">Dodaj zadanie</mat-step>
 </mat-horizontal-stepper>

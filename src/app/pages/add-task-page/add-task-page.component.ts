@@ -4,6 +4,7 @@ import { MatStep, MatStepper } from '@angular/material/stepper';
 import { Task } from 'src/app/models/Task';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { taskEndpoint } from 'src/app/services/URL';
+import { getPriority } from 'src/app/utilities/priorityOperations';
 
 @Component({
   selector: 'app-add-task-page',
@@ -13,7 +14,7 @@ import { taskEndpoint } from 'src/app/services/URL';
 export class AddTaskPageComponent implements OnInit {
   public statement = '';
   public currentIndex = 0;
-  public currentTask: Task;
+  public currentTask: Task = {};
   public stepperSteps: StepperSteps[] = [
     { stepNumber: 0, completed: false },
     { stepNumber: 1, completed: false },
@@ -41,18 +42,24 @@ export class AddTaskPageComponent implements OnInit {
           this.changeStep(1);
         },
         (error: any) => {
-          this.statement = 'Błąd podczas tworzenia pracy';
+          this.statement = this.httpApiSerivce.errorStatementHandler(error.status);
         },
         () => {
         }
       );
   }
 
+  public getPriority(): string {
+    return getPriority(this.currentTask.taskPriority);
+  }
+
   private changeStep(step: number) {
-    this.stepperSteps[step-1].completed = true;
+    this.stepperSteps[step - 1].completed = true;
     setTimeout(() => this.stepperRef.selectedIndex = step, 100)
 
   }
+
+
 
 }
 

@@ -38,6 +38,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
+import { AddTaskUsersComponent } from './pages/add-task-page/components/add-task-users/add-task-users.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-ta
     BreakdownStatisticsComponent,
     AddTaskPageComponent,
     AddTaskGeneralComponent,
+    AddTaskUsersComponent,
   ],
   imports: [
     BrowserModule,
