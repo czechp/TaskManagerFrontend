@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatStep, MatStepper } from '@angular/material/stepper';
 import { Task } from 'src/app/models/Task';
@@ -14,13 +14,14 @@ import { getPriority } from 'src/app/utilities/priorityOperations';
 export class AddTaskPageComponent implements OnInit {
   public statement = '';
   public currentIndex = 0;
-  public currentTask: Task = {};
+  public currentTask: Task = {appUsers: []};
   public stepperSteps: StepperSteps[] = [
     { stepNumber: 0, completed: false },
     { stepNumber: 1, completed: false },
     { stepNumber: 2, completed: false },
     { stepNumber: 3, completed: false }
   ];
+
 
   @ViewChild('stepper')
   public stepperRef: MatStepper;
@@ -49,9 +50,18 @@ export class AddTaskPageComponent implements OnInit {
       );
   }
 
+  public addAppUser(appUserId: number) {
+    this.httpApiSerivce.put(taskEndpoint + '/' + this.currentTask.id + '/users/' + appUserId, {}, [])
+      .subscribe(
+        (next: any) => { this.currentTask = next},
+        (error: any) => { this.statement = this.httpApiSerivce.errorStatementHandler(error.status) }
+      );
+  }
+
   public getPriority(): string {
     return getPriority(this.currentTask.taskPriority);
   }
+
 
   private changeStep(step: number) {
     this.stepperSteps[step - 1].completed = true;

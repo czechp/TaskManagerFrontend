@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Task } from 'src/app/models/Task';
@@ -22,7 +22,7 @@ export class AddTaskGeneralComponent implements OnInit {
       {
         title: ['', [Validators.required, Validators.minLength(5)]],
         description: [''],
-        priority: ['',[Validators.required]]
+        priority: ['', [Validators.required]]
       }
     );
   }
@@ -30,18 +30,20 @@ export class AddTaskGeneralComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  test(){
+  test() {
     console.log(this.taskForm.value.priority)
   }
 
   public createTask() {
-    const task: Task = {
-      title: this.taskForm.value.title,
-      description: this.taskForm.value.description,
-      taskPriority: this.taskForm.value.priority
+    if(this.taskForm.valid){
+      const task: Task = {
+        title: this.taskForm.value.title,
+        description: this.taskForm.value.description,
+        taskPriority: this.taskForm.value.priority
+      }
+  
+      this.createTaskEmitter.emit(task);
     }
-
-    this.createTaskEmitter.emit(task);
   }
 
 

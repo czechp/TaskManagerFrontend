@@ -33,12 +33,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table'
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
 import { AddTaskUsersComponent } from './pages/add-task-page/components/add-task-users/add-task-users.component';
+import { AddTaskUsersDialogAddComponent } from './pages/add-task-page/components/add-task-users/dialogs/add-task-users-dialog-add/add-task-users-dialog-add.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,7 @@ import { AddTaskUsersComponent } from './pages/add-task-page/components/add-task
     AddTaskPageComponent,
     AddTaskGeneralComponent,
     AddTaskUsersComponent,
+    AddTaskUsersDialogAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,8 @@ import { AddTaskUsersComponent } from './pages/add-task-page/components/add-task
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatTableModule,
+    MatDialogModule,
     ReactiveFormsModule
   ],
   providers: [{
