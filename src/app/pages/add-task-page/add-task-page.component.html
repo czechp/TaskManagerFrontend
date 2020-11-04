@@ -12,10 +12,10 @@
         </app-add-task-general>
     </mat-step>
     <mat-step label="Dodaj pracowników" [editable]="false" [completed]="stepperSteps[1].completed">
-        <app-add-task-users (addAppUserEmitter)="addAppUser($event)">
+        <app-add-task-users (addAppUserEmitter)="addAppUser($event)" (endOfAddingEmitter)="changeStep(2)">
 
         </app-add-task-users>
     </mat-step>
     <mat-step label="Dodaj założenia projektowe" [editable]="false" [completed]="stepperSteps[2].completed">Założenia projektowe</mat-step>
-    <mat-step label="Dodaj zadania" [editable]="false" [completed]="stepperSteps[3].completed">Dodaj zadanie</mat-step>
+    <mat-step label="Dodaj zadania" optional [editable]="false" [completed]="stepperSteps[3].completed">Dodaj zadanie</mat-step>
 </mat-horizontal-stepper>

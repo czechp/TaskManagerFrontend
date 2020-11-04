@@ -16,8 +16,13 @@ export class AddTaskUsersComponent implements OnInit {
   public appUsers: AppUser[] = [];
   public appUsersColumns = ['id', 'username', 'email']
   public statement = '';
+  public alreadyAdded = false;
+
   @Output()
   public addAppUserEmitter = new EventEmitter();
+
+  @Output()
+  public endOfAddingEmitter = new EventEmitter();
 
   constructor(
     private httpApiService: HttpApiService,
@@ -47,6 +52,7 @@ export class AddTaskUsersComponent implements OnInit {
       (result: any) => {
         if(result === 'true'){
           this.addAppUserEmitter.emit(appUser.id);
+          this.alreadyAdded = true;
         }
       }
     );

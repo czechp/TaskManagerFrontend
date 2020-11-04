@@ -63,7 +63,7 @@ export class AddTaskPageComponent implements OnInit {
   }
 
 
-  private changeStep(step: number) {
+  public changeStep(step: number) {
     this.stepperSteps[step - 1].completed = true;
     setTimeout(() => this.stepperRef.selectedIndex = step, 100)
 

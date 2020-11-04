@@ -83,6 +83,11 @@
     }
     /* Stepper styling */
     
+    .mat-step-header .mat-step-label,
+    .mat-step-header .mat-step-optional {
+        color: white;
+    }
+    
     .mat-stepper-vertical,
     .mat-stepper-horizontal {
         background-color: transparent;
