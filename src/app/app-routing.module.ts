@@ -13,6 +13,7 @@ import { BreakdownsPageComponent } from './pages/breakdowns-page/breakdowns-page
 import { BreakdownDetailPageComponent } from './pages/breakdown-detail-page/breakdown-detail-page.component';
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { SuperuserGuardService } from './services/security/guards/superuser-guard.service';
+import { TaskDetailsPageComponent } from './pages/task-details-page/task-details-page.component';
 
 
 const routes: Routes = [
@@ -21,11 +22,12 @@ const routes: Routes = [
   { path: 'forbidden', component: ForbiddenPageComponent },
   { path: '', component: HomePageComponent, canActivate: [LoggedGuardService] },
   { path: 'admin-panel', component: AdminPanelPageComponent, canActivate: [LoggedGuardService, AdminGuardService] },
-  {path: 'add-task', component: AddTaskPageComponent, canActivate: [LoggedGuardService,]},
+  { path: 'add-task', component: AddTaskPageComponent, canActivate: [LoggedGuardService,] },
   { path: 'maintenance-wrokers', component: MaintenanceWorkersPageComponent, canActivate: [LoggedGuardService, SuperuserGuardService] },
-  {path: 'report-breakdown', component: ReportBreakdownPageComponent, canActivate: [LoggedGuardService]},
-  {path: 'breakdowns', component: BreakdownsPageComponent, canActivate: [LoggedGuardService]},
-  {path: 'breakdown-detail/:id', component: BreakdownDetailPageComponent, canActivate:[LoggedGuardService]}
+  { path: 'report-breakdown', component: ReportBreakdownPageComponent, canActivate: [LoggedGuardService] },
+  { path: 'breakdowns', component: BreakdownsPageComponent, canActivate: [LoggedGuardService] },
+  { path: 'breakdown-detail/:id', component: BreakdownDetailPageComponent, canActivate: [LoggedGuardService] },
+  { path: 'task-details/:id', component: TaskDetailsPageComponent, canActivate: [LoggedGuardService] }
 ];
 
 @NgModule({

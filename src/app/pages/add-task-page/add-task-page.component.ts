@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatStep, MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
 import { Goal } from 'src/app/models/Goal';
 import { SubTask } from 'src/app/models/SubTask';
 import { Task } from 'src/app/models/Task';
@@ -34,7 +35,8 @@ export class AddTaskPageComponent implements OnInit {
   public stepperRef: MatStepper;
 
   constructor(
-    private httpApiSerivce: HttpApiService
+    private httpApiSerivce: HttpApiService,
+    public router: Router
   ) {
   }
 

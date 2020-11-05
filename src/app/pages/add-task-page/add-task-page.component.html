@@ -10,7 +10,7 @@
                     </app-add-task-general>
                 </mat-step>
 
-                <mat-step label="Dodaj pracowników" [editable]="false" [completed]="stepperSteps[1].completed">
+                <mat-step label="Dodaj pracowników" [editable]="true" [completed]="stepperSteps[1].completed">
                     <app-add-task-users (addAppUserEmitter)="addAppUser($event)" (endOfAddingEmitter)="changeStep(2)">
                     </app-add-task-users>
                     <div class="d-flex justify-content-center">
@@ -18,22 +18,26 @@
                     </div>
                 </mat-step>
 
-                <mat-step label="Dodaj założenia projektowe" [editable]="false" [completed]="stepperSteps[2].completed">
+                <mat-step label="Dodaj założenia projektowe" [editable]="true" [completed]="stepperSteps[2].completed">
                     <app-add-task-goals (addGoalEmitter)="addGoal($event)" (endOfAddingEmitter)="changeStep(3)"></app-add-task-goals>
                     <div class="d-flex justify-content-center">
                         <button (click)="changeStep(3)" *ngIf="goalAdded" @fade mat-raised-button color="primary" class="w-50 mt-5">Przejdź dalej</button>
                     </div>
 
                 </mat-step>
-                <mat-step label="Dodaj zadania" optional [editable]="false" [completed]="stepperSteps[3].completed">
+                <mat-step label="Dodaj zadania" optional [editable]="true" [completed]="stepperSteps[3].completed">
                     <app-add-task-subtasks (addSubtaskEmitter)="addSubtask($event)"></app-add-task-subtasks>
                     <h2 class="text-center mt-4">lub</h2>
                     <div class="d-flex justify-content-center">
-                        <button mat-raised-button class="text-light bg-success w-50 mt-5">Zakończ</button>
+                        <button mat-raised-button class="text-light bg-success w-50 mt-5" (click)="router.navigate(['/task-details', currentTask.id])">Zakończ</button>
                     </div>
                 </mat-step>
             </mat-horizontal-stepper>
         </div>
+
+
+
+
         <div *ngIf="currentTask.title !== undefined" class="col-2">
 
 

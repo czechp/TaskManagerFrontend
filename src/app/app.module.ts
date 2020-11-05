@@ -36,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs'
 
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
@@ -44,6 +45,7 @@ import { AddTaskUsersComponent } from './pages/add-task-page/components/add-task
 import { AddTaskUsersDialogAddComponent } from './pages/add-task-page/components/add-task-users/dialogs/add-task-users-dialog-add/add-task-users-dialog-add.component';
 import { AddTaskGoalsComponent } from './pages/add-task-page/components/add-task-goals/add-task-goals.component';
 import { AddTaskSubtasksComponent } from './pages/add-task-page/components/add-task-subtasks/add-task-subtasks.component';
+import { TaskDetailsPageComponent } from './pages/task-details-page/task-details-page.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,7 @@ import { AddTaskSubtasksComponent } from './pages/add-task-page/components/add-t
     AddTaskUsersDialogAddComponent,
     AddTaskGoalsComponent,
     AddTaskSubtasksComponent,
+    TaskDetailsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ import { AddTaskSubtasksComponent } from './pages/add-task-page/components/add-t
     MatTableModule,
     MatDialogModule,
     MatListModule,
+    MatTabsModule,
     ReactiveFormsModule
   ],
   providers: [{
