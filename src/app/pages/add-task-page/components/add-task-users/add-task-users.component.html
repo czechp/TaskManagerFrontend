@@ -23,8 +23,4 @@
         <tr mat-header-row *matHeaderRowDef="appUsersColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: appUsersColumns;" (click)="openAddDialog(row)" style="cursor: pointer;"></tr>
     </table>
-
-
-    <button (click)="endOfAddingEmitter.emit()" *ngIf="alreadyAdded" mat-raised-button color="primary" class="w-50 mt-5">Przejdź dalej</button>
-
 </div>

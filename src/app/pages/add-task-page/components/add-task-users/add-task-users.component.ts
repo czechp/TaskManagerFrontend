@@ -21,8 +21,7 @@ export class AddTaskUsersComponent implements OnInit {
   @Output()
   public addAppUserEmitter = new EventEmitter();
 
-  @Output()
-  public endOfAddingEmitter = new EventEmitter();
+
 
   constructor(
     private httpApiService: HttpApiService,

@@ -14,9 +14,6 @@ export class AddTaskGoalsComponent implements OnInit {
   public alreadyAdded = false;
 
   @Output()
-  public endOfAddingEmitter = new EventEmitter();
-  
-  @Output()
   public addGoalEmitter = new EventEmitter();
 
   @HostListener('keyup.enter', ['$event'])
@@ -43,8 +40,12 @@ export class AddTaskGoalsComponent implements OnInit {
     if(this.goalForm.valid){
       const goal: Goal = {content: this.goalForm.value.content};
       this.addGoalEmitter.emit(goal);
+      this.clearGoalFormField();
       this.alreadyAdded= true;
     }
   }
 
+  private clearGoalFormField(){
+    this.goalForm.reset();
+  }
 }
