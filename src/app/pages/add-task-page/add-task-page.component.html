@@ -3,7 +3,11 @@
     <h2 *ngIf="currentTask.title !== undefined">Tytuł: <i>{{currentTask.title}}</i></h2>
     <h2 *ngIf="currentTask.description !== undefined">Opis: <i>{{currentTask.description}}</i></h2>
     <h2 *ngIf="currentTask.taskPriority !== undefined">Priorytet: <i>{{getPriority()}}</i></h2>
-    <h2 *ngIf="currentTask.appUsers.length > 0">Automatycy: <span *ngFor="let user of currentTask.appUsers">{{user.username}}, </span></h2>
+    <h2 *ngIf="currentTask.appUsers.length > 0">Automatycy:
+        <mat-list>
+            <mat-list-item class="d-flex justify-content-center" *ngFor="let user of currentTask.appUsers">{{user.username}}</mat-list-item>
+        </mat-list>
+    </h2>
 
 </div>
 <mat-horizontal-stepper linear #stepper>
@@ -13,9 +17,12 @@
     </mat-step>
     <mat-step label="Dodaj pracowników" [editable]="false" [completed]="stepperSteps[1].completed">
         <app-add-task-users (addAppUserEmitter)="addAppUser($event)" (endOfAddingEmitter)="changeStep(2)">
-
         </app-add-task-users>
     </mat-step>
-    <mat-step label="Dodaj założenia projektowe" [editable]="false" [completed]="stepperSteps[2].completed">Założenia projektowe</mat-step>
-    <mat-step label="Dodaj zadania" optional [editable]="false" [completed]="stepperSteps[3].completed">Dodaj zadanie</mat-step>
+    <mat-step label="Dodaj założenia projektowe" [editable]="false" [completed]="stepperSteps[2].completed">
+        <app-add-task-goals (addGoalEmitter)="addGoal($event)" (endOfAddingEmitter)="changeStep(3)"></app-add-task-goals>
+    </mat-step>
+    <mat-step label="Dodaj zadania" optional [editable]="false" [completed]="stepperSteps[3].completed">
+        <app-add-task-subtasks></app-add-task-subtasks>
+    </mat-step>
 </mat-horizontal-stepper>

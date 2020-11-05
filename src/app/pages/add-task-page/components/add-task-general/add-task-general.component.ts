@@ -14,6 +14,11 @@ export class AddTaskGeneralComponent implements OnInit {
 
   public taskForm: any;
 
+  @HostListener("keyup.enter",["$event"])
+  public createTaskHostListener(event: any){
+    this.createTask();
+  }
+
   @Output()
   public createTaskEmitter = new EventEmitter();
 
@@ -30,9 +35,6 @@ export class AddTaskGeneralComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  test() {
-    console.log(this.taskForm.value.priority)
-  }
 
   public createTask() {
     if(this.taskForm.valid){

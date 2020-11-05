@@ -9,6 +9,12 @@
             <input matInput formControlName="title">
         </mat-form-field>
 
+        <mat-form-field class="w-50">
+            <mat-label>Opis:</mat-label>
+            <mat-hint align="end">Opcjonalny</mat-hint>
+            <input matInput formControlName="description">
+        </mat-form-field>
+
 
         <mat-form-field class="w-50">
             <mat-label>Priorytet:</mat-label>
@@ -18,15 +24,10 @@
                 <mat-option value="LOW" class="text-center">Niski</mat-option>
                 <mat-option value="MEDIUM" class="text-center">Średni</mat-option>
                 <mat-option value="HIGH" class="text-center">Wysoki</mat-option>
-
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="w-50">
-            <mat-label>Opis:</mat-label>
-            <mat-hint align="end">Opcjonalny</mat-hint>
-            <input matInput formControlName="description">
-        </mat-form-field>
+
 
     </form>
 
