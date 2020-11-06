@@ -46,6 +46,7 @@ import { AddTaskUsersDialogAddComponent } from './pages/add-task-page/components
 import { AddTaskGoalsComponent } from './pages/add-task-page/components/add-task-goals/add-task-goals.component';
 import { AddTaskSubtasksComponent } from './pages/add-task-page/components/add-task-subtasks/add-task-subtasks.component';
 import { TaskDetailsPageComponent } from './pages/task-details-page/task-details-page.component';
+import { TaskDetailsGeneralTabComponent } from './pages/task-details-page/components/task-details-general-tab/task-details-general-tab.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { TaskDetailsPageComponent } from './pages/task-details-page/task-details
     AddTaskGoalsComponent,
     AddTaskSubtasksComponent,
     TaskDetailsPageComponent,
+    TaskDetailsGeneralTabComponent,
   ],
   imports: [
     BrowserModule,

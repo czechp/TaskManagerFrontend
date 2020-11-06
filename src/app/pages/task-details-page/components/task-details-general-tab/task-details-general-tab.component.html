@@ -1,0 +1,30 @@
+<div class="d-flex flex-column align-items-center mt-5">
+    <form [formGroup]="taskGeneralForm" class="w-100 d-flex flex-column align-items-center">
+        <mat-form-field class="w-50">
+            <mat-label>Tytuł:</mat-label>
+            <mat-hint *ngIf="isOwner" align="end">Minimum 5 znaków</mat-hint>
+            <mat-error *ngIf="taskGeneralForm.get('title').hasError('required')">To pole jest wymagane</mat-error>
+            <mat-error *ngIf="taskGeneralForm.get('title').hasError('minlength')">Minimum 5 znaków</mat-error>
+            <mat-error *ngIf="taskGeneralForm.get('title').hasError('maxlength')">Maksymalnie 255 znaków</mat-error>
+            <input [readonly]="!isOwner" matInput formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field class="w-50 mt-3">
+            <mat-label>Opis:</mat-label>
+            <mat-hint *ngIf="isOwner" align="end">Opcjonalny</mat-hint>
+            <input [readonly]="!isOwner" matInput formControlName="description">
+        </mat-form-field>
+
+        <mat-form-field class="w-50 mt-3">
+            <mat-label>Priorytet</mat-label>
+            <mat-select formControlName="taskPriority">
+                <mat-option value="LOW">Niski</mat-option>
+                <mat-option value="MEDIUM">Średni</mat-option>
+                <mat-option value="HIGH">Wysoki</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <button (click)="updateTask()" @fade *ngIf="modified" mat-raised-button color="primary" class="w-50 mt-5">Zapisz zmiany</button>
+
+</div>

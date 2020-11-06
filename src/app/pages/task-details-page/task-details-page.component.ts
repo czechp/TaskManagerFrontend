@@ -29,11 +29,19 @@ export class TaskDetailsPageComponent implements OnInit {
     this.getTask();
   }
 
+  public updateTask():void {
+      this.httpApiService.put(taskEndpoint + '/' + this.taskId, this.task, [])
+      .subscribe(
+        (next: any)=>{this.task = next},
+        (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status)}
+      )
+  }
+
   private getTask() {
     this.clearStatement();
     this.httpApiService.get(taskEndpoint + '/' + this.taskId, [])
       .subscribe(
-        (next: any) => { this.task = next; this.isOwner = this.areYouOwner(); console.log(this.isOwner) },
+        (next: any) => { this.task = next; this.isOwner = this.areYouOwner(); },
         (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
       );
   }
@@ -53,5 +61,5 @@ export class TaskDetailsPageComponent implements OnInit {
     return isAmongParticipants || isAdminOrDirectorOrSuperUser;
   }
   private clearStatement() { this.statement = ''; }
-  
+
 }

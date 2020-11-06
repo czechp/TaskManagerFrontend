@@ -61,7 +61,7 @@ export class AddTaskPageComponent implements OnInit {
   }
 
   public addAppUser(appUserId: number) {
-    this.httpApiSerivce.put(taskEndpoint + '/' + this.currentTask.id + '/users/' + appUserId, {}, [])
+    this.httpApiSerivce.post(taskEndpoint + '/' + this.currentTask.id + '/users/' + appUserId, {}, [])
       .subscribe(
         (next: any) => { this.currentTask = next; this.userAdded = true; },
         (error: any) => { this.statement = this.httpApiSerivce.errorStatementHandler(error.status) }
