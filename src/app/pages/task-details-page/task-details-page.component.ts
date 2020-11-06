@@ -29,12 +29,28 @@ export class TaskDetailsPageComponent implements OnInit {
     this.getTask();
   }
 
-  public updateTask():void {
-      this.httpApiService.put(taskEndpoint + '/' + this.taskId, this.task, [])
+  public updateTask(): void {
+    this.httpApiService.put(taskEndpoint + '/' + this.taskId, this.task, [])
       .subscribe(
-        (next: any)=>{this.task = next},
-        (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status)}
+        (next: any) => { this.task = next },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
       )
+  }
+
+  public deleteUser(appUserId: number): void {
+    this.httpApiService.delete(taskEndpoint + '/' + this.task.id + '/users/' + appUserId, [])
+      .subscribe(
+        (next: any) => { this.getTask() },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
+      );
+  }
+
+  public addAppUser(appUserId: number) {
+    this.httpApiService.post(taskEndpoint + '/' + this.task.id + '/users/' + appUserId, {}, [])
+    .subscribe(
+      (next: any)=>{this.task = next},
+      (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status)}
+    );
   }
 
   private getTask() {
@@ -45,18 +61,18 @@ export class TaskDetailsPageComponent implements OnInit {
         (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
       );
   }
-  
-  private areYouOwner():boolean{
-      const isAmongParticipants = this.task.appUsers
-      .map((x: AppUser)=>x.username)
-      .filter((x: string)=>x === this.authorizationService.getUsername())
+
+  private areYouOwner(): boolean {
+    const isAmongParticipants = this.task.appUsers
+      .map((x: AppUser) => x.username)
+      .filter((x: string) => x === this.authorizationService.getUsername())
       .length > 0;
 
     const currentUserRole = this.authorizationService.getRole();
 
     const isAdminOrDirectorOrSuperUser = currentUserRole === 'ADMIN'
-    || currentUserRole === 'SUPERUSER'
-    || currentUserRole === 'DIRECTOR';
+      || currentUserRole === 'SUPERUSER'
+      || currentUserRole === 'DIRECTOR';
 
     return isAmongParticipants || isAdminOrDirectorOrSuperUser;
   }

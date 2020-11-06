@@ -2,10 +2,12 @@
 
 <mat-tab-group class="w-100">
     <mat-tab label="Ogólne">
-        <app-task-details-general-tab [(task)]="task" (updateTaskEmitter)="updateTask()" [isOwner]="isOwner"></app-task-details-general-tab>
+        <app-task-details-general-tab [(task)]="task" (updateTaskEmitter)="updateTask()" [isOwner]="isOwner">
+        </app-task-details-general-tab>
     </mat-tab>
     <mat-tab label="Automatycy ">
-
+        <app-task-details-users-tab [appUsers]="task.appUsers" (addAppUserEmitter)="addAppUser($event)" (deleteAppUserEmitter)="deleteUser($event)">
+        </app-task-details-users-tab>
     </mat-tab>
     <mat-tab label="Założenia ">
 

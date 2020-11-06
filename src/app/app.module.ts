@@ -37,7 +37,8 @@ import {MatTableModule} from '@angular/material/table'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs'
-
+import {MatIconModule} from '@angular/material/icon'
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
@@ -47,6 +48,8 @@ import { AddTaskGoalsComponent } from './pages/add-task-page/components/add-task
 import { AddTaskSubtasksComponent } from './pages/add-task-page/components/add-task-subtasks/add-task-subtasks.component';
 import { TaskDetailsPageComponent } from './pages/task-details-page/task-details-page.component';
 import { TaskDetailsGeneralTabComponent } from './pages/task-details-page/components/task-details-general-tab/task-details-general-tab.component';
+import { TaskDetailsUsersTabComponent } from './pages/task-details-page/components/task-details-users-tab/task-details-users-tab.component';
+import { TaskDetailsDeleteUserDialogComponent } from './pages/task-details-page/components/task-details-users-tab/dialogs/task-details-delete-user-dialog/task-details-delete-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +80,8 @@ import { TaskDetailsGeneralTabComponent } from './pages/task-details-page/compon
     AddTaskSubtasksComponent,
     TaskDetailsPageComponent,
     TaskDetailsGeneralTabComponent,
+    TaskDetailsUsersTabComponent,
+    TaskDetailsDeleteUserDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +98,8 @@ import { TaskDetailsGeneralTabComponent } from './pages/task-details-page/compon
     MatDialogModule,
     MatListModule,
     MatTabsModule,
+    MatIconModule,
+    MatExpansionModule,
     ReactiveFormsModule
   ],
   providers: [{
