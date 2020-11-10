@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubTask } from 'src/app/models/SubTask';
 import { fade } from 'src/app/utilities/animations/animations';
@@ -11,6 +11,11 @@ import { fade } from 'src/app/utilities/animations/animations';
 
 })
 export class AddTaskSubtasksComponent implements OnInit {
+
+  @HostListener('keyup.enter',['$event'])
+  public addSubTaskListener(event: any){
+    this.addSubtask();
+  }
 
   @Output()
   public addSubtaskEmitter = new EventEmitter();

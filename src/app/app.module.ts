@@ -39,6 +39,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs'
 import {MatIconModule} from '@angular/material/icon'
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list'
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
@@ -102,6 +103,7 @@ import { TaskDetailsGoalsTabComponent } from './pages/task-details-page/componen
     MatTabsModule,
     MatIconModule,
     MatExpansionModule,
+    MatGridListModule,
     ReactiveFormsModule
   ],
   providers: [{
