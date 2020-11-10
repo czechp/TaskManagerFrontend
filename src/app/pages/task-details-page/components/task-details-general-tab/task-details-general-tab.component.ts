@@ -32,14 +32,15 @@ export class TaskDetailsGeneralTabComponent implements OnInit, OnChanges {
       {
         title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
         description: ['', [Validators.maxLength(255)]],
-        taskPriority: ['', [Validators.required]]
+        taskPriority: ['', [Validators.required]],
+        taskStatus: ['', Validators.required]
       }
     );
   }
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.changesSubscription !== undefined) this.changesSubscription.unsubscribe();
+    if (this.changesSubscription !== undefined) { this.changesSubscription.unsubscribe(); }
     this.dataToForm();
     this.dataChanged();
   }
@@ -47,7 +48,7 @@ export class TaskDetailsGeneralTabComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  public updateTask(){
+  public updateTask() {
     this.formToData();
     this.taskChange.emit(this.task);
     this.updateTaskEmitter.emit();
@@ -57,17 +58,20 @@ export class TaskDetailsGeneralTabComponent implements OnInit, OnChanges {
     this.taskGeneralForm.get('title').setValue(this.task.title);
     this.taskGeneralForm.get('description').setValue(this.task.description);
     this.taskGeneralForm.get('taskPriority').setValue(this.task.taskPriority);
+    this.taskGeneralForm.get('taskStatus').setValue(this.task.taskStatus);
+
   }
 
-  private formToData(){
+  private formToData() {
     this.task.title = this.taskGeneralForm.value.title;
     this.task.description = this.taskGeneralForm.value.description;
     this.task.taskPriority = this.taskGeneralForm.value.taskPriority;
+    this.task.taskStatus = this.taskGeneralForm.value.taskStatus;
   }
 
   private dataChanged() {
     this.changesSubscription = this.taskGeneralForm.valueChanges
-      .subscribe(() => this.modified=true);
+      .subscribe(() => this.modified = true);
   }
 
 }

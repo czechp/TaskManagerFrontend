@@ -23,6 +23,15 @@
                 <mat-option value="HIGH">Wysoki</mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-form-field class="w-50 mt-3">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="taskStatus">
+                <mat-option value="TODO">Do zrobienia</mat-option>
+                <mat-option value="IN_PROGRESS">W realizacji</mat-option>
+                <mat-option value="DONE">Zakończony</mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
 
     <button (click)="updateTask()" @fade *ngIf="modified" mat-raised-button color="primary" class="w-50 mt-5">Zapisz zmiany</button>
