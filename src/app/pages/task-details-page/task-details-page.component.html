@@ -1,6 +1,6 @@
 <app-title [statement]="statement" [title]="task.title" [subTitle]="task.description"></app-title>
 
-<mat-tab-group class="w-100">
+<mat-tab-group dynamicHeight class="w-100">
     <mat-tab label="Ogólne">
         <app-task-details-general-tab [(task)]="task" (updateTaskEmitter)="updateTask()" [isOwner]="isOwner">
         </app-task-details-general-tab>

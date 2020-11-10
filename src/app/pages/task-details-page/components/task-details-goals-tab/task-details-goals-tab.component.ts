@@ -1,11 +1,13 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Goal } from 'src/app/models/Goal';
+import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-task-details-goals-tab',
   templateUrl: './task-details-goals-tab.component.html',
-  styleUrls: ['./task-details-goals-tab.component.css']
+  styleUrls: ['./task-details-goals-tab.component.css'], 
+  animations: [fade]
 })
 export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
 
@@ -45,8 +47,8 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
             })
           )
         }
-      )
-      this.subscribeForModified();
+      );
+    this.subscribeForModified();
   }
 
   private subscribeForModified() {

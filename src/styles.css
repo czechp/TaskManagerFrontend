@@ -55,9 +55,7 @@
         min-width: 170px;
     }
     
-    body {
-        min-height: 2000px;
-    }
+
     
     td,
     tr,
@@ -78,7 +76,6 @@
     }
     
     body {
-        margin: 0;
         font-family: Roboto, "Helvetica Neue", sans-serif;
     }
     /* Stepper styling */
