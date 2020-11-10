@@ -1,8 +1,9 @@
-export interface TaskSuperClass{
-    id?:number;
+export interface TaskSuperClass {
+    id?: number;
     title?: string;
-    creationDate?:Date;
-    finishDate?:Date;
-    description?:string;
+    creationDate?: Date;
+    finishDate?: Date;
+    updateDate?: Date;
+    description?: string;
     taskStatus?: string;
 }

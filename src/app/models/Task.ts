@@ -9,5 +9,4 @@ export interface Task extends TaskSuperClass{
     goals?: Goal[];
     subTasks?: SubTask[];
     appUsers?: AppUser[];
-    
 }

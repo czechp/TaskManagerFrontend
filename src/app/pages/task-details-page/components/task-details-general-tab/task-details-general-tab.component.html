@@ -1,4 +1,9 @@
 <div class="d-flex flex-column align-items-center mt-5">
+    <div class="">
+        <h4>Data utworzenia: {{task.creationDate | date: 'short'}}</h4>
+        <h4>Ostatnio modyfikowany: {{task.updateDate | date: 'short'}}</h4>
+
+    </div>
     <form [formGroup]="taskGeneralForm" class="w-100 d-flex flex-column align-items-center">
         <mat-form-field class="w-50">
             <mat-label>Tytuł:</mat-label>
