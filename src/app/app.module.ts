@@ -52,6 +52,7 @@ import { TaskDetailsGeneralTabComponent } from './pages/task-details-page/compon
 import { TaskDetailsUsersTabComponent } from './pages/task-details-page/components/task-details-users-tab/task-details-users-tab.component';
 import { TaskDetailsDeleteUserDialogComponent } from './pages/task-details-page/components/task-details-users-tab/dialogs/task-details-delete-user-dialog/task-details-delete-user-dialog.component';
 import { TaskDetailsGoalsTabComponent } from './pages/task-details-page/components/task-details-goals-tab/task-details-goals-tab.component';
+import { TaskDetailsDeleteGoalDialogComponent } from './pages/task-details-page/components/task-details-goals-tab/dialogs/task-details-delete-goal-dialog/task-details-delete-goal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { TaskDetailsGoalsTabComponent } from './pages/task-details-page/componen
     TaskDetailsUsersTabComponent,
     TaskDetailsDeleteUserDialogComponent,
     TaskDetailsGoalsTabComponent,
+    TaskDetailsDeleteGoalDialogComponent,
   ],
   imports: [
     BrowserModule,

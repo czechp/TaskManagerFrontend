@@ -1,12 +1,14 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Goal } from 'src/app/models/Goal';
 import { fade } from 'src/app/utilities/animations/animations';
+import { TaskDetailsDeleteGoalDialogComponent } from './dialogs/task-details-delete-goal-dialog/task-details-delete-goal-dialog.component';
 
 @Component({
   selector: 'app-task-details-goals-tab',
   templateUrl: './task-details-goals-tab.component.html',
-  styleUrls: ['./task-details-goals-tab.component.css'], 
+  styleUrls: ['./task-details-goals-tab.component.css'],
   animations: [fade]
 })
 export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
@@ -23,7 +25,8 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
 
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private matDialog: MatDialog
   ) {
   }
 
@@ -33,6 +36,21 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+  }
+
+  public deleteGoalDialog(goalForm: FormGroup) {
+    const dialogRef = this.matDialog.open
+      (TaskDetailsDeleteGoalDialogComponent,
+        {
+          width: '600px',
+          data: goalForm.value.content
+        });
+
+    dialogRef.afterClosed()
+      .subscribe((x: string) => {
+        console.log(x);
+        //return here and implement deleting goal
+      });
   }
 
   private createFormArrayFromData(): void {
@@ -53,7 +71,7 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
 
   private subscribeForModified() {
     this.modified = [];
-    for (let i = 0; i < this.goalFormArray.controls.length; i++) {
+    for (const item of this.goalFormArray.controls) {
       this.modified.push(false);
     }
     for (let i = 0; i < this.goalFormArray.controls.length; i++) {
