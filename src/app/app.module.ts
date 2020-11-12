@@ -41,6 +41,7 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
@@ -56,6 +57,7 @@ import { TaskDetailsGoalsTabComponent } from './pages/task-details-page/componen
 import { TaskDetailsDeleteGoalDialogComponent } from './pages/task-details-page/components/task-details-goals-tab/dialogs/task-details-delete-goal-dialog/task-details-delete-goal-dialog.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { TaskDetailsSubtasksTabComponent } from './pages/task-details-page/components/task-details-subtasks-tab/task-details-subtasks-tab.component';
+import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,7 @@ import { TaskDetailsSubtasksTabComponent } from './pages/task-details-page/compo
     TaskDetailsDeleteGoalDialogComponent,
     ProgressBarComponent,
     TaskDetailsSubtasksTabComponent,
+    ProgressSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +115,7 @@ import { TaskDetailsSubtasksTabComponent } from './pages/task-details-page/compo
     MatExpansionModule,
     MatGridListModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
   providers: [{

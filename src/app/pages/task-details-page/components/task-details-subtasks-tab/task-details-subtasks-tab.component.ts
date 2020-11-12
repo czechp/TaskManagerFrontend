@@ -1,11 +1,13 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { SubTask } from 'src/app/models/SubTask';
+import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-task-details-subtasks-tab',
   templateUrl: './task-details-subtasks-tab.component.html',
-  styleUrls: ['./task-details-subtasks-tab.component.css']
+  styleUrls: ['./task-details-subtasks-tab.component.css'],
+  animations: [fade]
 })
 export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
 
@@ -15,29 +17,44 @@ export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
   @Input()
   public subtasks: SubTask[] = [];
 
+  @Input()
+  public isOwner: boolean;
+
   constructor(
     private formBuilder: FormBuilder
   ) { }
 
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.subtasksArrayToFormArray();
+    this.subscribeToModify();
   }
 
   ngOnInit(): void {
   }
 
-  private subtasksArrayToFormArray(){
-    for(let subtask of this.subtasks){
+  private subtasksArrayToFormArray() {
+    for (const subtask of this.subtasks) {
       this.subtasksFormArray.push(
         this.formBuilder.group({
           id: [subtask.id, [Validators.required, Validators.min(1)]],
           title: [subtask.title, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
-          description: [subtask.description, []],
+          description: [subtask.description, [Validators.maxLength(255)]],
           taskStatus: [subtask.taskStatus, [Validators.required]],
           progress: [subtask.progress, [Validators.required, Validators.min(0), Validators.max(100)]]
         })
-      )
+      );
     }
   }
 
+  private subscribeToModify() {
+    this.modified = new Array<boolean>(this.subtasks.length);
+    this.subtasksFormArray.controls.forEach(
+      (value, index) => {
+        value.valueChanges.subscribe(() => {
+            this.modified[index] = true;
+          });
+      }
+    );
+  }
 }

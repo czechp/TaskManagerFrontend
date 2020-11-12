@@ -134,3 +134,18 @@
     .mat-tab-link {
         color: rgba(255, 255, 255, .87);
     }
+
+
+    /* Mat grid list and tile custom  */
+    mat-grid-tile {
+        border: 2px solid white;
+        border-radius: 20px;
+        opacity: 0.5;
+    }
+    
+    mat-grid-tile:hover {
+        border: 2px solid rgb(226, 199, 43);
+        opacity: 1;
+    }
+    
+    
