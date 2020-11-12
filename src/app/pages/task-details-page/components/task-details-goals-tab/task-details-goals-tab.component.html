@@ -16,11 +16,10 @@
                             <mat-error *ngIf="goalForm.get('content').hasError('minlength')">Minimum 5 znaków</mat-error>
                             <mat-error *ngIf="goalForm.get('content').hasError('maxlength')">Maksymalnie 255 znaków</mat-error>
                             <mat-error *ngIf="goalForm.get('content').hasError('required')">To pole jest wymagane</mat-error>
-                            <textarea [readonly]="!isOwner" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-                                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" formControlName="content"></textarea>
+                            <textarea [readonly]="!isOwner" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" formControlName="content"></textarea>
                         </mat-form-field>
                     </div>
-                    <button @fade *ngIf="modified[i] && goalForm.valid" class="w-75 mt-4" @fade mat-raised-button color="primary">Modyfikuj</button>
+                    <button *ngIf="modified[i] && goalForm.valid && isOwner" class="w-75 mt-4" @fade mat-raised-button color="primary" (click)="modifyGoal(goalForm)">Modyfikuj</button>
                     <button (click)="deleteGoalDialog(goalForm)" class="mt-4" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
 
                 </div>

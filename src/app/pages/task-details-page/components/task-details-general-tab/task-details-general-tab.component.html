@@ -1,4 +1,9 @@
 <div class="d-flex flex-column align-items-center mt-5">
+
+    <div class="w-75 my-5">
+        <app-progress-bar [title]="'Progress:'" [value]="task.progress"></app-progress-bar>
+    </div>
+
     <div class="">
         <h4>Data utworzenia: {{task.creationDate | date: 'short'}}</h4>
         <h4>Ostatnio modyfikowany: {{task.updateDate | date: 'short'}}</h4>

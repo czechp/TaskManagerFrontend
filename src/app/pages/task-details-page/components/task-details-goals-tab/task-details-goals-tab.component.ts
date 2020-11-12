@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Goal } from 'src/app/models/Goal';
@@ -20,6 +20,12 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
 
   @Input()
   public isOwner = false;
+
+  @Output()
+  public deleteGoalEmitter = new EventEmitter();
+
+  @Output()
+  public modifyGoalEmitter = new EventEmitter();
 
   public goalFormArray = new FormArray([]);
 
@@ -48,9 +54,20 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed()
       .subscribe((x: string) => {
-        console.log(x);
-        //return here and implement deleting goal
+        if (x === 'true') {
+          this.deleteGoal(goalForm.value.id);
+        }
       });
+  }
+
+  public deleteGoal(goalId: number) {
+    this.deleteGoalEmitter.emit(goalId);
+  }
+
+  public modifyGoal(goalForm: FormGroup) {
+    if (goalForm.valid) {
+      this.modifyGoalEmitter.emit(this.goalFormToGoal(goalForm));
+    }
   }
 
   private createFormArrayFromData(): void {
@@ -78,6 +95,10 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
       this.goalFormArray.controls[i].valueChanges
         .subscribe(() => this.modified[i] = true);
     }
+  }
+
+  private goalFormToGoal(goalForm: FormGroup): Goal {
+    return { id: goalForm.value.id, content: goalForm.value.content };
   }
 
 }

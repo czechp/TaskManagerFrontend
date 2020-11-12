@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppUser } from 'src/app/models/AppUser';
+import { Goal } from 'src/app/models/Goal';
 import { Task } from 'src/app/models/Task';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
-import { taskEndpoint } from 'src/app/services/URL';
+import { goalEndpoint, taskEndpoint } from 'src/app/services/URL';
 
 @Component({
   selector: 'app-task-details-page',
@@ -47,17 +48,34 @@ export class TaskDetailsPageComponent implements OnInit {
 
   public addAppUser(appUserId: number) {
     this.httpApiService.post(taskEndpoint + '/' + this.task.id + '/users/' + appUserId, {}, [])
-    .subscribe(
-      (next: any)=>{this.task = next},
-      (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status)}
-    );
+      .subscribe(
+        (next: any) => { this.task = next },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
+      );
+  }
+
+  public deleteGoal(goalId: number) {
+    this.clearStatement();
+    this.httpApiService.delete(goalEndpoint + '/' + goalId, [])
+      .subscribe(
+        (next: any) => { this.getTask(); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
+
+  public modifyGoal(goal: Goal) {
+    this.httpApiService.put(goalEndpoint + '/' + goal.id, goal, [])
+      .subscribe(
+        (next: any) => { this.getTask(); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
   }
 
   private getTask() {
     this.clearStatement();
     this.httpApiService.get(taskEndpoint + '/' + this.taskId, [])
       .subscribe(
-        (next: any) => { this.task = next; this.isOwner = this.areYouOwner(); },
+        (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner(); },
         (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
       );
   }
@@ -78,4 +96,14 @@ export class TaskDetailsPageComponent implements OnInit {
   }
   private clearStatement() { this.statement = ''; }
 
+  private sortInTask(task: Task): Task {
+    task.appUsers = this.sortById(task.appUsers);
+    task.goals = this.sortById(task.goals);
+    task.subTasks = this.sortById(task.subTasks);
+    return task;
+  }
+
+  private sortById(objects: any[]): any[] {
+    return objects.sort((x1: any, x2: any) => x1.id - x2.id);
+  }
 }

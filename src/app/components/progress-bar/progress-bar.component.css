@@ -1,0 +1,13 @@
+mat-progress-bar {
+    min-height: 10px;
+    border-radius: 3px;
+    background: #E4E8EB
+}
+
+.progress-below-30 {
+    color: red;
+}
+
+.progress-above-30 {
+    color: green;
+}

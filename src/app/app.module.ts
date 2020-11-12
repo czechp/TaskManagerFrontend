@@ -40,6 +40,7 @@ import {MatTabsModule} from '@angular/material/tabs'
 import {MatIconModule} from '@angular/material/icon'
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list'
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
@@ -53,6 +54,7 @@ import { TaskDetailsUsersTabComponent } from './pages/task-details-page/componen
 import { TaskDetailsDeleteUserDialogComponent } from './pages/task-details-page/components/task-details-users-tab/dialogs/task-details-delete-user-dialog/task-details-delete-user-dialog.component';
 import { TaskDetailsGoalsTabComponent } from './pages/task-details-page/components/task-details-goals-tab/task-details-goals-tab.component';
 import { TaskDetailsDeleteGoalDialogComponent } from './pages/task-details-page/components/task-details-goals-tab/dialogs/task-details-delete-goal-dialog/task-details-delete-goal-dialog.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,7 @@ import { TaskDetailsDeleteGoalDialogComponent } from './pages/task-details-page/
     TaskDetailsDeleteUserDialogComponent,
     TaskDetailsGoalsTabComponent,
     TaskDetailsDeleteGoalDialogComponent,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +109,7 @@ import { TaskDetailsDeleteGoalDialogComponent } from './pages/task-details-page/
     MatIconModule,
     MatExpansionModule,
     MatGridListModule,
+    MatProgressBarModule,
     ReactiveFormsModule
   ],
   providers: [{

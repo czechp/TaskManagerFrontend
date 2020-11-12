@@ -10,7 +10,7 @@
         </app-task-details-users-tab>
     </mat-tab>
     <mat-tab label="Założenia ">
-        <app-task-details-goals-tab [goals]="task.goals" [isOwner]="isOwner"></app-task-details-goals-tab>
+        <app-task-details-goals-tab [goals]="task.goals" [isOwner]="isOwner" (deleteGoalEmitter)="deleteGoal($event)" (modifyGoalEmitter)="modifyGoal($event)"></app-task-details-goals-tab>
     </mat-tab>
     <mat-tab label="Zadania ">
 
