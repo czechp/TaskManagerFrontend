@@ -13,6 +13,6 @@
         <app-task-details-goals-tab [goals]="task.goals" [isOwner]="isOwner" (deleteGoalEmitter)="deleteGoal($event)" (modifyGoalEmitter)="modifyGoal($event)"></app-task-details-goals-tab>
     </mat-tab>
     <mat-tab label="Zadania">
-        <app-task-details-subtasks-tab [subtasks]="task.subTasks" [isOwner]="isOwner"></app-task-details-subtasks-tab>
+        <app-task-details-subtasks-tab [subtasks]="task.subTasks" [isOwner]="isOwner" (modifySubtaskEmitter)="modifySubtask($event)"></app-task-details-subtasks-tab>
     </mat-tab>
 </mat-tab-group>

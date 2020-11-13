@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubTask } from 'src/app/models/SubTask';
 import { fade } from 'src/app/utilities/animations/animations';
+import { statusToString } from 'src/app/utilities/statusOperation';
 
 @Component({
   selector: 'app-task-details-subtasks-tab',
@@ -20,6 +21,9 @@ export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
   @Input()
   public isOwner: boolean;
 
+  @Output()
+  public modifySubtaskEmitter = new EventEmitter();
+
   constructor(
     private formBuilder: FormBuilder
   ) { }
@@ -31,6 +35,21 @@ export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+  }
+
+  public getStatus(status: string): string {
+    return statusToString(status);
+  }
+
+  public modifySubtask(subtaskForm: FormGroup, index: number) {
+    if (subtaskForm.valid) {
+      let subtask = this.subtasks[index];
+      subtask.title = subtaskForm.value.title;
+      subtask.description = subtaskForm.value.description;
+      subtask.taskStatus = subtaskForm.value.taskStatus;
+      subtask.progress = subtaskForm.value.progress
+      this.modifySubtaskEmitter.emit(subtask);
+    }
   }
 
   private subtasksArrayToFormArray() {
@@ -52,8 +71,8 @@ export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
     this.subtasksFormArray.controls.forEach(
       (value, index) => {
         value.valueChanges.subscribe(() => {
-            this.modified[index] = true;
-          });
+          this.modified[index] = true;
+        });
       }
     );
   }

@@ -6,7 +6,7 @@ export function statusToString(status: string): string {
             break;
         }
         case 'IN_PROGRESS': {
-            result = 'Aktualne';
+            result = 'W realizacji';
             break;
         }
         case 'DONE': {
