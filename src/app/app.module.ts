@@ -58,6 +58,7 @@ import { TaskDetailsDeleteGoalDialogComponent } from './pages/task-details-page/
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { TaskDetailsSubtasksTabComponent } from './pages/task-details-page/components/task-details-subtasks-tab/task-details-subtasks-tab.component';
 import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
+import { TaskDetailsDeleteSubtaskDialogComponent } from './pages/task-details-page/components/task-details-subtasks-tab/dialogs/task-details-delete-subtask-dialog/task-details-delete-subtask-dialog.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { ProgressSpinnerComponent } from './components/progress-spinner/progress
     ProgressBarComponent,
     TaskDetailsSubtasksTabComponent,
     ProgressSpinnerComponent,
+    TaskDetailsDeleteSubtaskDialogComponent,
   ],
   imports: [
     BrowserModule,

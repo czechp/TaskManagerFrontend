@@ -6,7 +6,7 @@ import { SubTask } from 'src/app/models/SubTask';
 import { Task } from 'src/app/models/Task';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
-import { goalEndpoint, taskEndpoint } from 'src/app/services/URL';
+import { goalEndpoint, subtaskEndpoint, taskEndpoint } from 'src/app/services/URL';
 
 @Component({
   selector: 'app-task-details-page',
@@ -72,8 +72,13 @@ export class TaskDetailsPageComponent implements OnInit {
       );
   }
 
-  public modifySubtask(subtask: SubTask): void{
-    console.log(subtask);
+  public modifySubtask(subtask: SubTask): void {
+    this.clearStatement();
+    this.httpApiService.put(subtaskEndpoint + '/' + subtask.id, subtask, [])
+      .subscribe(
+        (next: any) => { this.getTask() },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
+      );
   }
 
   private getTask() {

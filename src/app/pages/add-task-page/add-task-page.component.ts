@@ -17,17 +17,16 @@ import { getPriority } from 'src/app/utilities/priorityOperations';
 })
 export class AddTaskPageComponent implements OnInit {
   public statement = '';
-  public currentTask: Task = { appUsers: [], goals: [], subTasks:[] };
+  public currentTask: Task = { appUsers: [], goals: [], subTasks: [] };
   public userAdded = false;
   public goalAdded = false;
 
 
-  //return to false state
   public stepperSteps: StepperSteps[] = [
-    { stepNumber: 0, completed: true },
-    { stepNumber: 1, completed: true },
-    { stepNumber: 2, completed: true },
-    { stepNumber: 3, completed: true }
+    { stepNumber: 0, completed: false },
+    { stepNumber: 1, completed: false },
+    { stepNumber: 2, completed: false },
+    { stepNumber: 3, completed: false }
   ];
 
 
