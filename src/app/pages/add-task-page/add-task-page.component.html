@@ -14,22 +14,29 @@
                     <app-add-task-users (addAppUserEmitter)="addAppUser($event)" (endOfAddingEmitter)="changeStep(2)">
                     </app-add-task-users>
                     <div class="d-flex justify-content-center">
-                        <button (click)="changeStep(2)" *ngIf="userAdded" @fade mat-raised-button color="primary" class="w-50 mt-5">Przejdź dalej</button>
+                        <button (click)="changeStep(2)" *ngIf="userAdded" @fade mat-raised-button color="primary"
+                            class="w-50 mt-5">Przejdź dalej</button>
                     </div>
                 </mat-step>
 
                 <mat-step label="Dodaj założenia projektowe" [editable]="true" [completed]="stepperSteps[2].completed">
-                    <app-add-task-goals (addGoalEmitter)="addGoal($event)" (endOfAddingEmitter)="changeStep(3)"></app-add-task-goals>
+                    <h2>Dodaj założenia projektowe</h2>
+                    <app-add-task-goals (addGoalEmitter)="addGoal($event)" (endOfAddingEmitter)="changeStep(3)">
+                    </app-add-task-goals>
                     <div class="d-flex justify-content-center">
-                        <button (click)="changeStep(3)" *ngIf="goalAdded" @fade mat-raised-button color="primary" class="w-50 mt-5">Przejdź dalej</button>
+                        <button (click)="changeStep(3)" *ngIf="goalAdded" @fade mat-raised-button color="primary"
+                            class="w-50 mt-5">Przejdź dalej</button>
                     </div>
 
                 </mat-step>
                 <mat-step label="Dodaj zadania" optional [editable]="true" [completed]="stepperSteps[3].completed">
+                    <h2>Dodaj zadania</h2>
+                    <h3>Postęp zadań bedzię śledzony przez system</h3>
                     <app-add-task-subtasks (addSubtaskEmitter)="addSubtask($event)"></app-add-task-subtasks>
                     <h2 class="text-center mt-4">lub</h2>
                     <div class="d-flex justify-content-center">
-                        <button mat-raised-button class="text-light bg-success w-50 mt-5" (click)="router.navigate(['/task-details', currentTask.id])">Zakończ</button>
+                        <button mat-raised-button class="text-light bg-success w-50 mt-5"
+                            (click)="router.navigate(['/task-details', currentTask.id])">Zakończ</button>
                     </div>
                 </mat-step>
             </mat-horizontal-stepper>
@@ -48,14 +55,16 @@
                 <h2 @fade *ngIf="currentTask.taskPriority !== undefined">Priorytet: <i>{{getPriority()}}</i></h2>
                 <h2 @fade *ngIf="currentTask.appUsers.length > 0">Automatycy:
                     <mat-list>
-                        <mat-list-item @fade class="d-flex justify-content-center" *ngFor="let user of currentTask.appUsers">{{user.username}}</mat-list-item>
+                        <mat-list-item @fade class="d-flex justify-content-center"
+                            *ngFor="let user of currentTask.appUsers">{{user.username}}</mat-list-item>
                     </mat-list>
                 </h2>
 
                 <h2 @fade *ngIf="currentTask.goals.length > 0">
                     Założenia:
                     <mat-list>
-                        <mat-list-item @fade class="d-flex justify-content-center" *ngFor="let goal of currentTask.goals">{{goal.content}}</mat-list-item>
+                        <mat-list-item @fade class="d-flex justify-content-center"
+                            *ngFor="let goal of currentTask.goals">{{goal.content}}</mat-list-item>
                     </mat-list>
                 </h2>
 
@@ -63,7 +72,8 @@
                 <h2 @fade *ngIf="currentTask.subTasks.length > 0">
                     Zadania:
                     <mat-list>
-                        <mat-list-item @fade class="d-flex justify-content-center" *ngFor="let subtask of currentTask.subTasks">{{subtask.title}}</mat-list-item>
+                        <mat-list-item @fade class="d-flex justify-content-center"
+                            *ngFor="let subtask of currentTask.subTasks">{{subtask.title}}</mat-list-item>
                     </mat-list>
                 </h2>
 

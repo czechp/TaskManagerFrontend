@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { error } from 'protractor';
 import { AppUser } from 'src/app/models/AppUser';
 import { Goal } from 'src/app/models/Goal';
 import { SubTask } from 'src/app/models/SubTask';
@@ -30,6 +31,8 @@ export class TaskDetailsPageComponent implements OnInit {
   ngOnInit(): void {
     this.getTask();
   }
+
+  // <---------------------- Public section ---------------------->
 
   public updateTask(): void {
     this.httpApiService.put(taskEndpoint + '/' + this.taskId, this.task, [])
@@ -76,44 +79,74 @@ export class TaskDetailsPageComponent implements OnInit {
     this.clearStatement();
     this.httpApiService.put(subtaskEndpoint + '/' + subtask.id, subtask, [])
       .subscribe(
-        (next: any) => { this.getTask() },
+        (next: any) => { this.getTask(); },
         (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
       );
   }
 
-  private getTask() {
+  public deleteSubtask(subtaskId: number): void {
     this.clearStatement();
-    this.httpApiService.get(taskEndpoint + '/' + this.taskId, [])
+    this.httpApiService.delete(subtaskEndpoint + '/' + subtaskId, [])
       .subscribe(
-        (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner(); },
-        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status) }
+        (next: any) => { this.getTask(); },
+        (error: any) => { }
       );
   }
+
+  public addGoal(goal: Goal): void {
+    this.clearStatement();
+    this.httpApiService.post(taskEndpoint + '/' + this.task.id + '/goals', goal, [])
+      .subscribe(
+        (next: any) => { this.getTask(); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
+
+  public addSubtask(subtask: SubTask): void {
+    this.clearStatement();
+    this.httpApiService.post(taskEndpoint + '/' + this.task.id + '/subtasks', subtask, [])
+      .subscribe(
+        (next: any) => { this.getTask(); },
+        // tslint:disable-next-line: no-shadowed-variable
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+    );
+
+}
+
+  // <---------------------- Private section ---------------------->
+  private getTask() {
+  this.clearStatement();
+  this.httpApiService.get(taskEndpoint + '/' + this.taskId, [])
+    .subscribe(
+      (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner(); },
+      (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+    );
+}
 
   private areYouOwner(): boolean {
-    const isAmongParticipants = this.task.appUsers
-      .map((x: AppUser) => x.username)
-      .filter((x: string) => x === this.authorizationService.getUsername())
-      .length > 0;
+  const isAmongParticipants = this.task.appUsers
+    .map((x: AppUser) => x.username)
+    .filter((x: string) => x === this.authorizationService.getUsername())
+    .length > 0;
 
-    const currentUserRole = this.authorizationService.getRole();
+  const currentUserRole = this.authorizationService.getRole();
 
-    const isAdminOrDirectorOrSuperUser = currentUserRole === 'ADMIN'
-      || currentUserRole === 'SUPERUSER'
-      || currentUserRole === 'DIRECTOR';
+  const isAdminOrDirectorOrSuperUser = currentUserRole === 'ADMIN'
+    || currentUserRole === 'SUPERUSER'
+    || currentUserRole === 'DIRECTOR';
 
-    return isAmongParticipants || isAdminOrDirectorOrSuperUser;
-  }
+  return isAmongParticipants || isAdminOrDirectorOrSuperUser;
+}
   private clearStatement() { this.statement = ''; }
 
   private sortInTask(task: Task): Task {
-    task.appUsers = this.sortById(task.appUsers);
-    task.goals = this.sortById(task.goals);
-    task.subTasks = this.sortById(task.subTasks);
-    return task;
-  }
+  task.appUsers = this.sortById(task.appUsers);
+  task.goals = this.sortById(task.goals);
+  task.subTasks = this.sortById(task.subTasks);
+  return task;
+}
 
   private sortById(objects: any[]): any[] {
-    return objects.sort((x1: any, x2: any) => x1.id - x2.id);
-  }
+  return objects.sort((x1: any, x2: any) => x1.id - x2.id);
+}
 }

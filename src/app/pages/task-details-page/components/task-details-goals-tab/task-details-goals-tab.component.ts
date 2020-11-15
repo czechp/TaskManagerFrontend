@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { Goal } from 'src/app/models/Goal';
 import { fade } from 'src/app/utilities/animations/animations';
 import { TaskDetailsDeleteGoalDialogComponent } from './dialogs/task-details-delete-goal-dialog/task-details-delete-goal-dialog.component';
@@ -27,6 +28,12 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
   @Output()
   public modifyGoalEmitter = new EventEmitter();
 
+  @Output()
+  public addGoalEmitter = new EventEmitter();
+
+  @ViewChild('addGoalExpansionPanel')
+  public addGoalExpansionPanel: MatExpansionPanel;
+
   public goalFormArray = new FormArray([]);
 
 
@@ -43,6 +50,8 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
   }
+
+  // <--------------------> Public section <-------------------->
 
   public deleteGoalDialog(goalForm: FormGroup) {
     const dialogRef = this.matDialog.open
@@ -70,6 +79,15 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
     }
   }
 
+
+
+  public addGoal(goal: Goal): void {
+    this.addGoalExpansionPanel.close();
+    this.addGoalEmitter.emit(goal);
+  }
+
+  // <--------------------> Private section <-------------------->
+
   private createFormArrayFromData(): void {
     this.goalFormArray.clear();
     this.goals
@@ -78,9 +96,11 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
           this.goalFormArray.push(
             this.formBuilder.group({
               id: [x.id, [Validators.required]],
-              content: [x.content, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]]
+              content: [x.content, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
+              creationDate: [x.creationDate, []],
+              updateDate: [x.updateDate, []]
             })
-          )
+          );
         }
       );
     this.subscribeForModified();
@@ -98,7 +118,12 @@ export class TaskDetailsGoalsTabComponent implements OnInit, OnChanges {
   }
 
   private goalFormToGoal(goalForm: FormGroup): Goal {
-    return { id: goalForm.value.id, content: goalForm.value.content };
+    return {
+      id: goalForm.value.id,
+      content: goalForm.value.content,
+      creationDate: goalForm.value.creationDate,
+      updateDate: goalForm.value.updateDate
+    };
   }
 
 }

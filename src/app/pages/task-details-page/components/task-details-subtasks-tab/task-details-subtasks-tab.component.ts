@@ -26,6 +26,12 @@ export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
   @Output()
   public modifySubtaskEmitter = new EventEmitter();
 
+  @Output()
+  public deleteSubtaskEmitter = new EventEmitter();
+
+  @Output()
+  public addSubtaskEmitter = new EventEmitter();
+
   constructor(
     private formBuilder: FormBuilder,
     private matDialog: MatDialog
@@ -39,7 +45,7 @@ export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
   }
-
+  // <----------------- Public section ----------------->
   public getStatus(status: string): string {
     return statusToString(status);
   }
@@ -60,17 +66,30 @@ export class TaskDetailsSubtasksTabComponent implements OnInit, OnChanges {
       TaskDetailsDeleteSubtaskDialogComponent,
       {
         data: { title: subtaskForm.value.title },
-        width: "600px"
+        width: '600px'
       }
     );
 
     dialogRef.afterClosed()
-    .subscribe((decission: string)=>{
-      //return here
-    })
+      .subscribe((decission: string) => {
+        if (decission === 'true') {
+          this.deleteSubtask(subtaskForm.value.id);
+        }
+      });
   }
 
+  public deleteSubtask(subtaskId: number): void {
+    this.deleteSubtaskEmitter.emit(subtaskId);
+  }
+
+  public addSubtask(subtask: SubTask): void {
+    this.addSubtaskEmitter.emit(subtask);
+  }
+  // <----------------- Private section ----------------->
+
+
   private subtasksArrayToFormArray() {
+    this.subtasksFormArray.clear();
     for (const subtask of this.subtasks) {
       this.subtasksFormArray.push(
         this.formBuilder.group({
