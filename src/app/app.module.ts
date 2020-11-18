@@ -59,6 +59,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { TaskDetailsSubtasksTabComponent } from './pages/task-details-page/components/task-details-subtasks-tab/task-details-subtasks-tab.component';
 import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 import { TaskDetailsDeleteSubtaskDialogComponent } from './pages/task-details-page/components/task-details-subtasks-tab/dialogs/task-details-delete-subtask-dialog/task-details-delete-subtask-dialog.component';
+import { CommentsSectionComponent } from './components/comments-section/comments-section.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { TaskDetailsDeleteSubtaskDialogComponent } from './pages/task-details-pa
     TaskDetailsSubtasksTabComponent,
     ProgressSpinnerComponent,
     TaskDetailsDeleteSubtaskDialogComponent,
+    CommentsSectionComponent,
   ],
   imports: [
     BrowserModule,

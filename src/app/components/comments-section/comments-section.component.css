@@ -1,0 +1,17 @@
+.right-align{
+    text-align: right;
+}
+
+.left-align{
+    text-align: left;
+}
+
+
+mat-expansion-panel {
+    background-color: #343a40;
+    color: white;
+    border:2px solid white;
+}
+
+
+

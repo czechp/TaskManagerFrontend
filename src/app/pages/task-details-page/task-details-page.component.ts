@@ -23,7 +23,7 @@ export class TaskDetailsPageComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private httpApiService: HttpApiService,
-    private authorizationService: AuthorizationService
+    public authorizationService: AuthorizationService
   ) {
     this.taskId = activeRoute.snapshot.params.id;
   }
@@ -109,44 +109,54 @@ export class TaskDetailsPageComponent implements OnInit {
         (next: any) => { this.getTask(); },
         // tslint:disable-next-line: no-shadowed-variable
         (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
-    );
+      );
 
-}
+  }
+
+  public addComment(content: string) {
+    this.clearStatement();
+    this.httpApiService.post(taskEndpoint + '/' + this.task.id + '/comments', {}, [{ name: 'content', parameter: content }])
+      .subscribe(
+        (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner(); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
 
   // <---------------------- Private section ---------------------->
   private getTask() {
-  this.clearStatement();
-  this.httpApiService.get(taskEndpoint + '/' + this.taskId, [])
-    .subscribe(
-      (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner();},
-      (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
-    );
-}
+    this.clearStatement();
+    this.httpApiService.get(taskEndpoint + '/' + this.taskId, [])
+      .subscribe(
+        (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner(); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
 
   private areYouOwner(): boolean {
-  const isAmongParticipants = this.task.appUsers
-    .map((x: AppUser) => x.username)
-    .filter((x: string) => x === this.authorizationService.getUsername())
-    .length > 0;
+    const isAmongParticipants = this.task.appUsers
+      .map((x: AppUser) => x.username)
+      .filter((x: string) => x === this.authorizationService.getUsername())
+      .length > 0;
 
-  const currentUserRole = this.authorizationService.getRole();
+    const currentUserRole = this.authorizationService.getRole();
 
-  const isAdminOrDirectorOrSuperUser = currentUserRole === 'ADMIN'
-    || currentUserRole === 'SUPERUSER'
-    || currentUserRole === 'DIRECTOR';
+    const isAdminOrDirectorOrSuperUser = currentUserRole === 'ADMIN'
+      || currentUserRole === 'SUPERUSER'
+      || currentUserRole === 'DIRECTOR';
 
-  return isAmongParticipants || isAdminOrDirectorOrSuperUser;
-}
+    return isAmongParticipants || isAdminOrDirectorOrSuperUser;
+  }
   private clearStatement() { this.statement = ''; }
 
   private sortInTask(task: Task): Task {
-  task.appUsers = this.sortById(task.appUsers);
-  task.goals = this.sortById(task.goals);
-  task.subTasks = this.sortById(task.subTasks);
-  return task;
-}
+    task.appUsers = this.sortById(task.appUsers);
+    task.goals = this.sortById(task.goals);
+    task.subTasks = this.sortById(task.subTasks);
+    task.comments = this.sortById(task.comments);
+    return task;
+  }
 
   private sortById(objects: any[]): any[] {
-  return objects.sort((x1: any, x2: any) => x1.id - x2.id);
-}
+    return objects.sort((x1: any, x2: any) => x1.id - x2.id);
+  }
 }
