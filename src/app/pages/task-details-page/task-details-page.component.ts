@@ -118,7 +118,7 @@ export class TaskDetailsPageComponent implements OnInit {
   this.clearStatement();
   this.httpApiService.get(taskEndpoint + '/' + this.taskId, [])
     .subscribe(
-      (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner(); },
+      (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner();},
       (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
     );
 }
