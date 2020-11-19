@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { error } from 'protractor';
 import { AppUser } from 'src/app/models/AppUser';
 import { Goal } from 'src/app/models/Goal';
 import { SubTask } from 'src/app/models/SubTask';
 import { Task } from 'src/app/models/Task';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
-import { goalEndpoint, subtaskEndpoint, taskEndpoint } from 'src/app/services/URL';
+import { goalEndpoint, subtaskEndpoint, taskEndpoint, commentEndpoint } from 'src/app/services/URL';
 
 @Component({
   selector: 'app-task-details-page',
@@ -118,6 +117,15 @@ export class TaskDetailsPageComponent implements OnInit {
     this.httpApiService.post(taskEndpoint + '/' + this.task.id + '/comments', {}, [{ name: 'content', parameter: content }])
       .subscribe(
         (next: any) => { this.task = this.sortInTask(next); this.isOwner = this.areYouOwner(); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
+
+  public removeComment(commentId: number): void {
+    this.clearStatement();
+    this.httpApiService.delete(commentEndpoint + '/' + commentId, [])
+      .subscribe(
+        (next: any) => { this.getTask(); },
         (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
       );
   }

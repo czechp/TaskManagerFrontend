@@ -11,6 +11,7 @@ export const maintenanceTasksEndpoint = '/maintenance-tasks';
 export const taskEndpoint = '/tasks';
 export const goalEndpoint = '/goals';
 export const subtaskEndpoint ='/subtasks';
+export const commentEndpoint = '/comments';
 
 
 
