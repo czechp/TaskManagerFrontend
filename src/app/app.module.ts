@@ -61,6 +61,8 @@ import { ProgressSpinnerComponent } from './components/progress-spinner/progress
 import { TaskDetailsDeleteSubtaskDialogComponent } from './pages/task-details-page/components/task-details-subtasks-tab/dialogs/task-details-delete-subtask-dialog/task-details-delete-subtask-dialog.component';
 import { CommentsSectionComponent } from './components/comments-section/comments-section.component';
 import { DeleteCommentDialogComponent } from './components/comments-section/dialogs/delete-comment-dialog/delete-comment-dialog.component';
+import { AllTasksPageComponent } from './pages/all-tasks-page/all-tasks-page.component';
+import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +103,8 @@ import { DeleteCommentDialogComponent } from './components/comments-section/dial
     TaskDetailsDeleteSubtaskDialogComponent,
     CommentsSectionComponent,
     DeleteCommentDialogComponent,
+    AllTasksPageComponent,
+    TasksListComponent,
   ],
   imports: [
     BrowserModule,

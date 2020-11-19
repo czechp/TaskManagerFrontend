@@ -1,0 +1,44 @@
+<table class="w-100" mat-table [dataSource]="tasks">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id: </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Tytuł: </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status: </th>
+        <td mat-cell *matCellDef="let element"> {{getStatus(element.taskStatus)}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef> Priorytet: </th>
+        <td mat-cell *matCellDef="let element"> {{getPriority(element.taskPriority)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="progress">
+        <th mat-header-cell *matHeaderCellDef> Progres: </th>
+        <td mat-cell *matCellDef="let element">
+            <app-progress-bar [value]="element.progress"></app-progress-bar>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="workers">
+        <th mat-header-cell *matHeaderCellDef> Odpowiedzialni: </th>
+        <td mat-cell *matCellDef="let element">
+            <p *ngFor="let worker of element.appUsers">{{worker.username}}</p>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsDisplayed"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsDisplayed;" [ngClass]="
+    {
+        'high-priority': row.taskPriority === 'HIGH'
+    }
+    "></tr>
+
+</table>
