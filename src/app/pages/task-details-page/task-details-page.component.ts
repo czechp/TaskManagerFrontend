@@ -160,7 +160,7 @@ export class TaskDetailsPageComponent implements OnInit {
     task.appUsers = this.sortById(task.appUsers);
     task.goals = this.sortById(task.goals);
     task.subTasks = this.sortById(task.subTasks);
-    task.comments = this.sortById(task.comments);
+    task.taskComments = this.sortById(task.taskComments);
     return task;
   }
 

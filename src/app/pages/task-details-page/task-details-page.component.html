@@ -4,7 +4,7 @@
     <mat-tab label="Ogólne">
         <app-task-details-general-tab [(task)]="task" (updateTaskEmitter)="updateTask()" [isOwner]="isOwner">
         </app-task-details-general-tab>
-        <app-comments-section [comments]="task.comments" (addCommentEmitter)="addComment($event)" (removeCommentEmitter)="removeComment($event)"></app-comments-section>
+        <app-comments-section [comments]="task.taskComments" (addCommentEmitter)="addComment($event)" (removeCommentEmitter)="removeComment($event)"></app-comments-section>
     </mat-tab>
     <mat-tab label="Automatycy">
         <app-task-details-users-tab [appUsers]="task.appUsers" (addAppUserEmitter)="addAppUser($event)" (deleteAppUserEmitter)="deleteUser($event)">

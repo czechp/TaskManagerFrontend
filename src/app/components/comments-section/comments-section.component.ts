@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Comment } from 'src/app/models/Comment';
+import { TaskComment } from 'src/app/models/TaskComment';
 import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
 import { fade } from 'src/app/utilities/animations/animations';
 import { DeleteCommentDialogComponent } from './dialogs/delete-comment-dialog/delete-comment-dialog.component';
