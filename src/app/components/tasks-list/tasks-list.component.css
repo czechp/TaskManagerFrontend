@@ -1,11 +1,37 @@
 .high-priority {
-    background-color: red;
+    background-color: rgb(220, 53, 70, 0.92);
 }
 
 .medium-priority {
-    background-color: yellow;
+    background-color: rgb(255, 193, 7, 0.85);
 }
 
 .low-priority {
-    background-color: blue;
+    background-color: rgb(0, 123, 255, 0.85);
 }
+
+.high-priority:hover {
+    background-color: rgb(220, 53, 70, 1);
+}
+
+.medium-priority:hover {
+    background-color: rgb(255, 193, 7, 1);
+}
+
+.low-priority:hover {
+    background-color: rgb(0, 123, 255, 1);
+}
+
+.finished-task{
+    background-color: rgb(40, 167, 69, 0.85);
+}
+
+
+.finished-task:hover{
+    background-color: rgb(40, 167, 69, 1);
+}
+
+.mat-cell{
+    color: rgb(255,255,255, 0.85);
+}
+

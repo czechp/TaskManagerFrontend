@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Task } from 'src/app/models/Task';
 import { getPriority } from 'src/app/utilities/priorityOperations';
 import { statusToString } from 'src/app/utilities/statusOperation';
@@ -14,7 +15,8 @@ export class TasksListComponent implements OnInit {
   public tasks: Task[] = [];
 
   public columnsDisplayed = ['id', 'title', 'status', 'priority', 'progress', 'workers'];
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -27,9 +29,8 @@ export class TasksListComponent implements OnInit {
     return  getPriority(priority);
   }
 
-  test(variable){
-    console.log(variable)
+  public navigateToTaskDetails(taskId: number){
+    this.router.navigate(['/task-details', taskId]);
   }
-  
 
 }
