@@ -22,7 +22,7 @@
                 'right-align': !even
             }
             ">
-            <span class="mb-3"><b>{{comment.owner}}</b></span> <br>
+            <span class="mb-3"><b>{{comment.fullName}}</b></span> <br>
             <span>Data dodania: {{comment.creationDate | date: 'short'}}</span> <br> <br>
             <span class="mt-5"><i>{{comment.content}}</i></span> <br>
             <button (click)="removeCommentDialog(comment.id)" *ngIf="isCommentOwner(comment.owner)" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>

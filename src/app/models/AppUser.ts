@@ -6,4 +6,7 @@ export interface AppUser {
   role?: string;
   enabled?: boolean;
   adminApproved?: boolean;
+  firstName?: string;
+  secondName?: string;
+  fullName?: string;
 }

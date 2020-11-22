@@ -3,7 +3,7 @@
     <h2>Zarządzaj użytkownikami</h2>
     <div class="mt-3 d-flex align-items-center flex-column">
         <div @slideOut class="card w-50" id="card-custom" *ngFor="let user of users">
-            Id: {{user.id}} <br> Login: {{user.username}}<br> Email: {{user.email}} <br> Rola: {{user.role}} <br> Aktywowany przed administrator: {{user.adminApproved}} <br> Konto aktywne: {{user.enabled}} <br>
+            Id: {{user.id}}<br> Imię i nazwisko: {{user.fullName}} <br> Login: {{user.username}}<br> Email: {{user.email}} <br> Rola: {{user.role}} <br> Aktywowany przed administrator: {{user.adminApproved}} <br> Konto aktywne: {{user.enabled}} <br>
 
             <div class="d-flex justify-content-around w-100 mt-3">
                 <button class="btn btn-outline-primary" [attr.data-target]="'#activate-'+user.id" data-toggle="collapse">Aktywacja

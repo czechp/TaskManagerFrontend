@@ -1,22 +1,24 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {HttpApiService} from '../../services/httpApiService/http-api.service';
-import {MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH} from '../../consts/Constants';
-import {ViewCustomizerService} from '../../services/viewCustomizer/view-customizer.service';
-import {emailExistenceEndpoint, registerEndpoint, usernameExistenceEndpoint, usersEndpoint} from '../../services/URL';
-import {HttpErrorResponse} from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { HttpApiService } from '../../services/httpApiService/http-api.service';
+import { MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH } from '../../consts/Constants';
+import { ViewCustomizerService } from '../../services/viewCustomizer/view-customizer.service';
+import { emailExistenceEndpoint, registerEndpoint, usernameExistenceEndpoint, usersEndpoint } from '../../services/URL';
+import { HttpErrorResponse } from '@angular/common/http';
 import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
-  animations:[fade]
+  animations: [fade]
 })
 export class RegisterPageComponent implements OnInit {
   public usernameValidated = false;
   public passwordValidated = false;
   public passwordConfValidated = false;
   public emailValidated = false;
+  public firstNameValidated = false;
+  public secondNameValidated = false;
 
   public statement: string;
 
@@ -33,6 +35,12 @@ export class RegisterPageComponent implements OnInit {
   @ViewChild('email')
   public emailInput: ElementRef;
 
+  @ViewChild('firstName')
+  public firstName: ElementRef;
+
+  @ViewChild('secondName')
+  public secondName: ElementRef;
+
   constructor(
     private httpApiService: HttpApiService,
     private viewCustomizerService: ViewCustomizerService,
@@ -47,7 +55,7 @@ export class RegisterPageComponent implements OnInit {
     this.clearStatement();
     this.viewCustomizerService.resetColors(this.loginInput);
     if (username.length >= MIN_USERNAME_LENGTH) {
-      this.httpApiService.head(usersEndpoint + usernameExistenceEndpoint, [{name: 'username', parameter: username}])
+      this.httpApiService.head(usersEndpoint + usernameExistenceEndpoint, [{ name: 'username', parameter: username }])
         .subscribe(
           response => {
             this.statement = 'Błąd! Taka nazwa użytkownika już istnieje';
@@ -94,7 +102,7 @@ export class RegisterPageComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
     if (regExp.test(email)) {
-      this.httpApiService.head(usersEndpoint + emailExistenceEndpoint, [{name: 'email', parameter: email}])
+      this.httpApiService.head(usersEndpoint + emailExistenceEndpoint, [{ name: 'email', parameter: email }])
         .subscribe(
           (next: any) => {
             this.viewCustomizerService.setDangerColors(this.emailInput);
@@ -112,18 +120,30 @@ export class RegisterPageComponent implements OnInit {
     }
   }
 
+  public validateFirstName(firstName: string) {
+    this.firstNameValidated = firstName.length >= 3;
+  }
+
+
+  public validateSecondName(secondName: string) {
+    this.secondNameValidated = secondName.length >= 3;
+  }
+
 
   public checkValidation(): boolean {
     return this.usernameValidated
       && this.passwordValidated
       && this.passwordConfValidated
-      && this.emailValidated;
+      && this.emailValidated
+      && this.firstNameValidated
+      && this.secondNameValidated;
   }
 
-  public register(username: string, password: string, email: string) {
+  public register(username: string, password: string, email: string, firstName: string, secondName: string) {
     this.clearStatement();
     if (this.checkValidation()) {
-      this.httpApiService.post(usersEndpoint + registerEndpoint, {username, password, email}, [])
+      this.httpApiService.post(usersEndpoint + registerEndpoint,
+        { username: username, password: password, email: email, firstName: firstName, secondName: secondName }, [])
         .subscribe(
           (next: any) => {
             this.statement = 'Sukces! Sprawdź email i czekaj na akceptacje przez administratora';

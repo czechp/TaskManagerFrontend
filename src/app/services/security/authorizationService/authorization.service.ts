@@ -27,6 +27,7 @@ export class AuthorizationService {
             sessionStorage.setItem('jwtToken', response.jwt);
             sessionStorage.setItem('role', response.role);
             sessionStorage.setItem('username', username);
+            sessionStorage.setItem('fullName', response.fullName)
             this.loginSubject.next('succeed');
             this.router.navigate(['']);
           },

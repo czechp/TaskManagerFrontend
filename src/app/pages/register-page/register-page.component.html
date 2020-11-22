@@ -24,7 +24,8 @@
                 <div class="input-group-prepend ">
                     <span class="input-group-text" id="input-group-text-custom">Hasło conf.:</span>
                 </div>
-                <input #passwordConf (focusout)="validatePasswordEquals(password.value, passwordConf.value)" class="form-control " type="password">
+                <input #passwordConf (focusout)="validatePasswordEquals(password.value, passwordConf.value)"
+                    class="form-control " type="password">
             </div>
             <!--Email -->
             <div class="input-group mb-3 w-75">
@@ -32,6 +33,20 @@
                     <span class="input-group-text" id="input-group-text-custom">Email:</span>
                 </div>
                 <input #email (focusout)="validateEmail(email.value)" class="form-control " type="email">
+            </div>
+            <!--First name -->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text" id="input-group-text-custom">Imie:</span>
+                </div>
+                <input #firstName (focusout)="validateFirstName(firstName.value)" class="form-control " type="text">
+            </div>
+            <!-- Second name  -->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text" id="input-group-text-custom">Nazwisko:</span>
+                </div>
+                <input #secondName (focusout)="validateSecondName(secondName.value)" class="form-control " type="text">
             </div>
 
             <div class="card card-custom w-75" id="card-custom">
@@ -69,9 +84,30 @@
 
                 </div>
 
+                <div class="validation-element-view" [ngClass]="{
+                    'text-danger': firstNameValidated === false,
+                    'text-success': firstNameValidated === true
+                  }
+                  ">
+                    Imię poprawne
+                    <i *ngIf="firstNameValidated" class="far fa-check-circle fa-2x"></i>
+
+                </div>
+
+                <div class="validation-element-view" [ngClass]="{
+                    'text-danger': secondNameValidated === false,
+                    'text-success': secondNameValidated === true
+                  }
+                  ">
+                    Nazwisko poprawne
+                    <i *ngIf="secondNameValidated" class="far fa-check-circle fa-2x"></i>
+
+                </div>
+
             </div>
-            <button (click)="register(username.value, password.value, email.value)" *ngIf="checkValidation()" class="btn btn-outline-primary w-50 mt-4">Rejestracja
-    </button>
+            <button (click)="register(username.value, password.value, email.value, firstName.value, secondName.value)" *ngIf="checkValidation()"
+                class="btn btn-outline-primary w-50 mt-4">Rejestracja
+            </button>
         </div>
 
     </div>
