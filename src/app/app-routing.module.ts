@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'forbidden', component: ForbiddenPageComponent },
-  { path: '', redirectTo: '/task-all', pathMatch: 'full', canActivate: [LoggedGuardService] },
+  { path: '', redirectTo: '/tasks-all', pathMatch: 'full', canActivate: [LoggedGuardService] },
   { path: 'admin-panel', component: AdminPanelPageComponent, canActivate: [LoggedGuardService, AdminGuardService] },
   { path: 'add-task', component: AddTaskPageComponent, canActivate: [LoggedGuardService,] },
   { path: 'maintenance-wrokers', component: MaintenanceWorkersPageComponent, canActivate: [LoggedGuardService, SuperuserGuardService] },
@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'breakdowns', component: BreakdownsPageComponent, canActivate: [LoggedGuardService] },
   { path: 'breakdown-detail/:id', component: BreakdownDetailPageComponent, canActivate: [LoggedGuardService] },
   { path: 'task-details/:id', component: TaskDetailsPageComponent, canActivate: [LoggedGuardService] },
-  { path: 'task-all', component: AllTasksPageComponent, canActivate: [LoggedGuardService], }
+  { path: 'tasks-all', component: AllTasksPageComponent, canActivate: [LoggedGuardService], }
 ];
 
 @NgModule({

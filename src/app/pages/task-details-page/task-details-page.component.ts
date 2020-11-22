@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppUser } from 'src/app/models/AppUser';
 import { Goal } from 'src/app/models/Goal';
 import { SubTask } from 'src/app/models/SubTask';
@@ -21,6 +21,7 @@ export class TaskDetailsPageComponent implements OnInit {
 
   constructor(
     private activeRoute: ActivatedRoute,
+    private router: Router,
     private httpApiService: HttpApiService,
     public authorizationService: AuthorizationService
   ) {
@@ -130,6 +131,19 @@ export class TaskDetailsPageComponent implements OnInit {
       );
   }
 
+  public isSuperuserOrAdmin(): boolean {
+    const currentRole = this.authorizationService.getRole();
+    return currentRole === 'ADMIN' || currentRole === 'DIRECTOR' || currentRole === 'SUPERUSER';
+  }
+
+  public deleteTask(): void {
+    this.clearStatement();
+    this.httpApiService.delete(taskEndpoint + '/' + this.task.id, [])
+    .subscribe(
+        (next: any)=>{this.router.navigate(['/tasks-all'])},
+        (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status);}
+    );
+  }
   // <---------------------- Private section ---------------------->
   private getTask() {
     this.clearStatement();
@@ -154,6 +168,9 @@ export class TaskDetailsPageComponent implements OnInit {
 
     return isAmongParticipants || isAdminOrDirectorOrSuperUser;
   }
+
+
+
   private clearStatement() { this.statement = ''; }
 
   private sortInTask(task: Task): Task {

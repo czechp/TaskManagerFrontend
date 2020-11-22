@@ -45,5 +45,5 @@
     </form>
 
     <button (click)="updateTask()" @fade *ngIf="modified" mat-raised-button color="primary" class="w-50 mt-5">Zapisz zmiany</button>
-
+    <button (click)="deleteTaskDialog()" *ngIf="deletePermission" mat-raised-button color="warn" class="w-50 mt-4">Usuń</button>
 </div>

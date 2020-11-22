@@ -42,6 +42,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list'
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSortModule} from '@angular/material/sort';
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
@@ -63,6 +64,8 @@ import { CommentsSectionComponent } from './components/comments-section/comments
 import { DeleteCommentDialogComponent } from './components/comments-section/dialogs/delete-comment-dialog/delete-comment-dialog.component';
 import { AllTasksPageComponent } from './pages/all-tasks-page/all-tasks-page.component';
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
+import { from } from 'rxjs';
+import { TaskDetailsDeleteTaskComponent } from './pages/task-details-page/components/task-details-general-tab/dialogs/task-details-delete-task/task-details-delete-task.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +108,7 @@ import { TasksListComponent } from './components/tasks-list/tasks-list.component
     DeleteCommentDialogComponent,
     AllTasksPageComponent,
     TasksListComponent,
+    TaskDetailsDeleteTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,6 +130,7 @@ import { TasksListComponent } from './components/tasks-list/tasks-list.component
     MatGridListModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatSortModule,
     ReactiveFormsModule
   ],
   providers: [{

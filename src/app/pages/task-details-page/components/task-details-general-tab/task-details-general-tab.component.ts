@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Task } from 'src/app/models/Task';
 import { fade } from 'src/app/utilities/animations/animations';
+import { TaskDetailsDeleteTaskComponent } from './dialogs/task-details-delete-task/task-details-delete-task.component';
 
 
 @Component({
@@ -18,15 +20,22 @@ export class TaskDetailsGeneralTabComponent implements OnInit, OnChanges {
   public isOwner = false;
   @Input()
   public task: Task = {};
+  @Input()
+  public deletePermission = false;
   @Output()
   public taskChange = new EventEmitter();
   @Output()
-  public updateTaskEmitter = new EventEmitter()
+  public updateTaskEmitter = new EventEmitter();
+  @Output()
+  public deleteTaskEmitter = new EventEmitter();
 
   public taskGeneralForm: FormGroup;
   public changesSubscription;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private matDialog: MatDialog
+    ) {
     this.taskGeneralForm = formBuilder.group(
       {
         title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
@@ -51,6 +60,25 @@ export class TaskDetailsGeneralTabComponent implements OnInit, OnChanges {
     this.formToData();
     this.taskChange.emit(this.task);
     this.updateTaskEmitter.emit();
+  }
+
+  public deleteTaskDialog():void{
+    const deleteDialogRef = this.matDialog.open(
+      TaskDetailsDeleteTaskComponent,
+      {
+        data: {taskTitle: this.task.title},
+        width: "600px"
+      }
+    );
+
+    deleteDialogRef.afterClosed()
+    .subscribe(
+      (confirmation: string)=>{
+        if(confirmation === 'true'){
+          this.deleteTaskEmitter.emit();
+        }
+      }
+    );
   }
 
   private dataToForm() {
