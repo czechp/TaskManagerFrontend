@@ -6,7 +6,7 @@ import { SubTask } from 'src/app/models/SubTask';
 import { Task } from 'src/app/models/Task';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
-import { goalEndpoint, subtaskEndpoint, taskEndpoint, commentEndpoint } from 'src/app/services/URL';
+import { goalEndpoint, subtaskEndpoint, taskEndpoint, commentEndpoint, usersEndpoint } from 'src/app/services/URL';
 
 @Component({
   selector: 'app-task-details-page',
@@ -17,6 +17,7 @@ export class TaskDetailsPageComponent implements OnInit {
   private taskId = 0;
   public statement = '';
   public isOwner = false;
+  public appUsers: AppUser[] = [];
   public task: Task = { appUsers: [], goals: [], subTasks: [] }
 
   constructor(
@@ -30,6 +31,7 @@ export class TaskDetailsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTask();
+    this.getAppUsers();
   }
 
   // <---------------------- Public section ---------------------->
@@ -139,9 +141,26 @@ export class TaskDetailsPageComponent implements OnInit {
   public deleteTask(): void {
     this.clearStatement();
     this.httpApiService.delete(taskEndpoint + '/' + this.task.id, [])
+      .subscribe(
+        (next: any) => { this.router.navigate(['/tasks-all']) },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
+
+  public getAppUsers(): void {
+    this.clearStatement();
+    this.httpApiService.get(usersEndpoint, [])
+      .subscribe(
+        (next: any) => { this.appUsers = next.sort((x1: AppUser, x2: AppUser) => x1.fullName.localeCompare(x2.fullName)); },
+        (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
+      );
+  }
+
+  public finishTask(data: any){
+    this.clearStatement();
+    this.httpApiService.put(taskEndpoint + '/' + this.task.id + '/finish', Array.from(data.emails.values()), [{name: 'conclusion', parameter: data.conclusion}])
     .subscribe(
-        (next: any)=>{this.router.navigate(['/tasks-all'])},
-        (error: any)=>{this.statement = this.httpApiService.errorStatementHandler(error.status);}
+      //return here
     );
   }
   // <---------------------- Private section ---------------------->
@@ -166,7 +185,7 @@ export class TaskDetailsPageComponent implements OnInit {
       || currentUserRole === 'SUPERUSER'
       || currentUserRole === 'DIRECTOR';
 
-    return isAmongParticipants || isAdminOrDirectorOrSuperUser;
+    return (isAmongParticipants || isAdminOrDirectorOrSuperUser) && this.task.taskStatus !== 'DONE';
   }
 
 

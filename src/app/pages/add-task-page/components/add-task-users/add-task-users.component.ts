@@ -14,7 +14,7 @@ import { AddTaskUsersDialogAddComponent } from './dialogs/add-task-users-dialog-
 export class AddTaskUsersComponent implements OnInit {
 
   public appUsers: AppUser[] = [];
-  public appUsersColumns = ['id', 'username', 'email']
+  public appUsersColumns = ['id', 'fullName', 'email']
   public statement = '';
   public alreadyAdded = false;
 
@@ -44,7 +44,7 @@ export class AddTaskUsersComponent implements OnInit {
   public openAddDialog(appUser: AppUser): void {
     let dialogRef = this.matDialog.open(
       AddTaskUsersDialogAddComponent,
-      { data: { username: appUser.username } }
+      { data: { username: appUser.fullName } }
     );
 
     dialogRef.afterClosed().subscribe(

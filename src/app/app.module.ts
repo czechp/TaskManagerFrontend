@@ -66,6 +66,8 @@ import { AllTasksPageComponent } from './pages/all-tasks-page/all-tasks-page.com
 import { TasksListComponent } from './components/tasks-list/tasks-list.component';
 import { from } from 'rxjs';
 import { TaskDetailsDeleteTaskComponent } from './pages/task-details-page/components/task-details-general-tab/dialogs/task-details-delete-task/task-details-delete-task.component';
+import { TaskDetailsFinishTabComponent } from './pages/task-details-page/components/task-details-finish-tab/task-details-finish-tab.component';
+import { TaskDetailsFinishDialogComponent } from './pages/task-details-page/components/task-details-finish-tab/dialogs/task-details-finish-dialog/task-details-finish-dialog.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +111,8 @@ import { TaskDetailsDeleteTaskComponent } from './pages/task-details-page/compon
     AllTasksPageComponent,
     TasksListComponent,
     TaskDetailsDeleteTaskComponent,
+    TaskDetailsFinishTabComponent,
+    TaskDetailsFinishDialogComponent,
   ],
   imports: [
     BrowserModule,
