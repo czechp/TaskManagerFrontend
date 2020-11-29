@@ -43,6 +43,7 @@ import {MatGridListModule} from '@angular/material/grid-list'
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSortModule} from '@angular/material/sort';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { AddTaskPageComponent } from './pages/add-task-page/add-task-page.component';
 import { AddTaskGeneralComponent } from './pages/add-task-page/components/add-task-general/add-task-general.component';
@@ -68,6 +69,7 @@ import { from } from 'rxjs';
 import { TaskDetailsDeleteTaskComponent } from './pages/task-details-page/components/task-details-general-tab/dialogs/task-details-delete-task/task-details-delete-task.component';
 import { TaskDetailsFinishTabComponent } from './pages/task-details-page/components/task-details-finish-tab/task-details-finish-tab.component';
 import { TaskDetailsFinishDialogComponent } from './pages/task-details-page/components/task-details-finish-tab/dialogs/task-details-finish-dialog/task-details-finish-dialog.component';
+import { FilterTasksComponent } from './pages/all-tasks-page/components/filter-tasks/filter-tasks.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +115,7 @@ import { TaskDetailsFinishDialogComponent } from './pages/task-details-page/comp
     TaskDetailsDeleteTaskComponent,
     TaskDetailsFinishTabComponent,
     TaskDetailsFinishDialogComponent,
+    FilterTasksComponent,
   ],
   imports: [
     BrowserModule,
@@ -135,6 +138,7 @@ import { TaskDetailsFinishDialogComponent } from './pages/task-details-page/comp
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSortModule,
+    MatCheckboxModule,
     ReactiveFormsModule
   ],
   providers: [{

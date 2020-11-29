@@ -11,6 +11,7 @@ import { taskEndpoint } from 'src/app/services/URL';
 export class AllTasksPageComponent implements OnInit {
 
   public tasks: Task[] = [];
+  public tasksAfterFilter: Task[] = [];
   public statement = '';
 
   constructor(
@@ -21,11 +22,16 @@ export class AllTasksPageComponent implements OnInit {
     this.getTasks();
   }
 
+  public getFilteredTasks(tasks: Task[]) {
+    this.tasksAfterFilter = tasks;
+    console.log(this.tasksAfterFilter);
+  }
+
   private getTasks() {
     this.clearStatement();
     this.httpApiService.get(taskEndpoint, [])
       .subscribe(
-        (next: any) => { this.tasks = this.sortTasks(next);},
+        (next: any) => { this.tasks = this.sortTasks(next); this.tasksAfterFilter = this.tasks },
         (error: any) => { this.statement = this.httpApiService.errorStatementHandler(error.status); }
       );
   }
