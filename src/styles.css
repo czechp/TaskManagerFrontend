@@ -1,77 +1,137 @@
-/* You can add global styles to this file, and also import other style files */
+    /* You can add global styles to this file, and also import other style files */
 
-#card-custom {
-    background-color: transparent;
-    border-color: white;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 50px;
-}
+    #card-custom {
+        background-color: transparent;
+        border-color: white;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 50px;
+    }
 
-#jumbotron-custom {
-    background-color: transparent;
-    border-style: solid;
-    border-color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px
-}
+    #jumbotron-custom {
+        background-color: transparent;
+        border-style: solid;
+        border-color: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px
+    }
 
-#input-group-text-custom {
-    background-color: transparent;
-    color: white;
-}
+    #input-group-text-custom {
+        background-color: transparent;
+        color: white;
+    }
 
-#input-group-text-custom:hover,
-select:hover,
-tr:hover {
-    background-color: darkgray;
-    color: white;
-}
+    #input-group-text-custom:hover, select:hover, tr:hover {
+        background-color: darkgray;
+        color: white;
+    }
 
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=email]:focus,
-select:focus {
-    background-color: black;
-    color: white;
-}
+    input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, select:focus {
+        background-color: black;
+        color: white;
+    }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-    text-align: center;
-}
+    h1, h2, h3, h4, h5 {
+        text-align: center;
+    }
 
-input {
-    text-align: center;
-}
+    input {
+        text-align: center;
+    }
 
-.btn {
-    min-width: 170px;
-}
+    .btn {
+        min-width: 170px;
+    }
 
-body {
-    min-height: 2000px;
-}
+    td, tr, th {
+        text-align: center;
+    }
 
-td,
-tr,
-th {
-    text-align: center;
-}
+    /* sorting */
 
+    th:hover {
+        color: yellow;
+        background-color: black;
+        cursor: pointer;
+    }
 
-/* sorting */
+    html, body {
+        height: 100%;
+    }
 
-th:hover {
-    color: yellow;
-    background-color: black;
-    cursor: pointer;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+    body {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+
+    /* Stepper styling */
+
+    .mat-step-header .mat-step-label, .mat-step-header .mat-step-optional {
+        color: white;
+    }
+
+    .mat-stepper-vertical, .mat-stepper-horizontal {
+        background-color: transparent;
+    }
+
+    .mat-step-text-label {
+        color: white;
+    }
+
+    .mat-stepper-horizontal-line {
+        background-color: white;
+    }
+
+    /* Input styling  */
+
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        background-color: white;
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+        color: white;
+    }
+
+    .mat-form-field.mat-focused .mat-form-field-label {
+        color: white;
+    }
+
+    .mat-form-field-appearance-legacy .mat-hint {
+        color: white;
+    }
+
+    .mat-input-placeholder {
+        color: #fff;
+        font-size: 2em;
+    }
+
+    .mat-select-value-text {
+        color: white;
+    }
+
+    /* List styling */
+
+    .mat-list-base .mat-list-item {
+        color: rgba(255, 255, 255, 0.87);
+    }
+
+    /* Tabs styling  */
+
+    .mat-tab-label, .mat-tab-link {
+        color: rgba(255, 255, 255, .87);
+    }
+
+    /* Mat grid list and tile custom  */
+
+    mat-grid-tile {
+        border: 2px solid white;
+        border-radius: 20px;
+        opacity: 0.5;
+    }
+
+    mat-grid-tile:hover {
+        border: 2px solid rgb(226, 199, 43);
+        opacity: 1;
+    }

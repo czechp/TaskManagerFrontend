@@ -8,6 +8,11 @@ export const changeUserRoleEndpoint = '/admin/activate';
 export const rolesEndpoint = '/roles';
 export const maintenanceWorkersEndpoint = '/maintenance-workers';
 export const maintenanceTasksEndpoint = '/maintenance-tasks';
+export const taskEndpoint = '/tasks';
+export const goalEndpoint = '/goals';
+export const subtaskEndpoint ='/subtasks';
+export const commentEndpoint = '/comments';
+
 
 
 

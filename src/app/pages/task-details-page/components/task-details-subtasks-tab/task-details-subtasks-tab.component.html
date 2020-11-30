@@ -1,0 +1,73 @@
+<div class="d-flex flex-column align-items-center">
+    <h2 class="mt-3">Zadania do wykonania</h2>
+
+    <div class="d-flex w-100 justify-content-center my-5">
+        <mat-expansion-panel  #addSubtaskExpansionPanel  class="w-75">
+            <mat-expansion-panel-header style="background-color: white; color:#343a40">
+                Dodaj nowe zadanie:
+            </mat-expansion-panel-header>
+            <div class="my-3">
+                <app-add-task-subtasks (addSubtaskEmitter)="addSubtask($event)"></app-add-task-subtasks></div>
+        </mat-expansion-panel>
+    </div>
+
+    <mat-grid-list class="mb-3 w-100" cols="2" gutterSize="5" rowHeight="600px">
+        <mat-grid-tile *ngFor="let subtaskForm of subtasksFormArray.controls; index as i">
+            <form [formGroup]="subtaskForm" class="d-flex flex-column align-items-center w-75">
+                <div class="d-flex w-100 justify-content-around">
+                    <p>Data utworzenia: <br>{{subtaskForm.value.creationDate | date: 'short'}}</p>
+                    <p>Data modyfikacji: <br>{{subtaskForm.value.updateDate | date: 'short'}}</p>
+
+                </div>
+                <mat-form-field class="w-100">
+                    <mat-label>Id:</mat-label>
+                    <input matInput formControlName="id" readonly>
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>Tytuł:</mat-label>
+                    <mat-hint align="end">Minumum 5 znaków</mat-hint>
+                    <mat-error *ngIf="subtaskForm.get('title').hasError('required')">To pole jest wymagane</mat-error>
+                    <mat-error *ngIf="subtaskForm.get('title').hasError('minlength')">Minimum 5 znaków</mat-error>
+                    <mat-error *ngIf="subtaskForm.get('title').hasError('maxlength')">Maksymalnie 255 znaków</mat-error>
+                    <input matInput formControlName="title" [readonly]="!isOwner">
+                </mat-form-field>
+
+                <mat-form-field class="w-100">
+                    <mat-label>Opis:</mat-label>
+                    <mat-error *ngIf="subtaskForm.get('description').hasError('maxlength')">Maksymalnie 255 znaków</mat-error>
+                    <textarea [readonly]="!isOwner" matInput formControlName="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+
+
+                <mat-form-field class="w-100" *ngIf="isOwner">
+                    <mat-label>Status:</mat-label>
+                    <mat-hint align="end">Aktualny stan zadania</mat-hint>
+                    <mat-error *ngIf="subtaskForm.get('taskStatus').hasError('required')">To pole jest wymagane</mat-error>
+                    <mat-select formControlName="taskStatus">
+                        <mat-option value="TODO">Do zrobienia</mat-option>
+                        <mat-option value="IN_PROGRESS">W realizacji</mat-option>
+                        <mat-option value="DONE">Zakończone</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field class="w-100" *ngIf="!isOwner">
+                    <mat-label>Status:</mat-label>
+                    <input matInput [value]="getStatus(subtaskForm.value.taskStatus)" readonly> </mat-form-field>
+
+                <mat-form-field class="w-25">
+                    <mat-label>Progress:</mat-label>
+                    <mat-hint align="end">%</mat-hint>
+                    <mat-error *ngIf="subtaskForm.get('progress').hasError('min')">Minimalna wartosc to 0</mat-error>
+                    <mat-error *ngIf="subtaskForm.get('progress').hasError('max')">Maksymalna wartość to 100</mat-error>
+                    <input class="text-center" matInput formControlName="progress">
+                </mat-form-field>
+
+                <app-progress-spinner class="mt-3" [value]="subtaskForm.get('progress').value"></app-progress-spinner>
+
+                <button @fade mat-raised-button color="primary" class="w-50 mt-3" *ngIf="subtaskForm.valid && modified[i] && isOwner" (click)="modifySubtask(subtaskForm, i)">Modified</button>
+                <button (click)="deleteSubtaskDialog(subtaskForm)" color="warn" mat-icon-button><mat-icon>delete</mat-icon></button>
+            </form>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

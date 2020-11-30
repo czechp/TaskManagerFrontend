@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Zakończ prace</h2>
+<div mat-dialog-content>
+    Czy chcesz zakończyć to zadanie? <br>
+    Dalsza edycja będzie niemożliwa <br>
+    Wiadomości z powiadomieniem zostaną wysłane pod te adresy:
+    <mat-list>
+        <mat-list-item class="text-dark" *ngFor="let email of data.emails">
+            {{email}}
+        </mat-list-item>
+    </mat-list>
+
+    <hr>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-around mb-3">
+    <button mat-dialog-close="true" mat-raised-button color="warn" class="w-25">Zakończ</button>
+    <button mat-stroked-button color="warn" class="w-25">Anuluj</button>
+
+</div>

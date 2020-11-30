@@ -1,8 +1,8 @@
 import { AppUser } from './AppUser';
 import { MaintenanceWorker } from './MaintenanceWorker';
-import { Task } from './Task';
+import { TaskSuperClass } from './Task.SuperClass';
 
-export interface MaintenanceTask extends Task {
+export interface MaintenanceTask extends TaskSuperClass {
     maintenanceWorker?: MaintenanceWorker;
     repairMan?: AppUser;
     breakdownPlace?: string;

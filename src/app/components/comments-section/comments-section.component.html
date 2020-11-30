@@ -1,0 +1,33 @@
+<div class="d-flex flex-column w-100 align-items-center">
+    <h2 class="mt-3">Sekcja komentarzy:</h2>
+
+    <mat-expansion-panel #addCommentExpansionPanel class="w-75 mb-5">
+        <mat-expansion-panel-header style="background-color: white; color:#343a40">Dodaj komentarz:</mat-expansion-panel-header>
+        <form [formGroup]="commentForm" class="d-flex flex-column w-100 align-items-center">
+            <mat-form-field class="w-100 mb-4 mt-4">
+                <mat-label>Zawartość komentarza:</mat-label>
+                <mat-hint align="end">Minimum 5 znaków</mat-hint>
+                <mat-error *ngIf="commentForm.get('content').hasError('required')">To pole jest wymagane</mat-error>
+                <mat-error *ngIf="commentForm.get('content').hasError('minlength')">Minimum 5 znaków</mat-error>
+                <textarea matInput formControlName="content" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+            <button @fade (click)="addComment(); addCommentExpansionPanel.toggle();" *ngIf="commentForm.valid" mat-raised-button color="primary" class="w-75">Dodaj</button>
+
+        </form>
+    </mat-expansion-panel>
+    <div class="w-75">
+        <div class="" *ngFor="let comment of comments; let even = even" [ngClass]="
+            {
+                'left-aling': even,
+                'right-align': !even
+            }
+            ">
+            <span class="mb-3"><b>{{comment.fullName}}</b></span> <br>
+            <span>Data dodania: {{comment.creationDate | date: 'short'}}</span> <br> <br>
+            <span class="mt-5"><i>{{comment.content}}</i></span> <br>
+            <button (click)="removeCommentDialog(comment.id)" *ngIf="isCommentOwner(comment.owner)" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+            <span>
+                <hr></span>
+        </div>
+    </div>
+</div>

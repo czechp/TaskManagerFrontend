@@ -1,0 +1,22 @@
+<div class="d-flex flex-column align-items-center w-100">
+
+    <form [formGroup]="subTaskForm" class="d-flex flex-column align-items-center w-100">
+        <mat-form-field class="w-50">
+            <mat-label>Tytuł:</mat-label>
+            <mat-hint align="end">Minimum 5 znaków</mat-hint>
+            <mat-error *ngIf="subTaskForm.get('title').hasError('minlength')">To pole musi mieć przynajmniej 5 znaków</mat-error>
+            <mat-error *ngIf="subTaskForm.get('title').hasError('maxlength')"> To pole może mieć maksymalnie 40 znaków</mat-error>
+
+            <mat-error *ngIf="subTaskForm.get('title').hasError('required')">To pole jest wymagane</mat-error>
+            <input matInput formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field class="w-50">
+            <mat-label>Opis:</mat-label>
+            <mat-hint align="end">Opcjonalny</mat-hint>
+            <input matInput formControlName="description">
+        </mat-form-field>
+    </form>
+
+    <button @fade (click)="addSubtask()" mat-raised-button *ngIf="subTaskForm.valid" color="primary" class="w-50 mt-5">Dodaj</button>
+</div>

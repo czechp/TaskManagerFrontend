@@ -1,0 +1,23 @@
+<div class="d-flex flex-column align-items-center">
+    <h2>Filtruj:</h2>
+    <div class="w-100 d-flex justify-content-center">
+        <div class="w-100 filter-group-custom">
+            <h3>Status:</h3>
+            <div class="w-100 d-flex justify-content-between">
+            <mat-checkbox (change)="filter()" [(ngModel)]="toDoFilter">Do zrobienia</mat-checkbox>
+            <mat-checkbox (change)="filter()" [(ngModel)]="inProgressFilter">W realizacji</mat-checkbox>
+            <mat-checkbox (change)="filter()" [(ngModel)]="doneFilter">Zakończone</mat-checkbox>
+            </div>
+        </div>
+        <div class="w-100 filter-group-custom">
+            <h3>Priorytet:</h3>
+            <div class="w-100 d-flex justify-content-between">
+            <mat-checkbox (change)="filter()" [(ngModel)]="lowPriorityFilter">Niski</mat-checkbox>
+            <mat-checkbox (change)="filter()" [(ngModel)]="mediumPriorityFilter">Średni</mat-checkbox>
+            <mat-checkbox (change)="filter()" [(ngModel)]="highPriorityFilter">Wysoki</mat-checkbox>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,37 @@
+<div class="d-flex flex-column align-items-center w-100">
+    <h2>Informacje ogólne</h2>
+    <form [formGroup]="taskForm" class="w-100 d-flex flex-column align-items-center">
+        <mat-form-field class="w-50">
+            <mat-label>Tytuł:</mat-label>
+            <mat-hint align="end">Minimum 5 znaków</mat-hint>
+            <mat-error *ngIf="taskForm.get('title').hasError('minlength')">To pole musi mieć przynajmniej 5 znaków</mat-error>
+            <mat-error *ngIf="taskForm.get('title').hasError('required')">To pole jest wymagane</mat-error>
+            <input matInput formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field class="w-50">
+            <mat-label>Opis:</mat-label>
+            <mat-hint align="end">Opcjonalny</mat-hint>
+            <input matInput formControlName="description">
+        </mat-form-field>
+
+
+        <mat-form-field class="w-50">
+            <mat-label>Priorytet:</mat-label>
+            <mat-hint align="end">Pole obowiązkowe</mat-hint>
+            <mat-error *ngIf="taskForm.get('priority').hasError('required')">To pole jest wymagane</mat-error>
+            <mat-select formControlName="priority">
+                <mat-option value="LOW" class="text-center">Niski</mat-option>
+                <mat-option value="MEDIUM" class="text-center">Średni</mat-option>
+                <mat-option value="HIGH" class="text-center">Wysoki</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+
+    </form>
+
+    <button @fade (click)="createTask()" mat-raised-button color="primary" *ngIf="taskForm.valid" class="w-50 mt-5">Stwórz</button>
+
+
+</div>
