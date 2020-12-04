@@ -70,6 +70,7 @@ import { TaskDetailsDeleteTaskComponent } from './pages/task-details-page/compon
 import { TaskDetailsFinishTabComponent } from './pages/task-details-page/components/task-details-finish-tab/task-details-finish-tab.component';
 import { TaskDetailsFinishDialogComponent } from './pages/task-details-page/components/task-details-finish-tab/dialogs/task-details-finish-dialog/task-details-finish-dialog.component';
 import { FilterTasksComponent } from './pages/all-tasks-page/components/filter-tasks/filter-tasks.component';
+import { AnnouncementPageComponent } from './pages/announcement-page/announcement-page.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { FilterTasksComponent } from './pages/all-tasks-page/components/filter-t
     TaskDetailsFinishTabComponent,
     TaskDetailsFinishDialogComponent,
     FilterTasksComponent,
+    AnnouncementPageComponent,
   ],
   imports: [
     BrowserModule,

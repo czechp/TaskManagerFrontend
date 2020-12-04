@@ -12,7 +12,7 @@ export const taskEndpoint = '/tasks';
 export const goalEndpoint = '/goals';
 export const subtaskEndpoint ='/subtasks';
 export const commentEndpoint = '/comments';
-
+export const announcementEndopoint = '/announcements';
 
 
 
