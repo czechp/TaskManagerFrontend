@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/models/Task';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { taskEndpoint } from 'src/app/services/URL';
+import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-all-tasks-page',
   templateUrl: './all-tasks-page.component.html',
-  styleUrls: ['./all-tasks-page.component.css']
+  styleUrls: ['./all-tasks-page.component.css'],
+  animations: [fade]
 })
 export class AllTasksPageComponent implements OnInit {
 

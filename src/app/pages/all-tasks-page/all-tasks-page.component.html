@@ -1,3 +1,8 @@
-<app-title [title]="'Wszystkie prace'" [statement]="statement"></app-title>
-<app-filter-tasks [tasks]="tasks" (filteredTaskEmitter)="getFilteredTasks($event)"></app-filter-tasks>
-<app-tasks-list [tasks]="tasksAfterFilter"></app-tasks-list>
+<div @fade class="">
+  <app-title [title]="'Wszystkie prace'" [statement]="statement"></app-title>
+  <app-filter-tasks
+    [tasks]="tasks"
+    (filteredTaskEmitter)="getFilteredTasks($event)"
+  ></app-filter-tasks>
+  <app-tasks-list [tasks]="tasksAfterFilter"></app-tasks-list>
+</div>

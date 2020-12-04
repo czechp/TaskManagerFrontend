@@ -1,7 +1,4 @@
-<app-title [title]="'Ogłoszenia'" [statement]="statement"></app-title>
-
-<div class="my-5 mx-3">
-    <div *ngFor="let announcement of announcements">
-        
-    </div>
+<div @fade class="">
+  <app-title [title]="'Ogłoszenia'" [statement]="statement"></app-title>
+  <app-announcements-list [announcements]="announcements" (addCommentEmitter)="addCommentToAnnouncement($event)"></app-announcements-list>
 </div>

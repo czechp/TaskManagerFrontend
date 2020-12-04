@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center mt-4">
+  <div class="w-100 mx-2" *ngFor="let announcement of announcements">
+    <h2>
+      <i>{{ announcement.title }}</i>
+    </h2>
+    <div class="d-flex justify-content-between mt-3">
+      <span> Autor: {{ announcement.appUser.fullName }} </span>
+      <span
+        >Data utworzenia: {{ announcement.creationDate | date: "short" }}</span
+      >
+      <span
+        >Data modyfikacji: {{ announcement.updateDate | date: "short" }}</span
+      >
+    </div>
+    <div class="mt-3">
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius adipisci
+        expedita deserunt dolores ex natus vero ipsa autem totam voluptas,
+        tempore repellendus amet odit optio facilis, reiciendis velit corrupti
+        ipsam. Sapiente doloribus eligendi rem iusto neque quasi! Illum
+        similique a vero laboriosam, error quisquam magnam minima, dolorum quis
+        corporis beatae labore eaque dicta dolor molestias quo itaque incidunt
+        commodi fuga. Doloribus neque soluta quae beatae numquam ad enim ipsum
+        optio asperiores aspernatur tempore debitis perferendis est a itaque
+        odit modi atque, earum minima voluptatum rerum assumenda. Fuga
+        recusandae tempore error! Illum ullam modi eum tenetur ad, incidunt
+        suscipit. Laboriosam veritatis adipisci obcaecati ipsam eligendi
+        consequuntur sapiente dignissimos fuga dolorem dicta ad eveniet, animi
+        quam modi. Nemo doloremque eum rem magni. Alias corrupti quos laboriosam
+        vel necessitatibus optio dolorum odit, minus quae praesentium minima
+        omnis placeat quia laudantium excepturi nam nemo aliquam odio
+        consequatur! Accusamus inventore architecto accusantium quae aspernatur
+        at! Eligendi omnis pariatur quisquam ipsa similique eaque labore rerum
+        aspernatur, et soluta quos voluptates nostrum, velit a quibusdam.
+        Accusamus temporibus magni dolorum nam ex delectus tempora doloribus
+        excepturi quo cum. Explicabo maiores modi molestiae suscipit eaque sunt
+        molestias, sed blanditiis quaerat, nulla facere illo quam officia magnam
+        veritatis libero soluta autem! Recusandae rem laboriosam distinctio
+        velit cum nulla nemo eum. Repudiandae perferendis autem aspernatur esse
+        vel molestiae odio dolor nesciunt? Numquam quisquam, praesentium amet
+        assumenda, atque facilis odio beatae at quaerat nostrum aliquid, eaque
+        vel. Quibusdam excepturi repudiandae ipsa eveniet. Nostrum assumenda
+        cupiditate odit iste consequatur tenetur autem aperiam quae? Rem
+        molestiae unde, eveniet veritatis commodi amet itaque reprehenderit
+        accusantium ipsa id laudantium, asperiores corrupti cupiditate
+        reiciendis ullam autem incidunt. Necessitatibus quaerat aspernatur
+        accusamus commodi alias vel nobis, iusto amet perferendis enim quia
+        veritatis aperiam eligendi unde tempore laudantium perspiciatis
+        explicabo ipsam? Totam quis laudantium molestias quaerat magni! Dolore,
+        ipsum.
+      </p>
+    </div>
+    <div class="w-100">
+        <app-comments-section [comments]="announcement.comments" (addCommentEmitter)="addComment(announcement.id, $event)"></app-comments-section>
+    </div>
+    <hr style="background-color: white;">
+  </div>
+</div>

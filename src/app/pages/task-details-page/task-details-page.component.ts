@@ -7,11 +7,13 @@ import { Task } from 'src/app/models/Task';
 import { HttpApiService } from 'src/app/services/httpApiService/http-api.service';
 import { AuthorizationService } from 'src/app/services/security/authorizationService/authorization.service';
 import { goalEndpoint, subtaskEndpoint, taskEndpoint, commentEndpoint, usersEndpoint } from 'src/app/services/URL';
+import { fade } from 'src/app/utilities/animations/animations';
 
 @Component({
   selector: 'app-task-details-page',
   templateUrl: './task-details-page.component.html',
-  styleUrls: ['./task-details-page.component.css']
+  styleUrls: ['./task-details-page.component.css'],
+  animations: [fade]
 })
 export class TaskDetailsPageComponent implements OnInit {
   private taskId = 0;

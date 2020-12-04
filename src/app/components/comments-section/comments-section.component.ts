@@ -17,7 +17,7 @@ export class CommentsSectionComponent implements OnInit {
   public commentForm: FormGroup;
 
   @Input()
-  public comments: TaskComment[];
+  public comments: Comment[];
 
   @Output()
   public addCommentEmitter = new EventEmitter();
