@@ -1,0 +1,13 @@
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 150px;">{{title}}</span>
+    </div>
+    <select #select class="custom-select text-center" (change)="changeValue(select.value)">
+        <option disabled selected hidden>{{placeholder}}</option>
+        <option *ngFor="let element of values">{{element}}</option>
+    </select>
+    <div class="input-group-append">
+        <span *ngIf="select.value !== placeholder" class="input-group-text bg-success text-light"><i class="far fa-check-circle fa-1x"></i></span>
+
+    </div>
+</div>

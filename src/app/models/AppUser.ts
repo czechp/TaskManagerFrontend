@@ -1,6 +1,12 @@
 export interface AppUser {
-  username: string;
-  password: string;
+  id?: number;
+  username?: string;
+  password?: string;
   email?: string;
   role?: string;
+  enabled?: boolean;
+  adminApproved?: boolean;
+  firstName?: string;
+  secondName?: string;
+  fullName?: string;
 }

@@ -1,0 +1,16 @@
+<div @fade class="">
+    <app-title [title]="'Zgłoś awarie'" [statement]="statement"></app-title>
+    <div class="
+    d-flex 
+    flex-column
+    align-items-center
+    mt-4
+    ">
+        <app-input-text-custom #title class="w-50" [(value)]="maintenaceTask.title" [title]=" 'Nazwa:' " [length]="TITLE_MIN_LENGTH"></app-input-text-custom>
+        <app-input-text-custom #repairPlace class="w-50" [(value)]="maintenaceTask.breakdownPlace" [title]=" 'Hala:' " [length]="BREAKDONW_PLACE_MIN_LENGTH"></app-input-text-custom>
+        <app-input-text-custom #repairMachine class="w-50" [(value)]="maintenaceTask.breakdownMachine" [title]=" 'Maszyna:' " [length]="BREAKDOWN_MACHINE_MIN_LENGTH"></app-input-text-custom>
+        <app-input-text-area-custom #description class="w-50" [(value)]="maintenaceTask.description" [title]=" 'Opis awarii:' " [length]="DESCRIPTION_MIN_LENGTH"></app-input-text-area-custom>
+        <app-select-custom #maintenanceWorker class="w-50" [title]="'Pracownik UR:'" [placeholder]="'Wybierz pracownika UR'" [values]="maintenanceWorkersName" (valueEmit)="getMaintenanceWorkerFromSelect($event)"></app-select-custom>
+        <button @fade (click)="saveMaintenanceTask()" class="btn btn-outline-success w-50 mt-5" *ngIf="title.isValidated() && repairMachine.isValidated() && repairPlace.isValidated() && description.isValidated() && maintenanceWorker.isValidated()">
+            Zgłoś awarie</button>
+    </div>

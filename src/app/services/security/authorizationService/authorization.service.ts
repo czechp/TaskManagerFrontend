@@ -1,15 +1,16 @@
-import {Injectable} from '@angular/core';
-import {HttpApiService} from '../../httpApiService/http-api.service';
-import {loginEndpoint} from '../../URL';
-import {Subject} from 'rxjs';
-import {Router} from '@angular/router';
-import {MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH} from '../../../consts/Constants';
+import { Injectable } from '@angular/core';
+import { HttpApiService } from '../../httpApiService/http-api.service';
+import { loginEndpoint, usersEndpoint } from '../../URL';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH } from '../../../consts/Constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
   public loginSubject: Subject<any>;
+
 
   constructor(
     private httpApiService: HttpApiService,
@@ -20,14 +21,15 @@ export class AuthorizationService {
 
   public login(username: string, password: string) {
     if (this.validateUsernameAndPassword(username, password)) {
-      this.httpApiService.post(loginEndpoint, {username, password}, [])
+      this.httpApiService.post(usersEndpoint + loginEndpoint, { username, password }, [])
         .subscribe(
           response => {
             sessionStorage.setItem('jwtToken', response.jwt);
             sessionStorage.setItem('role', response.role);
             sessionStorage.setItem('username', username);
+            sessionStorage.setItem('fullName', response.fullName)
             this.loginSubject.next('succeed');
-            // todo: Router to main page
+            this.router.navigate(['']);
           },
           error => {
             this.loginSubject.next('failed');
@@ -51,5 +53,27 @@ export class AuthorizationService {
   public getLoginSubscription() {
     return this.loginSubject;
   }
+
+  public isLogged(): boolean {
+    return sessionStorage.getItem('jwtToken') !== null;
+  }
+
+  public getRole(): string {
+    return sessionStorage.getItem('role');
+  }
+
+  public getJwtToken(): string {
+    return sessionStorage.getItem('jwtToken');
+  }
+
+  public isUser(): boolean {
+    return this.getRole() === 'USER';
+  }
+
+  public getUsername(): string {
+    return sessionStorage.getItem('username');
+  }
+
+
 
 }

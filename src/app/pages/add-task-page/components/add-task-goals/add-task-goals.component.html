@@ -1,0 +1,15 @@
+<div class="d-flex flex-column align-items-center w-100">
+    <form class="w-100 d-flex flex-column align-items-center" [formGroup]="goalForm">
+        <mat-form-field class="w-50">
+            <mat-label>Założenie projektowe</mat-label>
+            <mat-error *ngIf="goalForm.get('content').hasError('required')">To pole jest wymagane</mat-error>
+            <mat-error *ngIf="goalForm.get('content').hasError('minlength')">To pole musi mieć minimum 5 znaków</mat-error>
+            <mat-error *ngIf="goalForm.get('content').hasError('maxlength')">To pole może mieć maksymalnie 255 znaków</mat-error>
+            <mat-hint align="end">Minmum 5 znaków</mat-hint>
+            <input matInput formControlName="content">
+        </mat-form-field>
+    </form>
+
+    <button @fade mat-raised-button (click)="addGoal()" *ngIf="goalForm.valid" color="primary" class="w-50 mt-5 ">Dodaj</button>
+
+</div>

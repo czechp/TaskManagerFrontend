@@ -1,0 +1,58 @@
+<div @fade class="">
+  <app-title
+    [statement]="statement"
+    [title]="task.title"
+    [subTitle]="task.description"
+  ></app-title>
+
+  <mat-tab-group dynamicHeight class="w-100">
+    <mat-tab label="Ogólne">
+      <app-task-details-general-tab
+        [(task)]="task"
+        (deleteTaskEmitter)="deleteTask()"
+        (updateTaskEmitter)="updateTask()"
+        [deletePermission]="isSuperuserOrAdmin()"
+        [isOwner]="isOwner"
+      >
+      </app-task-details-general-tab>
+      <app-comments-section
+        [comments]="task.taskComments"
+        (addCommentEmitter)="addComment($event)"
+        (removeCommentEmitter)="removeComment($event)"
+      ></app-comments-section>
+    </mat-tab>
+    <mat-tab label="Automatycy">
+      <app-task-details-users-tab
+        [appUsers]="task.appUsers"
+        (addAppUserEmitter)="addAppUser($event)"
+        (deleteAppUserEmitter)="deleteUser($event)"
+      >
+      </app-task-details-users-tab>
+    </mat-tab>
+    <mat-tab label="Założenia">
+      <app-task-details-goals-tab
+        [goals]="task.goals"
+        [isOwner]="isOwner"
+        (addGoalEmitter)="addGoal($event)"
+        (deleteGoalEmitter)="deleteGoal($event)"
+        (modifyGoalEmitter)="modifyGoal($event)"
+      >
+      </app-task-details-goals-tab>
+    </mat-tab>
+    <mat-tab label="Zadania">
+      <app-task-details-subtasks-tab
+        [subtasks]="task.subTasks"
+        [isOwner]="isOwner"
+        (addSubtaskEmitter)="addSubtask($event)"
+        (modifySubtaskEmitter)="modifySubtask($event)"
+        (deleteSubtaskEmitter)="deleteSubtask($event)"
+      ></app-task-details-subtasks-tab>
+    </mat-tab>
+    <mat-tab *ngIf="isOwner" label="Zakończ">
+      <app-task-details-finish-tab
+        (finishTaskEmitter)="finishTask($event)"
+        [appUsers]="appUsers"
+      ></app-task-details-finish-tab>
+    </mat-tab>
+  </mat-tab-group>
+</div>

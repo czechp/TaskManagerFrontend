@@ -1,0 +1,23 @@
+<div class="d-flex flex-column align-items-center">
+    <h2 class="mt-3">Przydzieleni automatycy:</h2>
+    <mat-list dynamicHeight class="w-100">
+        <mat-list-item class="w-100" *ngFor="let appUser of appUsers">
+            <div class="d-flex justify-content-between w-100 p-2 border rounded">
+                <span class="pt-1">{{appUser.fullName}}</span>
+                <button (click)="deleteAppUser(appUser)" mat-stroked-button>
+                    <mat-icon color='warn'>delete</mat-icon>
+                    </button>
+            </div>
+        </mat-list-item>
+    </mat-list>
+
+
+    <div class="w-100 mt-3 mx-3">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Dodaj automatyków:</mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-add-task-users (addAppUserEmitter)="addAppUser($event)"></app-add-task-users>
+        </mat-expansion-panel>
+    </div>
+</div>

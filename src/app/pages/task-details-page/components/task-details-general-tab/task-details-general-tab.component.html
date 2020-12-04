@@ -1,0 +1,49 @@
+<div class="d-flex flex-column align-items-center mt-5">
+
+    <div class="w-75 my-5">
+        <app-progress-bar [title]="'Progress:'" [value]="task.progress"></app-progress-bar>
+    </div>
+
+    <div class="">
+        <h4>Data utworzenia: {{task.creationDate | date: 'short'}}</h4>
+        <h4>Ostatnio modyfikowany: {{task.updateDate | date: 'short'}}</h4>
+
+    </div>
+    <form [formGroup]="taskGeneralForm" class="w-100 d-flex flex-column align-items-center">
+        <mat-form-field class="w-50">
+            <mat-label>Tytuł:</mat-label>
+            <mat-hint *ngIf="isOwner" align="end">Minimum 5 znaków</mat-hint>
+            <mat-error *ngIf="taskGeneralForm.get('title').hasError('required')">To pole jest wymagane</mat-error>
+            <mat-error *ngIf="taskGeneralForm.get('title').hasError('minlength')">Minimum 5 znaków</mat-error>
+            <mat-error *ngIf="taskGeneralForm.get('title').hasError('maxlength')">Maksymalnie 255 znaków</mat-error>
+            <input [readonly]="!isOwner" matInput formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field class="w-50 mt-3">
+            <mat-label>Opis:</mat-label>
+            <mat-hint *ngIf="isOwner" align="end">Opcjonalny</mat-hint>
+            <input [readonly]="!isOwner" matInput formControlName="description">
+        </mat-form-field>
+
+        <mat-form-field class="w-50 mt-3">
+            <mat-label>Priorytet</mat-label>
+            <mat-select formControlName="taskPriority">
+                <mat-option value="LOW">Niski</mat-option>
+                <mat-option value="MEDIUM">Średni</mat-option>
+                <mat-option value="HIGH">Wysoki</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-50 mt-3">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="taskStatus">
+                <mat-option value="TODO">Do zrobienia</mat-option>
+                <mat-option value="IN_PROGRESS">W realizacji</mat-option>
+                <mat-option value="DONE">Zakończony</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <button (click)="updateTask()" @fade *ngIf="modified" mat-raised-button color="primary" class="w-50 mt-5">Zapisz zmiany</button>
+    <button (click)="deleteTaskDialog()" *ngIf="deletePermission" mat-raised-button color="warn" class="w-50 mt-4">Usuń</button>
+</div>

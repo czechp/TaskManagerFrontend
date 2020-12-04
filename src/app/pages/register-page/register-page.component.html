@@ -1,39 +1,115 @@
-<app-title [statement]="statement" [title]="'Rejestracja'"></app-title>
+<div @fade class="">
+    <app-title [statement]="statement" [title]="'Rejestracja'"></app-title>
 
-<div class="d-flex justify-content-center">
-  <div class="card card-custom w-50" id="card-custom">
-    <h3 class="mb-3">Rejestracja</h3>
+    <div class="d-flex justify-content-center">
+        <div class="card card-custom w-50" id="card-custom">
+            <h3 class="mb-3">Rejestracja</h3>
 
-    <!--Login-->
-    <div class="input-group mb-3 w-75">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="input-group-text-custom">Login:</span>
-      </div>
-      <input #username (focusout)="validateUsername(username.value)" class="form-control" type="text">
-    </div>
-    <!--Password #1-->
-    <div class="input-group mb-3 w-75">
-      <div class="input-group-prepend ">
-        <span class="input-group-text" id="input-group-text-custom">Hasło:</span>
-      </div>
-      <input #password class="form-control " type="password">
-    </div>
-    <!--Password #2-->
-    <div class="input-group mb-3 w-75">
-      <div class="input-group-prepend ">
-        <span class="input-group-text" id="input-group-text-custom">Hasło conf.:</span>
-      </div>
-      <input #passwordConf class="form-control " type="password">
-    </div>
-    <!--Email -->
-    <div class="input-group mb-3 w-75">
-      <div class="input-group-prepend ">
-        <span class="input-group-text" id="input-group-text-custom">Email:</span>
-      </div>
-      <input #email class="form-control " type="email">
-    </div>
+            <!--Login-->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="input-group-text-custom">Login:</span>
+                </div>
+                <input #username (focusout)="validateUsername(username.value)" class="form-control" type="text">
+            </div>
+            <!--Password #1-->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text" id="input-group-text-custom">Hasło:</span>
+                </div>
+                <input #password (focusout)="validatePassowrd(password.value)" class="form-control " type="password">
+            </div>
+            <!--Password #2-->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text" id="input-group-text-custom">Hasło conf.:</span>
+                </div>
+                <input #passwordConf (focusout)="validatePasswordEquals(password.value, passwordConf.value)"
+                    class="form-control " type="password">
+            </div>
+            <!--Email -->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text" id="input-group-text-custom">Email:</span>
+                </div>
+                <input #email (focusout)="validateEmail(email.value)" class="form-control " type="email">
+            </div>
+            <!--First name -->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text" id="input-group-text-custom">Imie:</span>
+                </div>
+                <input #firstName (focusout)="validateFirstName(firstName.value)" class="form-control " type="text">
+            </div>
+            <!-- Second name  -->
+            <div class="input-group mb-3 w-75">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text" id="input-group-text-custom">Nazwisko:</span>
+                </div>
+                <input #secondName (focusout)="validateSecondName(secondName.value)" class="form-control " type="text">
+            </div>
 
-    <button class="btn btn-outline-primary w-50">Rejestracja</button>
-  </div>
+            <div class="card card-custom w-75" id="card-custom">
+                <div class="validation-element-view" [ngClass]="{
+        'text-danger': usernameValidated === false,
+        'text-success': usernameValidated === true
+      }
+      ">
+                    Login poprawny
+                    <i *ngIf="usernameValidated" class="far fa-check-circle fa-2x"></i>
+                </div>
+                <div class="validation-element-view" [ngClass]="{
+        'text-danger': passwordValidated === false,
+        'text-success': passwordValidated === true
+      }
+      ">
+                    Hasło poprawne
+                    <i *ngIf="passwordValidated" class="far fa-check-circle fa-2x"></i>
+                </div>
+                <div class="validation-element-view" [ngClass]="{
+        'text-danger': passwordConfValidated === false,
+        'text-success': passwordConfValidated === true
+      }
+      ">
+                    Hasła identyczne
+                    <i *ngIf="passwordConfValidated" class="far fa-check-circle fa-2x"></i>
+                </div>
+                <div class="validation-element-view" [ngClass]="{
+        'text-danger': emailValidated === false,
+        'text-success': emailValidated === true
+      }
+      ">
+                    Email poprawny
+                    <i *ngIf="emailValidated" class="far fa-check-circle fa-2x"></i>
+
+                </div>
+
+                <div class="validation-element-view" [ngClass]="{
+                    'text-danger': firstNameValidated === false,
+                    'text-success': firstNameValidated === true
+                  }
+                  ">
+                    Imię poprawne
+                    <i *ngIf="firstNameValidated" class="far fa-check-circle fa-2x"></i>
+
+                </div>
+
+                <div class="validation-element-view" [ngClass]="{
+                    'text-danger': secondNameValidated === false,
+                    'text-success': secondNameValidated === true
+                  }
+                  ">
+                    Nazwisko poprawne
+                    <i *ngIf="secondNameValidated" class="far fa-check-circle fa-2x"></i>
+
+                </div>
+
+            </div>
+            <button (click)="register(username.value, password.value, email.value, firstName.value, secondName.value)" *ngIf="checkValidation()"
+                class="btn btn-outline-primary w-50 mt-4">Rejestracja
+            </button>
+        </div>
+
+    </div>
 
 </div>

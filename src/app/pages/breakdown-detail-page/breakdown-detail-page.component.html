@@ -1,0 +1,53 @@
+{{currentAppUser.id}}
+<div @fade>
+    <app-title [title]="'Awaria - ' + maintenanceTask.title" [statement]="statement"></app-title>
+    <div class="d-flex justify-content-center">
+        <div class="card w-50" id="card-custom">
+            <h5>Status:</h5>
+            <p [ngClass]="{
+                'text-danger': maintenanceTask.taskStatus === 'TODO',
+                'text-primary': maintenanceTask.taskStatus === 'IN_PROGRESS',
+                'text-success': maintenanceTask.taskStatus === 'DONE'
+            }">{{getStatus()}}</p>
+
+            <h5>Zgłaszający:</h5>
+            <p>{{maintenanceTask.maintenanceWorker.secondName}} {{maintenanceTask.maintenanceWorker.firstName}}</p>
+
+            <h5>Data zgloszenia: </h5>
+            <p>{{maintenanceTask.creationDate|date: 'H:m:s dd.MM.yyyy'}}</p>
+
+            <div *ngIf="maintenanceTask.finishDate !== null" class="">
+                <h5>Data zakończenia: </h5>
+                <p>{{maintenanceTask.finishDate|date: 'H:m:s dd.MM.yyyy'}}</p>
+            </div>
+
+            <h5>Hala: </h5>
+            <p>{{maintenanceTask.breakdownPlace}}</p>
+
+            <h5>Maszyna: </h5>
+            <p>{{maintenanceTask.breakdownMachine}}</p>
+
+            <h5>Opis awarii: </h5>
+            <p>{{maintenanceTask.description}}</p>
+
+            <div *ngIf="maintenanceTask.repairMan !== null" class="">
+                <h5>Wykonał: </h5>
+                <p>{{maintenanceTask.repairMan.username}}</p>
+            </div>
+
+
+            <div *ngIf="maintenanceTask.repairConclusion !== null" class="">
+                <h5>Podsumowanie: </h5>
+                <p>{{maintenanceTask.repairConclusion}}</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="maintenanceTask.taskStatus === 'TODO'" class="d-flex justify-content-center">
+        <button class="btn btn-outline-primary w-50" (click)="changeStatusToInProgress()">Wykonaj</button>
+    </div>
+
+    <div *ngIf="maintenanceTask.taskStatus === 'IN_PROGRESS'" class="d-flex flex-column align-items-center ">
+        <app-input-text-area-custom #maintenanceTaskRepairConclusion class="w-50" [title]="'Opis naprawy:'" [length]=3 [(value)]="maintenanceTask.repairConclusion"></app-input-text-area-custom>
+        <button *ngIf="maintenanceTaskRepairConclusion.isValidated()" class="btn btn-outline-success w-50" (click)="finishMaintenanceTask()">Zakończ</button>
+    </div>
+</div>

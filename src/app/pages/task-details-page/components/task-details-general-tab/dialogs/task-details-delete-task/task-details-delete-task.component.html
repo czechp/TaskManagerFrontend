@@ -1,0 +1,17 @@
+<div class="bg-dark text-light p-4">
+    <h2 mat-dialog-mat-sort-header>Usuwanie pracy</h2>
+    <div class="w-100 d-flex flex-column align-items-center" mat-dialog-content>
+        <p>Czy napewno chcesz usunąc to prace ?</p>
+        <p>Aby potwierdzić usnięcie wpisz tytuł pracy:</p>
+        <div class="my-3 w-75">
+            <mat-form-field class="w-100">
+                <mat-label>Tytuł usuwanej pracy: </mat-label>
+                <input matInput #deleteConfirm>
+            </mat-form-field>
+        </div>
+        <button mat-dialog-close="true" @fade class="w-75" mat-raised-button color="warn" *ngIf="data.taskTitle === deleteConfirm.value">Usuń</button>
+        <button mat-dialog-close class="w-75 mt-3" mat-stroked-button color="warn" >Anuluj</button>
+
+
+    </div>
+</div>
