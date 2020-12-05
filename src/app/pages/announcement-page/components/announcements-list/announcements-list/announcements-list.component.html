@@ -71,7 +71,14 @@
         <button mat-raised-button color="primary" class="w-25">
           Modyfikuj
         </button>
-        <button mat-raised-button color="warn" class="w-25">Usuń</button>
+        <button
+          mat-raised-button
+          color="warn"
+          class="w-25"
+          (click)="deleteAnnouncementDialog(announcement)"
+        >
+          Usuń
+        </button>
       </div>
     </div>
   </mat-expansion-panel>

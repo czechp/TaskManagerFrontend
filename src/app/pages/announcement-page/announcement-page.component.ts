@@ -79,6 +79,22 @@ export class AnnouncementPageComponent implements OnInit {
       );
   }
 
+  public deleteAnnouncement(announcementId: number): void {
+    this.clearStatement();
+    this.httpApiService
+      .delete(announcementEndopoint + "/" + announcementId, [])
+      .subscribe(
+        (next: any) => {
+          this.getAnnouncements();
+        },
+        (error: any) => {
+          this.statement = this.httpApiService.errorStatementHandler(
+            error.status
+          );
+        }
+      );
+  }
+
   private sortAnnouncementsById(announcements: Announcement[]): Announcement[] {
     return announcements.sort(
       (x1: Announcement, x2: Announcement) => x1.id - x2.id

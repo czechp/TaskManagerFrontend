@@ -72,6 +72,7 @@ import { TaskDetailsFinishDialogComponent } from './pages/task-details-page/comp
 import { FilterTasksComponent } from './pages/all-tasks-page/components/filter-tasks/filter-tasks.component';
 import { AnnouncementPageComponent } from './pages/announcement-page/announcement-page.component';
 import { AnnouncementsListComponent } from './pages/announcement-page/components/announcements-list/announcements-list/announcements-list.component';
+import { RemoveAnnouncementDialogComponent } from './pages/announcement-page/components/announcements-list/announcements-list/dialog/remove-announcement-dialog/remove-announcement-dialog/remove-announcement-dialog.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { AnnouncementsListComponent } from './pages/announcement-page/components
     FilterTasksComponent,
     AnnouncementPageComponent,
     AnnouncementsListComponent,
+    RemoveAnnouncementDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
 <div @fade class="">
   <app-title [title]="'Ogłoszenia'" [statement]="statement"></app-title>
-  <app-announcements-list [announcements]="announcements" (removeCommentEmitter)="removeComment($event)" (addCommentEmitter)="addCommentToAnnouncement($event)"></app-announcements-list>
+  <app-announcements-list [announcements]="announcements" (removeAnnouncementEmitter)="deleteAnnouncement($event)" (removeCommentEmitter)="removeComment($event)" (addCommentEmitter)="addCommentToAnnouncement($event)"></app-announcements-list>
 </div>
