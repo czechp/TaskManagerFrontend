@@ -2,7 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { Announcement } from "src/app/models/Announcement";
 import { AnnouncementComment } from "src/app/models/AnnouncementComment";
 import { HttpApiService } from "src/app/services/httpApiService/http-api.service";
-import { announcementEndopoint } from "src/app/services/URL";
+import {
+  announcementCommentEndopoint,
+  announcementEndopoint,
+} from "src/app/services/URL";
 import { fade } from "src/app/utilities/animations/animations";
 
 @Component({
@@ -43,12 +46,14 @@ export class AnnouncementPageComponent implements OnInit {
     const announcementComment = { content: commentContent };
     this.httpApiService
       .post(
-        announcementEndopoint + '/' + announcementId + "/comments",
+        announcementEndopoint + "/" + announcementId + "/comments",
         announcementComment,
         []
       )
       .subscribe(
-        (next: any) => {this.getAnnouncements()},
+        (next: any) => {
+          this.getAnnouncements();
+        },
         (error: any) => {
           this.statement = this.httpApiService.errorStatementHandler(
             error.status
@@ -56,6 +61,22 @@ export class AnnouncementPageComponent implements OnInit {
         }
       );
     this.clearStatement();
+  }
+
+  public removeComment(commentId: number): void {
+    this.clearStatement();
+    this.httpApiService
+      .delete(announcementCommentEndopoint + "/" + commentId, [])
+      .subscribe(
+        (next: any) => {
+          this.getAnnouncements();
+        },
+        (error: any) => {
+          this.statement = this.httpApiService.errorStatementHandler(
+            error.status
+          );
+        }
+      );
   }
 
   private sortAnnouncementsById(announcements: Announcement[]): Announcement[] {

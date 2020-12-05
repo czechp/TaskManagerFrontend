@@ -1,15 +1,22 @@
-<div class="d-flex justify-content-center mt-4">
-  <div class="w-100 mx-2" *ngFor="let announcement of announcements">
-    <h2>
-      <i>{{ announcement.title }}</i>
-    </h2>
+<div
+  class="w-100 mx-2 d-flex flex-column align-items-center"
+  *ngFor="let announcement of announcements; index as i"
+>
+  <mat-expansion-panel #announceExpensionPanel class="mt-1">
+    <mat-expansion-panel-header>{{
+      announcement.title
+    }}</mat-expansion-panel-header>
     <div class="d-flex justify-content-between mt-3">
-      <span> Autor: {{ announcement.appUser.fullName }} </span>
+      <span>
+        Autor: <i>{{ announcement.appUser.fullName }}</i>
+      </span>
       <span
-        >Data utworzenia: {{ announcement.creationDate | date: "short" }}</span
+        >Data utworzenia:
+        <i>{{ announcement.creationDate | date: "short" }}</i></span
       >
       <span
-        >Data modyfikacji: {{ announcement.updateDate | date: "short" }}</span
+        >Data modyfikacji:
+        <i>{{ announcement.updateDate | date: "short" }}</i></span
       >
     </div>
     <div class="mt-3">
@@ -51,8 +58,21 @@
       </p>
     </div>
     <div class="w-100">
-        <app-comments-section [comments]="announcement.comments" (addCommentEmitter)="addComment(announcement.id, $event)"></app-comments-section>
+      <app-comments-section
+        [comments]="announcement.comments"
+        (removeCommentEmitter)="removeCommentEmitter.emit($event)"
+        (addCommentEmitter)="addComment(announcement.id, $event)"
+      ></app-comments-section>
     </div>
-    <hr style="background-color: white;">
-  </div>
+    <hr style="background-color: black" />
+    <div *ngIf="isOwner(announcement.appUser.username)">
+      <h3><b>Edycja:</b></h3>
+      <div class="d-flex justify-content-between mb-3">
+        <button mat-raised-button color="primary" class="w-25">
+          Modyfikuj
+        </button>
+        <button mat-raised-button color="warn" class="w-25">Usuń</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
 </div>
